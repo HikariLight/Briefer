@@ -8,66 +8,35 @@ We’ll still have to wait for consumer TVs to actually make it to market using 
 The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess.
 `;
 
-var notMeaningful = (word) => {
+var tokenizeWords = (text) => {
 
-    // Judges whether a word is meaningful or not.
+    // Returns a list of all words in a given string
 
-    let notMeaningful = ["And", "and", "The", "the", "Or", "or", "Is", "is", "Of", "of", "A", "a", "to", "To", "be", "Be", "Of", "of"];
-
-    for(let testWord of notMeaningful){
-        if(word == testWord){
-            return true;
-        }
-    }
-
-    return false;
+    return text.split(" ");
 }
 
 var filterText = (text) => {
 
-    let notMeaningful = ["And", "and", "The", "the", "Or", "or", "Is", "is", "Of", "of", "A", "a", "to", "To", "be", "Be", "Of", "of"];
+    // Filters text of unwanted words.
+    // Problem: Only deletes the first occurence of an unwanted word.
+
+    let notMeaningful = ["And", "and", "The", "the", "Or", "or", "Is", "is", "Of", "of", "A", "a", "to", "To", "be", "Be", "Of", "of", "Which", "which", "it", "It", "is"];
+    let punctuation = [".", ",", "!", "?", ";"];
 
     for(let i = 0; i < text.length; i++){
         if(notMeaningful.includes(text[i])){
-            text.splice(i, i);
+            text.splice(i, 1);
+        }
+
+        if(punctuation.includes(text[i].at(-1))){
+            text[i] = text[i].substr(0, text[i].length - 1);
         }
     }
 }
 
-var tokenizeWords = (text) => {
-
-    // Creats a list of all words in a text, while taking out non-meaningful words.
-
-    // let tokenizedText = [];
-    // let word = "";
-
-    // for (let c of text){
-    //     if(c == "," || c == "." || c == "!" || c == "?" || c == ";"){
-    //         continue;
-    //     }
-
-    //     word += c;
-
-    //     if(c == " "){
-    //         word.slice(0, -1); // Deleting last letter because spaces end up appearing in the words
-            
-    //         if(!notMeaningful(word)){
-    //             tokenizedText.push(word);
-    //         }
-    //         word = "";
-    //     }
-    // }
-
-    // return tokenizedText;
-
-
-    // All of that.. Replaced by this..
-    return text.split(" ");
-}
-
 var tokenizeSentences = (text) => {
 
-    // Creates a list of all the sentences.
+    // Returns a list of all the sentences.
 
     let word = "";
     let sentence = [];
@@ -82,6 +51,7 @@ var tokenizeSentences = (text) => {
         }
 
         if(c == "."){
+            filterText(sentence);
             sentences.push(sentence);
             sentence = [];
             word = "";
@@ -91,27 +61,27 @@ var tokenizeSentences = (text) => {
     return sentences;
 }
 
-var getObjectText = (textTokens) =>{
+var getWordsMap = (tokenizedWords) =>{
     
-    // Creates an object of words and their occurences.
+    // Returns a map of words and their occurences.
 
-    result = {}
+    wordsMap = {}
 
-    for(let i = 0; i < textTokens.length; i++){
-        if(Object.keys(result).includes(textTokens[i])){
-            result[textTokens[i]] += 1;
+    for(let i = 0; i < tokenizedWords.length; i++){
+        if(Object.keys(wordsMap).includes(tokenizedWords[i])){
+            wordsMap[tokenizedWords[i]] += 1;
         }
         else{
-            result[textTokens[i]] = 1;
+            wordsMap[tokenizedWords[i]] = 1;
         }
     }
 
-    return result;
+    return wordsMap;
 }
 
 var getMostFrequent = (textObj) =>{
 
-    // Gets the word that is most frequent and its number of occurences.
+    // Returns the most frequent word and its number of occurences.
 
     let maxOccurence = 0;
     let frequentWord = "";
@@ -126,45 +96,43 @@ var getMostFrequent = (textObj) =>{
     return [frequentWord, maxOccurence];
 }
 
-var weighText = (textObj) =>{
+var weighWords = (wordsMap) =>{
 
-    // Replaces word occurences with their weights in textObj
+    // Replaces word occurences with their weights in wordsMap
 
-    let mostFrequent = getMostFrequent(textObj);
+    let mostFrequent = getMostFrequent(wordsMap);
 
-    for(word in textObj){
-        textObj[word] /= mostFrequent[1];
+    for(word in wordsMap){
+        wordsMap[word] /= mostFrequent[1];
     }
 
 }
 
-var weighSentence = (sentence, words) =>{
+var weighSentence = (sentence, wordsMap) =>{
     
     // Calculates the score of a single sentence.
 
     let result = 0;
 
     for(let i = 0; i < sentence.length; i++){
-        result += words[sentence[i]];
+        result += wordsMap[sentence[i]];
     }
 
     return result;
 }
 
-var weightSentences = (tokenizedSentences) =>{
+var weighSentences = (sentenceTokens, wordsMap) =>{
     
     // Returns a dictionary of sentences and their weights.
 
     let weighedSentences = {};
 
-    for(let i = 0; i < tokenizeSentences.length; i++){
-        for(let j = 0; tokenizeSentences[i].length; j++){
-            if(Object.keys(weighedSentences).includes(textTokens[i])){
-                weighedSentences[tokenizeSentences[i]] = weighSentence(tokenizeSentences[i][j]);
-            }
-            else{
-                weighedSentences[tokenizeSentences[i]] += weighSentence(tokenizeSentences[i][j]);
-            }
+    for(let i = 0; i < sentenceTokens.length; i++){
+        if(Object.keys(weighedSentences).includes(sentenceTokens[i])){
+            weighedSentences[sentenceTokens[i]] += weighSentence(sentenceTokens[i], wordsMap);
+        }
+        else{
+            weighedSentences[sentenceTokens[i]] += weighSentence(sentenceTokens[i], wordsMap);
         }
     }
 
@@ -183,9 +151,29 @@ var summarise = (text) =>{
 
 }
 
-// var tokenizedSentences = tokenizeSentences(test_text);
-// console.log(tokenizedSentences);
+// ======== Tests ========
 
-var tokenizedWords = tokenizeWords(test_text);
-console.log(tokenizedWords);
-// tokenizedWords = getObjectText(tokenizedWords);
+// ==== Word Tests ====
+var wordTokens = tokenizeWords(test_text);
+
+// Filtering Test:
+// console.log(wordTokens);
+// console.log("Not filtered size: " + wordTokens.length);
+filterText(wordTokens);
+// console.log(wordTokens);
+// console.log("Filtered size: " + wordTokens.length);
+
+// // Map test:
+var wordsMap = getWordsMap(wordTokens);
+// console.log(wordsMap);
+
+// // Weigh Test:
+weighWords(wordsMap);
+// console.log(wordsMap);
+
+// // ==== Sentence Tests ====
+var sentenceTokens = tokenizeSentences(test_text);
+
+// // Scoring Test:
+var sentenceMap = weighSentences(sentenceTokens, wordsMap);
+console.log(sentenceMap);
