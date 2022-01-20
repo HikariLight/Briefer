@@ -129,37 +129,44 @@ const weighWords = (wordsMap) =>{
 
 }
 
+const getSentenceMap = (sentenceTokens) =>{
+
+    // Returns a dicitonary of sentences and a score initialized at 0.
+
+    let sentenceMap = {};
+
+    for(let i = 0; i < sentenceTokens.length; i++){
+        let sentence = sentenceTokens[i];
+        sentence = sentence.join("");
+        sentenceMap[sentence] = 0;
+    }
+
+    return sentenceMap;
+}
+
 const scoreSentence = (sentence, wordsMap) =>{
     
     // Calculates the score of a single sentence.
 
-    let result = 0;
+    let score = 0;
+    let sentenceTokens = tokenizeWords(sentence);
 
-    for(let i = 0; i < sentence.length; i++){
-        if(Object.keys(wordsMap).includes(sentence[i])){
-            result += wordsMap[sentence[i]];
+    for(let i = 0; i < sentenceTokens.length; i++){
+        if(Object.keys(wordsMap).includes(sentenceTokens[i])){
+            score += wordsMap[sentenceTokens[i]];
         }
     }
 
-    return result;
+    return score;
 }
 
-const scoreSentences = (sentenceTokens, wordsMap) =>{
+const scoreSentences = (sentenceMap, wordsMap) =>{
     
     // Returns a dictionary of sentences and their weights.
 
-    let scoredSentences = {};
-
-    for(let i = 0; i < sentenceTokens.length; i++){
-        if(Object.keys(scoredSentences).includes(sentenceTokens[i])){
-            scoredSentences[sentenceTokens[i]] += scoreSentence(sentenceTokens[i], wordsMap);
-        }
-        else{
-            scoredSentences[sentenceTokens[i]] = scoreSentence(sentenceTokens[i], wordsMap);
-        }
+    for(sentence in sentenceMap){
+        sentenceMap[sentence] = scoreSentence(sentence, wordsMap);
     }
-
-    return scoredSentences;
 }
 
 const getAverageWeight = (sentenceMap) =>{
@@ -178,7 +185,7 @@ const getAverageWeight = (sentenceMap) =>{
 
 const summarise = (text) =>{
     
-    // Main function.
+    // Main function. Returns a string that represents the summary of the input text.
 
     let result = "";
 
@@ -189,13 +196,13 @@ const summarise = (text) =>{
 
     let sentenceTokens = tokenizeSentences(text);
     filterSentences(sentenceTokens);
-    let sentenceMap = scoreSentences(sentenceTokens, wordsMap);
-    let averageWeight = getAverageWeight(sentenceMap)
+    let sentencesMap = getSentenceMap(sentenceTokens);
+    scoreSentences(sentencesMap, wordsMap);
+    let averageWeight = getAverageWeight(sentencesMap)
 
-    for(sentence in sentenceMap){
-        if(sentenceMap[sentence] >= averageWeight){
+    for(sentence in sentencesMap){
+        if(sentencesMap[sentence] >= averageWeight){
             result += sentence;
-            result += "\n";
         }
     }
 
@@ -206,13 +213,11 @@ const summarise = (text) =>{
 
 // ==== Word Tests ====
 let wordTokens = tokenizeWords(test_text);
+// console.log(wordTokens);
 
 // Filtering Test:
-// console.log(wordTokens);
-// console.log("Not filtered size: " + wordTokens.length);
 filterText(wordTokens);
 // console.log(wordTokens);
-// console.log("Filtered size: " + wordTokens.length);
 
 // Map test:
 let wordsMap = getWordsMap(wordTokens);
@@ -224,15 +229,19 @@ weighWords(wordsMap);
 
 // ==== Sentence Tests ====
 let sentenceTokens = tokenizeSentences(test_text);
-// filterSentences(sentenceTokens);
+filterSentences(sentenceTokens);
 // console.log(sentenceTokens);
 
+// Map Test:
+let sentencesMap = getSentenceMap(sentenceTokens);
+// console.log(sentencesMap);
+
 // Scoring Test:
-let sentenceMap = scoreSentences(sentenceTokens, wordsMap);
-// console.log(sentenceMap);
+scoreSentences(sentencesMap, wordsMap);
+// console.log(sentencesMap);
 
 // // Average Weight Test:
-let averageWeight = getAverageWeight(sentenceMap);
+let averageWeight = getAverageWeight(sentencesMap);
 // console.log("Average Weight: " + averageWeight);
 
 // Summarisation Test:
