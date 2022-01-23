@@ -1,16 +1,43 @@
-body{
-    text-align: center;
+html{
+    --themeGreen: #00856F;
+    --themeBlue: #118AB2;
+    --themeGrey: #364954;
+    --themeDefault: #707070;
 }
 
-h1{
-    border-bottom: 1px solid #AC1933;
+body{
+    min-width: 200px;
+    text-align: center;
+    color: var(--themeDefault);
 }
 
 button{
-    background-color: #AC1933;
-    color: white;
-    width: 100%;
-    border: none;
+    border-radius: 25px;
+    width: 65%;
     margin: 0.25em 0;
     padding: 1em;
 }
+
+.title{
+    color: var(--themeBlue);
+    text-decoration: underline;
+}
+
+.greenButton{
+    border: 1px solid var(--themeGreen);
+    background-color: var(--themeGreen);
+    color: white;
+}
+
+.blueButton{
+    border: 1px solid var(--themeBlue);
+    background-color: var(--themeBlue);
+    color: white;
+}
+
+.greyButton{
+    border: 1px solid var(--themeGrey);
+    background-color: var(--themeGrey);
+    color: white;
+}
+
