@@ -1,21 +1,30 @@
 let test_case = [
     {
         "h1": ["First Title"],
-        "p": ["First Paragraph", "Second Paragraph", "Third Paragraph"],
+        "p": [
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis porta vehicula. Aenean eleifend elit vel justo accumsan feugiat. Ut eget risus ac est suscipit tempor quis sed mi. Aliquam erat volutpat. Curabitur fringilla nibh libero, vel porta libero consequat nec. Donec eu pretium ipsum. Proin cursus ipsum vel sem suscipit mattis. Nam sit amet mi id sem aliquam rutrum ut nec dui. Donec congue sollicitudin metus, eget egestas mi aliquet ac. Nullam eget porttitor est. Integer sed odio nulla. Sed imperdiet vel sapien a feugiat. Curabitur pellentesque turpis eu ipsum ornare, in ornare eros dignissim. Nunc et nunc tempus, tempor enim at, semper purus. Praesent accumsan pulvinar libero, eleifend laoreet ipsum tincidunt sit amet. ",
+            "Nunc pellentesque mi magna, non porttitor arcu varius sed. Mauris nulla nunc, placerat pulvinar nibh vel, consequat iaculis nisi. In non efficitur turpis, a convallis odio. Vivamus efficitur dignissim ornare. In facilisis eu massa in semper. Donec nec erat sed leo vestibulum porttitor. Donec aliquam odio at felis porta, ut mattis eros suscipit. Nunc fermentum eros quis magna congue, eget condimentum dui condimentum. Praesent viverra purus odio, ut ornare ex blandit eget. Sed viverra metus quis erat mollis accumsan. Pellentesque eu dui ante. Cras eu nunc quis libero suscipit imperdiet vel malesuada lectus. Suspendisse ultricies nisi id bibendum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+            "Integer nec urna imperdiet, bibendum augue ac, vulputate felis. Nam a rutrum enim. Praesent fringilla ipsum felis, eu porta ligula molestie interdum. Phasellus condimentum et diam ut laoreet. Mauris dignissim id nisi sit amet consectetur. Quisque eget ullamcorper urna. Donec nec mauris ut nisi euismod sollicitudin. Pellentesque at tempus justo. Nunc dui erat, efficitur id est eget, ornare gravida arcu. In a tellus id elit aliquam scelerisque eget non dui. Integer dolor lacus, facilisis eget risus ac, tempor mattis felis. Nulla massa ante, luctus ut est finibus, iaculis vehicula neque. Phasellus enim felis, maximus a neque nec, facilisis ullamcorper tellus. Aliquam mollis nec lectus non varius. "
+        ],
         "img": ["https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg"],
-        "a": ["www.google.com", "stuff"]
     },
     {
         "h1": ["Second Title"],
-        "p": ["First Paragraph", "Second Paragraph", "Third Paragraph"],
-        "img": ["https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg"],
-        "a": ["www.google.com", "stuff"]
+        "p": [
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis porta vehicula. Aenean eleifend elit vel justo accumsan feugiat. Ut eget risus ac est suscipit tempor quis sed mi. Aliquam erat volutpat. Curabitur fringilla nibh libero, vel porta libero consequat nec. Donec eu pretium ipsum. Proin cursus ipsum vel sem suscipit mattis. Nam sit amet mi id sem aliquam rutrum ut nec dui. Donec congue sollicitudin metus, eget egestas mi aliquet ac. Nullam eget porttitor est. Integer sed odio nulla. Sed imperdiet vel sapien a feugiat. Curabitur pellentesque turpis eu ipsum ornare, in ornare eros dignissim. Nunc et nunc tempus, tempor enim at, semper purus. Praesent accumsan pulvinar libero, eleifend laoreet ipsum tincidunt sit amet. ",
+            "Nunc pellentesque mi magna, non porttitor arcu varius sed. Mauris nulla nunc, placerat pulvinar nibh vel, consequat iaculis nisi. In non efficitur turpis, a convallis odio. Vivamus efficitur dignissim ornare. In facilisis eu massa in semper. Donec nec erat sed leo vestibulum porttitor. Donec aliquam odio at felis porta, ut mattis eros suscipit. Nunc fermentum eros quis magna congue, eget condimentum dui condimentum. Praesent viverra purus odio, ut ornare ex blandit eget. Sed viverra metus quis erat mollis accumsan. Pellentesque eu dui ante. Cras eu nunc quis libero suscipit imperdiet vel malesuada lectus. Suspendisse ultricies nisi id bibendum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+            "Integer nec urna imperdiet, bibendum augue ac, vulputate felis. Nam a rutrum enim. Praesent fringilla ipsum felis, eu porta ligula molestie interdum. Phasellus condimentum et diam ut laoreet. Mauris dignissim id nisi sit amet consectetur. Quisque eget ullamcorper urna. Donec nec mauris ut nisi euismod sollicitudin. Pellentesque at tempus justo. Nunc dui erat, efficitur id est eget, ornare gravida arcu. In a tellus id elit aliquam scelerisque eget non dui. Integer dolor lacus, facilisis eget risus ac, tempor mattis felis. Nulla massa ante, luctus ut est finibus, iaculis vehicula neque. Phasellus enim felis, maximus a neque nec, facilisis ullamcorper tellus. Aliquam mollis nec lectus non varius. "
+        ],
+        "img": ["https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg"],
     },
     {
         "h1": ["Third Title"],
-        "p": ["First Paragraph", "Second Paragraph", "Third Paragraph"],
-        "img": ["https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg"],
-        "a": ["www.google.com", "stuff"]
+        "p": [
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis porta vehicula. Aenean eleifend elit vel justo accumsan feugiat. Ut eget risus ac est suscipit tempor quis sed mi. Aliquam erat volutpat. Curabitur fringilla nibh libero, vel porta libero consequat nec. Donec eu pretium ipsum. Proin cursus ipsum vel sem suscipit mattis. Nam sit amet mi id sem aliquam rutrum ut nec dui. Donec congue sollicitudin metus, eget egestas mi aliquet ac. Nullam eget porttitor est. Integer sed odio nulla. Sed imperdiet vel sapien a feugiat. Curabitur pellentesque turpis eu ipsum ornare, in ornare eros dignissim. Nunc et nunc tempus, tempor enim at, semper purus. Praesent accumsan pulvinar libero, eleifend laoreet ipsum tincidunt sit amet. ",
+            "Nunc pellentesque mi magna, non porttitor arcu varius sed. Mauris nulla nunc, placerat pulvinar nibh vel, consequat iaculis nisi. In non efficitur turpis, a convallis odio. Vivamus efficitur dignissim ornare. In facilisis eu massa in semper. Donec nec erat sed leo vestibulum porttitor. Donec aliquam odio at felis porta, ut mattis eros suscipit. Nunc fermentum eros quis magna congue, eget condimentum dui condimentum. Praesent viverra purus odio, ut ornare ex blandit eget. Sed viverra metus quis erat mollis accumsan. Pellentesque eu dui ante. Cras eu nunc quis libero suscipit imperdiet vel malesuada lectus. Suspendisse ultricies nisi id bibendum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+            "Integer nec urna imperdiet, bibendum augue ac, vulputate felis. Nam a rutrum enim. Praesent fringilla ipsum felis, eu porta ligula molestie interdum. Phasellus condimentum et diam ut laoreet. Mauris dignissim id nisi sit amet consectetur. Quisque eget ullamcorper urna. Donec nec mauris ut nisi euismod sollicitudin. Pellentesque at tempus justo. Nunc dui erat, efficitur id est eget, ornare gravida arcu. In a tellus id elit aliquam scelerisque eget non dui. Integer dolor lacus, facilisis eget risus ac, tempor mattis felis. Nulla massa ante, luctus ut est finibus, iaculis vehicula neque. Phasellus enim felis, maximus a neque nec, facilisis ullamcorper tellus. Aliquam mollis nec lectus non varius. "
+        ],
+        "img": ["https://cdn.mos.cms.futurecdn.net/KYEJp9vem3QQFGhi25SYx4-1200-80.jpg"],
     }
 ];
 
@@ -58,8 +67,15 @@ const insertTags = (section) =>{
         }
 
         // Maybe we don't need this. We won't include a's in the output
-        if(tag == "a"){
-            result += "<" + tag + " href=\"" + section[tag][0] + "\">"+ section[tag][1] +"</" + tag + ">\n";
+        // if(tag == "a"){
+        //     result += "<" + tag + " href=\"" + section[tag][0] + "\">"+ section[tag][1] +"</" + tag + ">\n";
+        //     continue;
+        // }
+
+        if(tag == "p"){
+            for(let i = 0; i < section[tag].length; i++){
+                result += "<" + tag + ">" + section[tag][i] + "</" + tag + ">";
+            }
             continue;
         }
 
