@@ -6,18 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style/extension.css">
         <title>ClearView</title>
+        <script type="module" src="popup.js"></script>
     </head>
 
     <body>
         <h1 class="title">ClearView</h1>
 
         <h3 class="title">Single Page Actions</h3>
-        <button class="greenButton">Simplify</button>
-        <button class="greyButton">Summarise</button>
+        <button class="greenButton" id="simplify">Simplify</button>
+        <button class="greyButton" id="summarise">Summarise</button>
 
         <h3 class="title">Multi-Page Actions</h3>
-        <button class="greenButton">Remember Page</button>
-        <button class="blueButton">Dashboard</button>
+        <button class="greenButton" id="remember">Remember Page</button>
+        <button class="blueButton" id="dashboard">Dashboard</button>
 
         <footer>
             <p>ClearView Inc. All Rights Reserved</p>
