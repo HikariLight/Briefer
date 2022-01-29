@@ -1,5 +1,5 @@
 
-export function getHtml(tab, fct) {
+export async function getHtml(tab, fct) {
     const result = await chrome.scripting.executeScript(
         {
             target: { tabId: tab.id },
@@ -9,7 +9,7 @@ export function getHtml(tab, fct) {
     return result[0].result;
 }
 
-export function getActiveTab() {
+export async function getActiveTab() {
     // get active tab
     const tabs = await chrome.tabs.query({ active : true, currentWindow : true });
     const tab = tabs[0];

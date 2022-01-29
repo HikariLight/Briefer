@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     document.getElementById('simplify').addEventListener('click', async () => {
 
-        var tmp = await reader.getActiveTab();
+        var tmp = await getActiveTab();
         var storedTabs = getData('tabs');
         if (storedTabs.length === 0 || !isIn(storedTabs, tmp.url)) {
             storedTabs.push(tmp);
