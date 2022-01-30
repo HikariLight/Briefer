@@ -32,8 +32,9 @@ const skeletonHead = `
     <html>
 
     <head>
-    <title>ClearView</title>
-    <link rel="stylesheet" href="./style/page.css">
+        <title>ClearView</title>
+        <link rel="stylesheet" href="./style/page.css">
+        <link rel="icon" href="./style/favicon.png">
     </head>
 
     <body>
@@ -42,10 +43,13 @@ const skeletonHead = `
         <h1 id="headerTitle">ClearView</h1>
     <header>
 
-    <h1 id="articleTitle">Some Title</h1>
+    <main>
+        <h1 id="articleTitle">Page Title</h1>
 `;
 
 const skeletonBody = `
+    </main>
+    
     <footer>
         <p>ClearView Inc. All Rights Reserved</p>
     </footer>
@@ -96,7 +100,9 @@ const render = (sections) =>{
     result += skeletonHead;
     
     for(let i = 0; i < sections.length; i++){
+        result += "<section>\n";
         result += insertTags(sections[i]);
+        result += "\n</section>\n";
     }
 
     result += skeletonBody;
