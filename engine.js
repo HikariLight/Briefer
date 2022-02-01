@@ -39,11 +39,13 @@ const skeletonHead = `
 
     <body>
 
+    <!--
     <header>
         <h1 id="headerTitle">ClearView</h1>
     <header>
+    -->
 
-    <main>
+    <main class="container">
         <h1 id="articleTitle">Page Title</h1>
 `;
 
@@ -57,7 +59,7 @@ const skeletonBody = `
     </html>
 `;
 
-const insertTags = (section) =>{
+const insertTags = (section, mode) =>{
 
     // Takes in a dictionary and returns a string containing HTML Code.
 
@@ -70,16 +72,22 @@ const insertTags = (section) =>{
             continue;
         }
 
-        // Maybe we don't need this. We won't include a's in the output
-        // if(tag == "a"){
-        //     result += "<" + tag + " href=\"" + section[tag][0] + "\">"+ section[tag][1] +"</" + tag + ">\n";
-        //     continue;
-        // }
-
         if(tag == "p"){
-            for(let i = 0; i < section[tag].length; i++){
-                result += "<" + tag + ">" + section[tag][i] + "</" + tag + ">";
+            if(mode == "simplify"){
+                for(let i = 0; i < section[tag].length; i++){
+                    result += "<" + tag + ">" + section[tag][i] + "</" + tag + ">";
+                }
             }
+            else if(mode == "summarise"){
+                result += "<ul>";
+                for(let i = 0; i < section[tag].length; i++){
+                    result += "<li>"
+                    result += "<" + tag + ">" + section[tag][i] + "</" + tag + ">";
+                    result += "</li>";
+                }
+                result += "</ul>";
+            }
+
             continue;
         }
 
@@ -91,7 +99,7 @@ const insertTags = (section) =>{
     return result;
 }
 
-const render = (sections) =>{
+const render = (sections, mode) =>{
 
     // Takes in a list of dictionaries and returns a string containing HTML Code.
 
@@ -101,7 +109,7 @@ const render = (sections) =>{
     
     for(let i = 0; i < sections.length; i++){
         result += "<section>\n";
-        result += insertTags(sections[i]);
+        result += insertTags(sections[i], mode);
         result += "\n</section>\n";
     }
 
@@ -116,5 +124,6 @@ let sectionHTML = insertTags(test_case[0])
 // console.log(sectionHTML);
 
 // Render test
-let pageHTML = render(test_case);
-// console.log(pageHTML);
+let simplifiedPage = render(test_case, "simplify");
+let summarisedPage = render(test_case, "summarise");
+// console.log(summarisedPage);

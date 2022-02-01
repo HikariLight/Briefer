@@ -10,11 +10,14 @@ body{
     font-family: Arial, Helvetica;
     height: 100vh;
     margin: 1em;
+    font-size: 1.25em;
 }
 
 img{
+    display: block;
     width: 30%;
     height: auto;
+    margin: auto;
 }
 
 header{
@@ -26,6 +29,13 @@ footer{
     margin-top: auto;
     width: 100%;
     text-align: center;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+    background-color: white;
 }
 
 #headerTitle{
