@@ -8,6 +8,43 @@ We’ll still have to wait for consumer TVs to actually make it to market using 
 The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess.
 `;
 
+const detectLanguage = (text) => {
+
+    // Takes in text through a string and returns a string of the detected language
+
+    const LanguageDetect = require('languagedetect');
+    const lngDetector = new LanguageDetect();
+
+    return lngDetector.detect(text, 1)[0][0];
+}
+
+const getNotMeaningful = (language) => {
+
+    let result = [];
+
+    if(language == "english"){
+        result = ["and", "the", "or", "is", "of", "a", "to", "be", "of", "which", "it", "is", "has", "not", "in", "for", "no", "than", "are"];
+    }
+
+    else if(language == "french"){
+        result = ["comme", "je", "son", "sur", "que", "il", "était", "pour", "et","le", "la", "les", "est", "dans", "avec", "ils", "être", "avoir", "par", "de", "ou", "eu", "mais"];
+    }
+
+    else if(language == "german"){
+        result = ["wie", "ich", "seine", "dass", "er", "war", "für", "auf", "sind", "mit", "sie", "sein", "bei", "ein", "haben", "dies" ,"aus", "durch", "heiß", "Wort"];
+    }
+
+    else if(language == "dutch"){
+        result = ["als", "i", "zijn", "dat", "hij", "was", "voor", "op", "met", "ze", "bij", "een", "hebben", "deze", "van", "door" ,"heet", "woord", "maar", "wat"];
+    }
+
+    else if(language == "spanish"){
+        result = ["como", "i", "su", "que", "él", "era", "para", "en", "son", "con", "ellos", "ser", "en", "uno", "tener", "este" ,"desde", "por", "caliente", "palabra"];
+    }
+    
+    return result;
+}
+
 const filterWord = (word) => {
 
     // Filters a word out of punctuation and spaces
@@ -22,19 +59,21 @@ const filterWord = (word) => {
     return result;
 }
 
-const filterText = (text) => {
+const filterText = (wordTokens) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
-    let notMeaningful = ["And", "and", "The", "the", "Or", "or", "Is", "is", "Of", "of", "A", "a", "to", "To", "be", "Be", "Of", "of", "Which", "which", "it", "It", "is", "Is", "has", "Has", "not", "Not", "In", "in", "For", "for", "no", "No", "than", "Than", "are", "Are"];
+    let textSample = wordTokens.slice(0, 10).join(" ");
+    let language = detectLanguage(textSample);
+    let notMeaningful = getNotMeaningful(language);
 
-    for(let i = text.length - 1; i >= 0 ; i--){
-        if(notMeaningful.includes(text[i])){
-            text.splice(i, 1);
+    for(let i = wordTokens.length - 1; i >= 0 ; i--){
+        if(notMeaningful.includes(wordTokens[i].toLowerCase())){
+            wordTokens.splice(i, 1);
         }
 
         else{
-            text[i] = filterWord(text[i]);
+            wordTokens[i] = filterWord(wordTokens[i]);
         }
     }
 }
@@ -211,6 +250,10 @@ const summarise = (text) =>{
 
 // ======== Tests ========
 
+// Language Detection test:
+let language = detectLanguage(test_text);
+// console.log(language);
+
 // ==== Word Tests ====
 let wordTokens = tokenizeWords(test_text);
 // console.log(wordTokens);
@@ -246,4 +289,4 @@ let averageWeight = getAverageWeight(sentencesMap);
 
 // Summarisation Test:
 let summary = summarise(test_text);
-console.log(summary);
+// console.log(summary);
