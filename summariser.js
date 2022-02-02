@@ -253,6 +253,8 @@ const summarise = (text) =>{
     return result;
 }
 
+export { summarise };
+
 // // ======== Tests ========
 
 // // Language Detection test:
