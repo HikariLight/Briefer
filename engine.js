@@ -118,6 +118,8 @@ const render = (sections, mode) =>{
     return result;
 }
 
+export { render };
+
 // Tests
 // insertTags test
 let sectionHTML = insertTags(test_case[0])
