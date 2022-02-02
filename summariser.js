@@ -11,6 +11,7 @@ The question still remains when, exactly, Samsung Display’s new panels will ac
 const detectLanguage = (text) => {
 
     // Takes in text through a string and returns a string of the detected language
+    // Problem: doesn't detect Asian languages. Tested with Chinese (Simplified), Japanese and Korean.
 
     const LanguageDetect = require('languagedetect');
     const lngDetector = new LanguageDetect();
@@ -27,7 +28,7 @@ const getNotMeaningful = (language) => {
     }
 
     else if(language == "french"){
-        result = ["comme", "je", "son", "sur", "que", "il", "était", "pour", "et","le", "la", "les", "est", "dans", "avec", "ils", "être", "avoir", "par", "de", "ou", "eu", "mais"];
+        result = ["comme", "je", "son", "sur", "que", "il", "était", "pour", "et","le", "la", "les", "est", "dans", "avec", "ils", "être", "avoir", "par", "de", "ou", "eu", "mais", "un", "une", "pas", "a"];
     }
 
     else if(language == "german"){
@@ -40,6 +41,10 @@ const getNotMeaningful = (language) => {
 
     else if(language == "spanish"){
         result = ["como", "i", "su", "que", "él", "era", "para", "en", "son", "con", "ellos", "ser", "en", "uno", "tener", "este" ,"desde", "por", "caliente", "palabra"];
+    }
+
+    else if(language == "italian"){
+        result = ["come", "io", "suo", "su", "che", "è", "era", "per", "e", "il", "è", "in", "con", "loro", "essere", "avere", "da", "di", "o", "aveva", "ma", "un", "non"];
     }
     
     return result;
@@ -248,45 +253,45 @@ const summarise = (text) =>{
     return result;
 }
 
-// ======== Tests ========
+// // ======== Tests ========
 
-// Language Detection test:
-let language = detectLanguage(test_text);
-// console.log(language);
+// // Language Detection test:
+// let language = detectLanguage(test_text);
+// // console.log(language);
 
-// ==== Word Tests ====
-let wordTokens = tokenizeWords(test_text);
-// console.log(wordTokens);
+// // ==== Word Tests ====
+// let wordTokens = tokenizeWords(test_text);
+// // console.log(wordTokens);
 
-// Filtering Test:
-filterText(wordTokens);
-// console.log(wordTokens);
+// // Filtering Test:
+// filterText(wordTokens);
+// // console.log(wordTokens);
 
-// Map test:
-let wordsMap = getWordsMap(wordTokens);
-// console.log(wordsMap);
+// // Map test:
+// let wordsMap = getWordsMap(wordTokens);
+// // console.log(wordsMap);
 
-// Weigh Test:
-weighWords(wordsMap);
-// console.log(wordsMap);
+// // Weigh Test:
+// weighWords(wordsMap);
+// // console.log(wordsMap);
 
-// ==== Sentence Tests ====
-let sentenceTokens = tokenizeSentences(test_text);
-filterSentences(sentenceTokens);
-// console.log(sentenceTokens);
+// // ==== Sentence Tests ====
+// let sentenceTokens = tokenizeSentences(test_text);
+// filterSentences(sentenceTokens);
+// // console.log(sentenceTokens);
 
-// Map Test:
-let sentencesMap = getSentenceMap(sentenceTokens);
-// console.log(sentencesMap);
+// // Map Test:
+// let sentencesMap = getSentenceMap(sentenceTokens);
+// // console.log(sentencesMap);
 
-// Scoring Test:
-scoreSentences(sentencesMap, wordsMap);
-// console.log(sentencesMap);
+// // Scoring Test:
+// scoreSentences(sentencesMap, wordsMap);
+// // console.log(sentencesMap);
 
-// // Average Weight Test:
-let averageWeight = getAverageWeight(sentencesMap);
-// console.log("Average Weight: " + averageWeight);
+// // // Average Weight Test:
+// let averageWeight = getAverageWeight(sentencesMap);
+// // console.log("Average Weight: " + averageWeight);
 
-// Summarisation Test:
-let summary = summarise(test_text);
-// console.log(summary);
+// // Summarisation Test:
+// let summary = summarise(test_text);
+// // console.log(summary);
