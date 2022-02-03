@@ -8,16 +8,7 @@ We’ll still have to wait for consumer TVs to actually make it to market using 
 The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess.
 `;
 
-const detectLanguage = (text) => {
-
-    // Takes in text through a string and returns a string of the detected language
-    // Problem: doesn't detect Asian languages. Tested with Chinese (Simplified), Japanese and Korean.
-
-    const LanguageDetect = require('languagedetect');
-    const lngDetector = new LanguageDetect();
-
-    return lngDetector.detect(text, 1)[0][0];
-}
+import { detectLanguage } from "./languageDetection.js";
 
 const getNotMeaningful = (language) => {
 
@@ -68,7 +59,7 @@ const filterText = (wordTokens) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
-    let textSample = wordTokens.slice(0, 10).join(" ");
+    let textSample = wordTokens.slice(0, 25)
     let language = detectLanguage(textSample);
     let notMeaningful = getNotMeaningful(language);
 
