@@ -2,33 +2,33 @@ import { getHtml, getActiveTab } from './reader.js';
 import { summarise } from "./summariser.js";
 import { render } from "./engine.js";
 
-let test_case = [
+// First Article link: https://www.theverge.com/2022/1/10/22876061/samsung-qd-oled-quantum-dot-tv-panels-sgs-certification-brightness-color-viewing-angles
+// Second Article link: https://arstechnica.com/science/2022/02/hydrogen-soaked-crystal-lets-neural-networks-expand-to-match-a-problem/
+const testCase = [
     {
-        "h1": ["First Title"],
+        // "title": "Samsung Display’s new QD-OLED panel can hit 1,000 nits brightness for improved HDR",
+        "h1": "Samsung's OLED TVs",
         "p": [
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis porta vehicula. Aenean eleifend elit vel justo accumsan feugiat. Ut eget risus ac est suscipit tempor quis sed mi. Aliquam erat volutpat. Curabitur fringilla nibh libero, vel porta libero consequat nec. Donec eu pretium ipsum. Proin cursus ipsum vel sem suscipit mattis. Nam sit amet mi id sem aliquam rutrum ut nec dui. Donec congue sollicitudin metus, eget egestas mi aliquet ac. Nullam eget porttitor est. Integer sed odio nulla. Sed imperdiet vel sapien a feugiat. Curabitur pellentesque turpis eu ipsum ornare, in ornare eros dignissim. Nunc et nunc tempus, tempor enim at, semper purus. Praesent accumsan pulvinar libero, eleifend laoreet ipsum tincidunt sit amet. ",
-            "Nunc pellentesque mi magna, non porttitor arcu varius sed. Mauris nulla nunc, placerat pulvinar nibh vel, consequat iaculis nisi. In non efficitur turpis, a convallis odio. Vivamus efficitur dignissim ornare. In facilisis eu massa in semper. Donec nec erat sed leo vestibulum porttitor. Donec aliquam odio at felis porta, ut mattis eros suscipit. Nunc fermentum eros quis magna congue, eget condimentum dui condimentum. Praesent viverra purus odio, ut ornare ex blandit eget. Sed viverra metus quis erat mollis accumsan. Pellentesque eu dui ante. Cras eu nunc quis libero suscipit imperdiet vel malesuada lectus. Suspendisse ultricies nisi id bibendum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
-            "Integer nec urna imperdiet, bibendum augue ac, vulputate felis. Nam a rutrum enim. Praesent fringilla ipsum felis, eu porta ligula molestie interdum. Phasellus condimentum et diam ut laoreet. Mauris dignissim id nisi sit amet consectetur. Quisque eget ullamcorper urna. Donec nec mauris ut nisi euismod sollicitudin. Pellentesque at tempus justo. Nunc dui erat, efficitur id est eget, ornare gravida arcu. In a tellus id elit aliquam scelerisque eget non dui. Integer dolor lacus, facilisis eget risus ac, tempor mattis felis. Nulla massa ante, luctus ut est finibus, iaculis vehicula neque. Phasellus enim felis, maximus a neque nec, facilisis ullamcorper tellus. Aliquam mollis nec lectus non varius. "
+            "Importantly, Samsung Display’s new panel appears to achieve this without sacrificing the existing benefits of OLED displays. These include pure blacks where no light is being emitted at all, not to mention excellent viewing angles compared to typical LCD TVs. In fact, SGS says the viewing angles of Samsung Display’s QD-OLEDs are even better than existing OLEDs, maintaining 80 percent of luminance when viewed from a 60-degree angle compared to 53 percent for a conventional OLED.",
+            "An important caveat is that all of these comparisons were made with LG’s 2021 flagship, which is due to be superseded this year when it releases a new lineup of OLED TVs. LG Display also has a new generation of OLED panels of its own, dubbed OLED EX, which it says offer increased brightness levels of up to 30 percent. Whether that’s enough to remain competitive with Samsung’s new panels remains to be seen.",
+            "We’ll still have to wait for consumer TVs to actually make it to market using both panels before we can be completely sure of these readings, but it’s looking like an impressive set of results for Samsung Display’s latest technology. And Samsung’s display arm produces panels for a variety of companies, so it won’t just be Samsung’s own TVs that benefit.",
+            "The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess."
         ],
-        "img": ["https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg"],
+        "img": "https://cdn.vox-cdn.com/thumbor/QfqtCHxcWLbO24LC6i8o5cAQOc4=/0x0:750x500/920x613/filters:focal(315x190:435x310):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/70368755/3.0.jpg"
     },
     {
-        "h1": ["Second Title"],
+        // "title": "Hydrogen-soaked crystal lets neural networks expand to match a problem",
+        "h1": "Give it the gas",
         "p": [
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis porta vehicula. Aenean eleifend elit vel justo accumsan feugiat. Ut eget risus ac est suscipit tempor quis sed mi. Aliquam erat volutpat. Curabitur fringilla nibh libero, vel porta libero consequat nec. Donec eu pretium ipsum. Proin cursus ipsum vel sem suscipit mattis. Nam sit amet mi id sem aliquam rutrum ut nec dui. Donec congue sollicitudin metus, eget egestas mi aliquet ac. Nullam eget porttitor est. Integer sed odio nulla. Sed imperdiet vel sapien a feugiat. Curabitur pellentesque turpis eu ipsum ornare, in ornare eros dignissim. Nunc et nunc tempus, tempor enim at, semper purus. Praesent accumsan pulvinar libero, eleifend laoreet ipsum tincidunt sit amet. ",
-            "Nunc pellentesque mi magna, non porttitor arcu varius sed. Mauris nulla nunc, placerat pulvinar nibh vel, consequat iaculis nisi. In non efficitur turpis, a convallis odio. Vivamus efficitur dignissim ornare. In facilisis eu massa in semper. Donec nec erat sed leo vestibulum porttitor. Donec aliquam odio at felis porta, ut mattis eros suscipit. Nunc fermentum eros quis magna congue, eget condimentum dui condimentum. Praesent viverra purus odio, ut ornare ex blandit eget. Sed viverra metus quis erat mollis accumsan. Pellentesque eu dui ante. Cras eu nunc quis libero suscipit imperdiet vel malesuada lectus. Suspendisse ultricies nisi id bibendum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
-            "Integer nec urna imperdiet, bibendum augue ac, vulputate felis. Nam a rutrum enim. Praesent fringilla ipsum felis, eu porta ligula molestie interdum. Phasellus condimentum et diam ut laoreet. Mauris dignissim id nisi sit amet consectetur. Quisque eget ullamcorper urna. Donec nec mauris ut nisi euismod sollicitudin. Pellentesque at tempus justo. Nunc dui erat, efficitur id est eget, ornare gravida arcu. In a tellus id elit aliquam scelerisque eget non dui. Integer dolor lacus, facilisis eget risus ac, tempor mattis felis. Nulla massa ante, luctus ut est finibus, iaculis vehicula neque. Phasellus enim felis, maximus a neque nec, facilisis ullamcorper tellus. Aliquam mollis nec lectus non varius. "
+            "The material being used here is one of a class of compounds called perovskite nickelates. Perovskite is a general term for a specific arrangement of atoms in a crystalline structure; a wide variety of chemicals can form perovskites. In this case, the crystal is formed from a material that's a mix of neodymium, nickel, and oxygen.",
+            "The crystal structure has enough open space that it can readily absorb and hold onto hydrogen. Once the hydrogen is incorporated, its electron will often end up being transferred to one of the nickel atoms. This changes the electrical properties of the atom and, in doing so, changes the conductivity of the material in general. The degree to which they change depends on how much hydrogen is present.",
+            "Since the hydrogen ends up with a positive charge after giving up its electron, it can be controlled by externally applied electric fields. So, by controlling the electrical environment, it's possible to redistribute the hydrogen within the perovskite structure. That will then change the conductive properties of the material.",
+            "The researchers show that these states are meta-stable: they'll change if an external force is applied but will remain stable for up to six months without the need to refresh the hydrogen. It's not clear whether it needs to be refreshed at that point or whether that's simply the latest they checked.",
+            "In any case, the researchers create a device simply by hooking up the perovskite to electrodes in a hydrogen atmosphere. (Getting the hydrogen into the material requires one electrode to be made from platinum or palladium.) From there, they demonstrated that it can be reliably switched among four states.",
+            "One state allows it to act as a resistor, meaning the device can act as a memristor. Similarly, it'll behave as a memcapacitor, holding charge if set in that state. When in spiking neuron mode, it will accumulate multiple signals, at which point its resistance changes dramatically. This mimics how a neuron requires incoming spikes to exceed a threshold before it switches into an active state. Finally they had a configuration that acted like a synapse (at least in neural-network terms), transforming an input based on its strength.",
+            "Obviously, it's possible to do similar things with dedicated devices for each of the four functions if you're willing to activate and shut off different parts of a chip when needed. But many of these behaviors are analog, something that silicon requires even more hardware to emulate. Here, all this is done with a single bit of material between two electrodes."
         ],
-        "img": ["https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg"],
-    },
-    {
-        "h1": ["Third Title"],
-        "p": [
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras facilisis porta vehicula. Aenean eleifend elit vel justo accumsan feugiat. Ut eget risus ac est suscipit tempor quis sed mi. Aliquam erat volutpat. Curabitur fringilla nibh libero, vel porta libero consequat nec. Donec eu pretium ipsum. Proin cursus ipsum vel sem suscipit mattis. Nam sit amet mi id sem aliquam rutrum ut nec dui. Donec congue sollicitudin metus, eget egestas mi aliquet ac. Nullam eget porttitor est. Integer sed odio nulla. Sed imperdiet vel sapien a feugiat. Curabitur pellentesque turpis eu ipsum ornare, in ornare eros dignissim. Nunc et nunc tempus, tempor enim at, semper purus. Praesent accumsan pulvinar libero, eleifend laoreet ipsum tincidunt sit amet. ",
-            "Nunc pellentesque mi magna, non porttitor arcu varius sed. Mauris nulla nunc, placerat pulvinar nibh vel, consequat iaculis nisi. In non efficitur turpis, a convallis odio. Vivamus efficitur dignissim ornare. In facilisis eu massa in semper. Donec nec erat sed leo vestibulum porttitor. Donec aliquam odio at felis porta, ut mattis eros suscipit. Nunc fermentum eros quis magna congue, eget condimentum dui condimentum. Praesent viverra purus odio, ut ornare ex blandit eget. Sed viverra metus quis erat mollis accumsan. Pellentesque eu dui ante. Cras eu nunc quis libero suscipit imperdiet vel malesuada lectus. Suspendisse ultricies nisi id bibendum molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
-            "Integer nec urna imperdiet, bibendum augue ac, vulputate felis. Nam a rutrum enim. Praesent fringilla ipsum felis, eu porta ligula molestie interdum. Phasellus condimentum et diam ut laoreet. Mauris dignissim id nisi sit amet consectetur. Quisque eget ullamcorper urna. Donec nec mauris ut nisi euismod sollicitudin. Pellentesque at tempus justo. Nunc dui erat, efficitur id est eget, ornare gravida arcu. In a tellus id elit aliquam scelerisque eget non dui. Integer dolor lacus, facilisis eget risus ac, tempor mattis felis. Nulla massa ante, luctus ut est finibus, iaculis vehicula neque. Phasellus enim felis, maximus a neque nec, facilisis ullamcorper tellus. Aliquam mollis nec lectus non varius. "
-        ],
-        "img": ["https://cdn.mos.cms.futurecdn.net/KYEJp9vem3QQFGhi25SYx4-1200-80.jpg"],
+        "img": "https://cdn.arstechnica.net/wp-content/uploads/2022/02/GettyImages-1201452137-800x450.jpg"
     }
 ];
 
@@ -111,42 +111,14 @@ document.addEventListener('DOMContentLoaded', function () {
      * Summariser
      */
     document.getElementById('summarise').addEventListener('click', async () => {
-        // Article link: https://www.theverge.com/2022/1/10/22876061/samsung-qd-oled-quantum-dot-tv-panels-sgs-certification-brightness-color-viewing-angles
-        let test_text = `Importantly, Samsung Display’s new panel appears to achieve this without sacrificing the existing benefits of OLED displays. These include pure blacks where no light is being emitted at all, not to mention excellent viewing angles compared to typical LCD TVs. In fact, SGS says the viewing angles of Samsung Display’s QD-OLEDs are even better than existing OLEDs, maintaining 80 percent of luminance when viewed from a 60-degree angle compared to 53 percent for a conventional OLED.
+        for(let i = 0; i < testCase.length; i++){
+            testCase[i]["p"] = summarise(testCase[i]["p"]);
+        }
 
-        An important caveat is that all of these comparisons were made with LG’s 2021 flagship, which is due to be superseded this year when it releases a new lineup of OLED TVs. LG Display also has a new generation of OLED panels of its own, dubbed OLED EX, which it says offer increased brightness levels of up to 30 percent. Whether that’s enough to remain competitive with Samsung’s new panels remains to be seen.
-
-        We’ll still have to wait for consumer TVs to actually make it to market using both panels before we can be completely sure of these readings, but it’s looking like an impressive set of results for Samsung Display’s latest technology. And Samsung’s display arm produces panels for a variety of companies, so it won’t just be Samsung’s own TVs that benefit.
-
-        The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess.
-        `;
-
-        let testCase = [
-            {
-                "h1": "Samsung's OLED TVs",
-                // "p": [
-                //     "Importantly, Samsung Display’s new panel appears to achieve this without sacrificing the existing benefits of OLED displays. These include pure blacks where no light is being emitted at all, not to mention excellent viewing angles compared to typical LCD TVs. In fact, SGS says the viewing angles of Samsung Display’s QD-OLEDs are even better than existing OLEDs, maintaining 80 percent of luminance when viewed from a 60-degree angle compared to 53 percent for a conventional OLED.",
-                //     "An important caveat is that all of these comparisons were made with LG’s 2021 flagship, which is due to be superseded this year when it releases a new lineup of OLED TVs. LG Display also has a new generation of OLED panels of its own, dubbed OLED EX, which it says offer increased brightness levels of up to 30 percent. Whether that’s enough to remain competitive with Samsung’s new panels remains to be seen.",
-                //     "We’ll still have to wait for consumer TVs to actually make it to market using both panels before we can be completely sure of these readings, but it’s looking like an impressive set of results for Samsung Display’s latest technology. And Samsung’s display arm produces panels for a variety of companies, so it won’t just be Samsung’s own TVs that benefit.",
-                //     "The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess."
-                // ]
-                "p": `Importantly, Samsung Display’s new panel appears to achieve this without sacrificing the existing benefits of OLED displays. These include pure blacks where no light is being emitted at all, not to mention excellent viewing angles compared to typical LCD TVs. In fact, SGS says the viewing angles of Samsung Display’s QD-OLEDs are even better than existing OLEDs, maintaining 80 percent of luminance when viewed from a 60-degree angle compared to 53 percent for a conventional OLED.
-
-                An important caveat is that all of these comparisons were made with LG’s 2021 flagship, which is due to be superseded this year when it releases a new lineup of OLED TVs. LG Display also has a new generation of OLED panels of its own, dubbed OLED EX, which it says offer increased brightness levels of up to 30 percent. Whether that’s enough to remain competitive with Samsung’s new panels remains to be seen.
+        let htmlContent = render(testCase, "summarise");
         
-                We’ll still have to wait for consumer TVs to actually make it to market using both panels before we can be completely sure of these readings, but it’s looking like an impressive set of results for Samsung Display’s latest technology. And Samsung’s display arm produces panels for a variety of companies, so it won’t just be Samsung’s own TVs that benefit.
-        
-                The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess.
-                `
-            }
-        ];
-
-        let summary = summarise(testCase[0]["p"]);
-        // testCase[0]["p"] = summary;
-        // let htmlContent = render(testCase, "simplify");
         let newWindow = window.open();
-
-        newWindow.document.write(summary);
+        newWindow.document.write(htmlContent);
     });
 
     /*
