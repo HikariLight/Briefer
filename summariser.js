@@ -59,8 +59,9 @@ const filterText = (wordTokens) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
-    let textSample = wordTokens.slice(0, 25)
+    let textSample = wordTokens.slice(0, 25).join(" ");
     let language = detectLanguage(textSample);
+    // let language = "english";
     let notMeaningful = getNotMeaningful(language);
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
@@ -142,7 +143,7 @@ const getMostFrequent = (tokenizedWords) =>{
     let maxOccurence = 0;
     let frequentWord = "";
 
-    for(word in tokenizedWords){
+    for(let word in tokenizedWords){
         if(tokenizedWords[word] > maxOccurence){
             maxOccurence = tokenizedWords[word];
             frequentWord = word;
@@ -158,7 +159,7 @@ const weighWords = (wordsMap) =>{
 
     let mostFrequent = getMostFrequent(wordsMap);
 
-    for(word in wordsMap){
+    for(let word in wordsMap){
         wordsMap[word] /= mostFrequent[1];
     }
 
@@ -199,7 +200,7 @@ const scoreSentences = (sentenceMap, wordsMap) =>{
     
     // Returns a dictionary of sentences and their weights.
 
-    for(sentence in sentenceMap){
+    for(let sentence in sentenceMap){
         sentenceMap[sentence] = scoreSentence(sentence, wordsMap);
     }
 }
@@ -235,7 +236,7 @@ const summarise = (text) =>{
     scoreSentences(sentencesMap, wordsMap);
     let averageWeight = getAverageWeight(sentencesMap)
 
-    for(sentence in sentencesMap){
+    for(let sentence in sentencesMap){
         if(sentencesMap[sentence] >= averageWeight){
             result += sentence;
         }
@@ -263,6 +264,10 @@ export { summarise };
 // // Map test:
 // let wordsMap = getWordsMap(wordTokens);
 // // console.log(wordsMap);
+
+// // Most Frequent test:
+// let mostFrequent = getMostFrequent(wordTokens);
+// // console.log(mostFrequent);
 
 // // Weigh Test:
 // weighWords(wordsMap);
