@@ -3,7 +3,7 @@
  */
 
 function extractTags(str) {
-    var tagToKeep = '(p(?![a-z])|h[0-9]+|span)';
+    var tagToKeep = '(p(?![a-z])|h[0-9]+)';
     var regex = new RegExp('<\\s*'+tagToKeep+'[^>]*>((.|\n)*?)<\\s*\\/\\s*'+tagToKeep+'[^>]*>', 'g');
     var match = str.match(regex);
     return match;
@@ -45,7 +45,7 @@ function removeMetacharacter(str) {
  * Main function
  */
 
-export function clearHtml(html) {
+export function simplify(html) {
     var str = html;
     str = removeMetacharacter(str);
     // console.log('\nremove metacharacter : ', str);
