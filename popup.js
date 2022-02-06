@@ -1,5 +1,5 @@
 import { getHtml, getActiveTab } from './reader.js';
-import { clearHtml } from './simplifier.js';
+import { simplify } from './simplifier.js';
 import { summarise } from "./summariser.js";
 import { render } from "./engine.js";
 
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         for (var i = 0; i < storedTabs.length; i++) {
             const html = await getHtml(storedTabs[i], scrapeThePage);
             // call simplifier 
-            var dict = clearHtml(html);
+            var dict = simplify(html);
             console.log('dictionnary : ', dict);
 
             var htmlContent = render(dict, "simplify");
@@ -118,14 +118,31 @@ document.addEventListener('DOMContentLoaded', function () {
      * Summariser
      */
     document.getElementById('summarise').addEventListener('click', async () => {
-        for(let i = 0; i < testCase.length; i++){
-            testCase[i]["p"] = summarise(testCase[i]["p"]);
+        var tmp = await getActiveTab();
+        var storedTabs = getData('tabs');
+        if (storedTabs.length === 0 || !isIn(storedTabs, tmp.url)) {
+            storedTabs.push(tmp);
         }
 
-        let htmlContent = render(testCase, "summarise");
-        
-        let newWindow = window.open();
-        newWindow.document.write(htmlContent);
+        for (var i = 0; i < storedTabs.length; i++) {
+            const html = await getHtml(storedTabs[i], scrapeThePage);
+            // call simplifier 
+            var dict = simplify(html);
+            
+            // call summariser
+            for(let i = 0; i < dict.length; i++){
+                if (dict[i]["p"] !== undefined) {
+                    dict[i]["p"] = summarise(dict[i]["p"]);
+                }
+            }
+
+            var htmlContent = render(dict, "summarise");
+            var newWindow = window.open();
+            newWindow.document.write(htmlContent);
+        }
+
+        removeData('tabs');
+
     });
 
     /*
