@@ -1,4 +1,5 @@
 import { getHtml, getActiveTab } from './reader.js';
+import { clearHtml } from './simplifier.js';
 import { summarise } from "./summariser.js";
 import { render } from "./engine.js";
 
@@ -99,8 +100,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (var i = 0; i < storedTabs.length; i++) {
             const html = await getHtml(storedTabs[i], scrapeThePage);
-            console.log('html : ', i+1, ' = ', html);
-            // call simplifier here
+            // call simplifier 
+            var dict = clearHtml(html);
+            console.log('dictionnary : ', dict);
+
+            var htmlContent = render(dict, "simplify");
+        
+            var newWindow = window.open();
+            newWindow.document.write(htmlContent);
         }
 
         removeData('tabs');
