@@ -34,7 +34,7 @@ const skeletonHead = `
     <head>
         <title>ClearView</title>
         <link rel="stylesheet" href="./style/page.css">
-        <link rel="icon" href="./style/favicon.png">
+        <link rel="icon" href="favicon.png">
     </head>
 
     <body>
@@ -49,9 +49,28 @@ const skeletonHead = `
         <h1 id="articleTitle">ClearView Demo</h1>
 `;
 
-const skeletonBody = `
+const simplifyPanel = `
     </main>
-    
+
+    <aside id="buttonsPanel">
+        <button id="simplify">Simplify</button>
+        <button id="export">Export</button>
+    </aside>
+
+`;
+
+const summarisePanel = `
+    </main>
+
+    <aside id="buttonsPanel">
+        <button id="summarise">Summarise</button>
+        <button id="export">Export</button>
+    </aside>
+
+`;
+
+const skeletonBody = `
+
     <footer>
         <p>ClearView Inc. All Rights Reserved</p>
     </footer>
@@ -111,6 +130,13 @@ const render = (sections, mode) =>{
         result += "<section>\n";
         result += insertTags(sections[i], mode);
         result += "\n</section>\n";
+    }
+
+    if(mode == "simplify"){
+        result += summarisePanel;
+    }
+    else{
+        result += simplifyPanel;
     }
 
     result += skeletonBody;
