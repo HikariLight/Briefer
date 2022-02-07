@@ -1,44 +1,30 @@
-// Article link: https://www.theverge.com/2022/1/10/22876061/samsung-qd-oled-quantum-dot-tv-panels-sgs-certification-brightness-color-viewing-angles
-let testCase = [
-    {
-        "h1": "Samsung's OLED TVs",
-        "p": [
-            "Importantly, Samsung Display’s new panel appears to achieve this without sacrificing the existing benefits of OLED displays. These include pure blacks where no light is being emitted at all, not to mention excellent viewing angles compared to typical LCD TVs. In fact, SGS says the viewing angles of Samsung Display’s QD-OLEDs are even better than existing OLEDs, maintaining 80 percent of luminance when viewed from a 60-degree angle compared to 53 percent for a conventional OLED.",
-            "An important caveat is that all of these comparisons were made with LG’s 2021 flagship, which is due to be superseded this year when it releases a new lineup of OLED TVs. LG Display also has a new generation of OLED panels of its own, dubbed OLED EX, which it says offer increased brightness levels of up to 30 percent. Whether that’s enough to remain competitive with Samsung’s new panels remains to be seen.",
-            "We’ll still have to wait for consumer TVs to actually make it to market using both panels before we can be completely sure of these readings, but it’s looking like an impressive set of results for Samsung Display’s latest technology. And Samsung’s display arm produces panels for a variety of companies, so it won’t just be Samsung’s own TVs that benefit.",
-            "The question still remains when, exactly, Samsung Display’s new panels will actually go on sale. Interestingly the first QD-OLED TV to be announced wasn’t from Samsung Electronics, but was instead from Sony which said its Bravia XR A95K will use a QD-OLED panel from Samsung Display. Alienware also has a QD-OLED computer monitor in the works. When Samsung Electronics will eventually release a QD-OLED TV of its own is anyone’s guess."
-        ]
-    }
-];
-
-import { detectLanguage } from "./languageDetection.js";
-
 const getNotMeaningful = (language) => {
 
     let result = [];
 
-    if(language == "english"){
-        result = ["and", "the", "or", "is", "of", "a", "to", "be", "of", "which", "it", "is", "has", "not", "in", "for", "no", "than", "are"];
+    // 30 Most common words in each language
+    if(language == "en"){
+        result = ['as', 'i', 'his', 'that', 'he', 'was', 'for', 'on', 'are', 'with', 'they', 'be', 'at', 'one', 'have', 'this', 'from', 'by', 'hot', 'word', 'but', 'what', 'some', 'is', 'it', 'you', 'or', 'had', 'the', 'of'];
     }
 
-    else if(language == "french"){
-        result = ["comme", "je", "son", "sur", "que", "il", "était", "pour", "et","le", "la", "les", "est", "dans", "avec", "ils", "être", "avoir", "par", "de", "ou", "eu", "mais", "un", "une", "pas", "a"];
+    else if(language == "fr"){
+        ['comme', 'je', 'son', 'que', 'il', 'était', 'pour', 'sur', 'sont', 'avec', 'ils', 'être', 'à', 'un', 'avoir', 'ce', 'à', 'par', 'chaud', 'mot', 'mais', 'que', 'certains', 'est', 'il', 'vous', 'ou', 'eu', 'la', 'de'];
     }
 
-    else if(language == "german"){
-        result = ["wie", "ich", "seine", "dass", "er", "war", "für", "auf", "sind", "mit", "sie", "sein", "bei", "ein", "haben", "dies" ,"aus", "durch", "heiß", "Wort"];
+    else if(language == "de"){
+        result = ['wie', 'ich', 'seine', 'dass', 'er', 'war', 'für', 'auf', 'sind', 'mit', 'sie', 'sein', 'bei', 'ein', 'haben', 'dies', 'aus', 'durch', 'heiß', 'Wort', 'aber', 'was', 'einige', 'ist', 'es', 'Sie', 'oder', 'hatte', 'die', 'von'];
     }
 
-    else if(language == "dutch"){
-        result = ["als", "i", "zijn", "dat", "hij", "was", "voor", "op", "met", "ze", "bij", "een", "hebben", "deze", "van", "door" ,"heet", "woord", "maar", "wat"];
+    else if(language == "nl"){
+        result = ['als', 'i', 'zijn', 'dat', 'hij', 'was', 'voor', 'op', 'zijn', 'met', 'ze', 'zijn', 'bij', 'een', 'hebben', 'deze', 'van', 'door', 'heet', 'woord', 'maar', 'wat', 'sommige', 'is', 'het', 'u', 'of', 'had', 'de', 'van'];
     }
 
-    else if(language == "spanish"){
-        result = ["como", "i", "su", "que", "él", "era", "para", "en", "son", "con", "ellos", "ser", "en", "uno", "tener", "este" ,"desde", "por", "caliente", "palabra"];
+    else if(language == "es"){
+        result = ['como', 'i', 'su', 'que', 'él', 'era', 'para', 'en', 'son', 'con', 'ellos', 'ser', 'en', 'uno', 'tener', 'este', 'desde', 'por', 'caliente', 'palabra', 'pero', 'qué', 'algunos', 'es', 'lo', 'usted', 'o', 'tenido', 'la', 'de'];
     }
 
-    else if(language == "italian"){
-        result = ["come", "io", "suo", "su", "che", "è", "era", "per", "e", "il", "è", "in", "con", "loro", "essere", "avere", "da", "di", "o", "aveva", "ma", "un", "non"];
+    else if(language == "it"){
+        result = ['come', 'io', 'il', 'che', 'lui', 'era', 'per', 'su', 'sono', 'con', 'essi', 'essere', 'a', 'uno', 'avere', 'questo', 'da', 'da', 'caldo', 'parola', 'ma', 'cosa', 'alcuni', 'è', 'esso', 'voi', 'o', 'aveva', 'il', 'di'];
     }
     
     return result;
@@ -46,25 +32,22 @@ const getNotMeaningful = (language) => {
 
 const filterWord = (word) => {
 
-    // Filters a word out of punctuation and spaces
+    // Filters a word out of punctuation
 
     let result = word;
     let punctuation = [".", ",", "!", "?", ";"];
 
-    if(punctuation.includes(word.at(-1) || word.at(-1) == " ")){
+    if(punctuation.includes(word.at(-1))){
         result = word.slice(0, -1);
     }
 
     return result;
 }
 
-const filterText = (wordTokens) => {
+const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
-    let textSample = wordTokens.slice(0, 25).join(" ");
-    let language = detectLanguage(textSample);
-    // let language = "english";
     let notMeaningful = getNotMeaningful(language);
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
@@ -78,12 +61,12 @@ const filterText = (wordTokens) => {
     }
 }
 
-const filterSentences = (sentenceTokens) =>{
+const filterSentences = (sentenceTokens, language) =>{
 
     // Filters sentences out of things that might make the words uncreognisable by the wordsMap.
 
     for(let i = 0; i < sentenceTokens.length; i++){
-        filterText(sentenceTokens[i]);
+        filterText(sentenceTokens[i], language);
     }
 }
 
@@ -94,31 +77,15 @@ const tokenizeWords = (text) => {
     return text.split(" ");
 }
 
-const tokenizeSentences = (text) => {
+const tokenizeSentences = (text) =>{
 
     // Returns a list of all the sentences.
 
-    let word = "";
-    let sentence = [];
-    let sentences = [];
-
-    for (let c of text){
-        word += c;
-
-        if(c == " "){
-            sentence.push(word);
-            word = "";
-        }
-
-        if(c == "."){
-            sentence.push(word);
-            sentences.push(sentence);
-            sentence = [];
-            word = "";
-        }
+    let result = text.split(".");
+    for(let i = 0; i < result.length; i++){
+        result[i] = result[i].split(" ");
     }
-    
-    return sentences;
+    return result;
 }
 
 const getWordsMap = (tokenizedWords) =>{
@@ -176,7 +143,7 @@ const getSentenceMap = (sentenceTokens) =>{
 
     for(let i = 0; i < sentenceTokens.length; i++){
         let sentence = sentenceTokens[i];
-        sentence = sentence.join("");
+        sentence = sentence.join(" ");
         sentenceMap[sentence] = 0;
     }
 
@@ -222,7 +189,7 @@ const getAverageWeight = (sentenceMap) =>{
     return result / length;
 }
 
-const summarise = (textList) =>{
+const summarise = (textList, language) =>{
     
     // Main function. Returns a string that represents the summary of the input text.
 
@@ -230,12 +197,12 @@ const summarise = (textList) =>{
     let text = textList.join(" ");
 
     let wordTokens = tokenizeWords(text);
-    filterText(wordTokens);
+    filterText(wordTokens, language);
     let wordsMap = getWordsMap(wordTokens);
     weighWords(wordsMap);
 
     let sentenceTokens = tokenizeSentences(text);
-    filterSentences(sentenceTokens);
+    filterSentences(sentenceTokens, language);
     let sentencesMap = getSentenceMap(sentenceTokens);
     scoreSentences(sentencesMap, wordsMap);
     let averageWeight = getAverageWeight(sentencesMap)
@@ -251,26 +218,25 @@ const summarise = (textList) =>{
 
 export { summarise };
 
-// // ======== Tests ========
+// // // ======== Tests ========
 
-// // Language Detection test:
-// let language = detectLanguage(test_text);
-// // console.log(language);
+// let test_text = "The material being used here is one of a class of compounds called perovskite nickelates. Perovskite is a general term for a specific arrangement of atoms in a crystalline structure; a wide variety of chemicals can form perovskites. In this case, the crystal is formed from a material that's a mix of neodymium, nickel, and oxygen. The crystal structure has enough open space that it can readily absorb and hold onto hydrogen. Once the hydrogen is incorporated, its electron will often end up being transferred to one of the nickel atoms. This changes the electrical properties of the atom and, in doing so, changes the conductivity of the material in general. The degree to which they change depends on how much hydrogen is present. Since the hydrogen ends up with a positive charge after giving up its electron, it can be controlled by externally applied electric fields. So, by controlling the electrical environment, it's possible to redistribute the hydrogen within the perovskite structure. That will then change the conductive properties of the material.";
 
-// // ==== Word Tests ====
+// // // ==== Word Tests ====
 // let wordTokens = tokenizeWords(test_text);
 // // console.log(wordTokens);
 
 // // Filtering Test:
-// filterText(wordTokens);
-// // console.log(wordTokens);
+// // console.log(wordTokens.length);
+// filterText(wordTokens, "en");
+// // console.log(wordTokens.length);
 
 // // Map test:
 // let wordsMap = getWordsMap(wordTokens);
 // // console.log(wordsMap);
 
 // // Most Frequent test:
-// let mostFrequent = getMostFrequent(wordTokens);
+// // let mostFrequent = getMostFrequent(wordTokens);
 // // console.log(mostFrequent);
 
 // // Weigh Test:
@@ -280,7 +246,7 @@ export { summarise };
 // // ==== Sentence Tests ====
 // let sentenceTokens = tokenizeSentences(test_text);
 // filterSentences(sentenceTokens);
-// // console.log(sentenceTokens);
+// console.log(sentenceTokens);
 
 // // Map Test:
 // let sentencesMap = getSentenceMap(sentenceTokens);
@@ -295,5 +261,5 @@ export { summarise };
 // // console.log("Average Weight: " + averageWeight);
 
 // // Summarisation Test:
-// let summary = summarise(testCase[0]["p"]);
+// let summary = summarise(test_text, english);
 // // console.log(summary);
