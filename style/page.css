@@ -6,7 +6,7 @@ html{
 }
 
 body{
-    background-color: #e5e5e5;
+    background-color: #F5F5F5;
     font-family: Arial, Helvetica;
     height: 100vh;
     margin: 0 1em;
@@ -24,6 +24,11 @@ img{
     margin: auto;
 }
 
+button{
+    padding: 1em;
+    margin: 0.25em 0;
+}
+
 header{
     min-height: 2em;
 }
@@ -36,7 +41,7 @@ footer{
 }
 
 .container{
-    width: 90%;
+    width: 80%;
     margin: auto;
     padding: 1em;
     background-color: white;
@@ -51,4 +56,34 @@ footer{
 #articleTitle{
     color: var(--themeGreen);
     text-align: center;
+}
+
+#buttonsPanel{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+
+    border: 1px solid var(--themeBlue);
+    
+    margin: 0;
+    padding: 1em;
+    width: 7%;
+    max-height: 5em;
+
+    position: fixed;
+    right: 0;
+    top: 40%;
+}
+
+#simplify{
+    color: white;
+    background-color: var(--themeGreen);
+    border: 1px solid var(--themeGreen);
+    border-radius: 25px;
+}
+
+#export{
+    color: white;
+    background-color: var(--themeGrey);
+    border: 1px solid var(--themeGrey);
+    border-radius: 25px;
 }
