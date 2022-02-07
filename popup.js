@@ -118,31 +118,24 @@ document.addEventListener('DOMContentLoaded', function () {
      * Summariser
      */
     document.getElementById('summarise').addEventListener('click', async () => {
-        var tmp = await getActiveTab();
-        var storedTabs = getData('tabs');
-        if (storedTabs.length === 0 || !isIn(storedTabs, tmp.url)) {
-            storedTabs.push(tmp);
-        }
+        
+        let currentTab = await getActiveTab();
+        const html = await getHtml(currentTab, scrapeThePage);
+        let dict = simplify(html);
 
-        for (var i = 0; i < storedTabs.length; i++) {
-            const html = await getHtml(storedTabs[i], scrapeThePage);
-            // call simplifier 
-            var dict = simplify(html);
-            
-            // call summariser
-            for(let i = 0; i < dict.length; i++){
-                if (dict[i]["p"] !== undefined) {
-                    dict[i]["p"] = summarise(dict[i]["p"]);
-                }
+        let language = await chrome.tabs.detectLanguage(currentTab);
+
+        for(let i = 0; i < dict.length; i++){
+            if (dict[i]["p"] !== undefined) {
+                dict[i]["p"] = summarise(dict[i]["p"], language);
             }
-
-            var htmlContent = render(dict, "summarise");
-            var newWindow = window.open();
-            newWindow.document.write(htmlContent);
         }
+
+        let htmlContent = render(dict, "summarise");
+        let newWindow = window.open();
+        newWindow.document.write(htmlContent);
 
         removeData('tabs');
-
     });
 
     /*
