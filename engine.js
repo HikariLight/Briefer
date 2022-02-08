@@ -53,7 +53,7 @@ const simplifyPanel = `
     </main>
 
     <aside id="buttonsPanel">
-        <button id="simplify">Simplify</button>
+        <button id="function">Simplify</button>
         <button id="export">Export</button>
     </aside>
 
@@ -63,7 +63,7 @@ const summarisePanel = `
     </main>
 
     <aside id="buttonsPanel">
-        <button id="summarise">Summarise</button>
+        <button id="function">Summarise</button>
         <button id="export">Export</button>
     </aside>
 
