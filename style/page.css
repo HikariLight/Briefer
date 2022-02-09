@@ -7,14 +7,24 @@ html{
 
 body{
     background-color: #F5F5F5;
+    color: var(--themeDefault);
     font-family: Arial, Helvetica;
     height: 100vh;
     margin: 0 1em;
     font-size: 1.25em;
 }
 
+a{
+    text-decoration: none;
+    color: var(--themeDefault);
+}
+
 h1{
     color: var(--themeBlue);
+}
+
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
 }
 
 img{
@@ -31,6 +41,8 @@ button{
 
 header{
     min-height: 2em;
+    text-align: center;
+    margin: 1em 0;
 }
 
 footer{
@@ -51,6 +63,17 @@ footer{
     color: var(--themeBlue);
     text-decoration: underline;
     display: inline;
+}
+
+#logo{
+    display: inline;
+    width: 1.5em;
+    height: auto;
+}
+
+#url{
+    margin: 1em 0;
+    display: block;
 }
 
 #articleTitle{
