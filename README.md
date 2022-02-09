@@ -5,6 +5,7 @@ A Chrome extension that summarizes and simplifies articles for easier research.
 - English
 - French
 - German
-- Spanish
 - Dutch
+- Spanish
+- Portuguese
 - Italian

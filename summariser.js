@@ -46,6 +46,10 @@ const getNotMeaningful = (language) => {
     else if(language == "it"){
         result = ['come', 'io', 'il', 'che', 'lui', 'era', 'per', 'su', 'sono', 'con', 'essi', 'essere', 'a', 'uno', 'avere', 'questo', 'da', 'da', 'caldo', 'parola', 'ma', 'cosa', 'alcuni', 'è', 'esso', 'voi', 'o', 'aveva', 'il', 'di'];
     }
+
+    else if(language == "pt"){
+        result = ['como', 'i', 'seu', 'que', 'ele', 'foi', 'para', 'em', 'são', 'com', 'eles', 'ser', 'em', 'uma', 'tem', 'este', 'a', 'por', 'quente', 'palavra', 'mas', 'o', 'alguns', 'é', 'ele', 'você', 'ou', 'teve', 'o', 'de'];
+    }
     
     return result;
 }
@@ -246,7 +250,7 @@ const summarise = (textList, wordsMap) =>{
     return result;
 }
 
-export { summarise, getUniversalWordsMap, testCase };
+export { summarise, getUniversalWordsMap };
 
 // // // ======== Tests ========
 
