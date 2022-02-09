@@ -1,7 +1,8 @@
 import { getHtml, getActiveTab } from './reader.js';
 import { simplify } from './simplifier.js';
-import { summarise, getUniversalWordsMap, testCase } from "./summariser.js";
+import { summarise, getUniversalWordsMap } from "./summariser.js";
 import { render } from "./engine.js";
+import { testCase, headerTestCase } from "./testCases.js";
 
 /*
  * get html
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var dict = simplify(html);
             console.log('dictionnary : ', dict);
 
-            var htmlContent = render(dict, "simplify");
+            var htmlContent = render(dict, "simplify", headerTestCase);
         
             var newWindow = window.open();
             newWindow.document.write(htmlContent);
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        let htmlContent = render(dict, "summarise");
+        let htmlContent = render(dict, "summarise", headerTestCase);
         let newWindow = window.open();
         newWindow.document.write(htmlContent);
 
