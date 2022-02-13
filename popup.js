@@ -1,6 +1,6 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
-import { summarise, getUniversalWordsMap } from "./summariser.js";
+import { extract } from "./summariser.js";
 import { render } from "./engine.js";
 // import { testCase, headerTestCase } from "./testCases.js";
 
@@ -87,17 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
         let currentTab = await getTab(scrapeThePage);
         let dict = simplify(currentTab['html']);
 
-        /// we should include this part directly inside the summariser 
-        /// indeed, it's more appropriate
-        /// More over, if we want to switch between simplify <--> summarizer, we can't modify dict
-        let wordsMap = getUniversalWordsMap(dict, currentTab['language']);
-        for(let i = 0; i < dict.length; i++){
-            if (dict[i]["p"] !== undefined) {
-                dict[i]["p"] = summarise(dict[i]["p"], wordsMap);
-            }
-        }
+        let language = currentTab["language"];
+        let summary = extract(dict, language);
 
-        display(currentTab, dict, 'summarise');
+        display(currentTab, summary, 'summarise');
 
     });
 
