@@ -2,7 +2,7 @@ import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
 import { summarise, getUniversalWordsMap } from "./summariser.js";
 import { render } from "./engine.js";
-import { testCase, headerTestCase } from "./testCases.js";
+// import { testCase, headerTestCase } from "./testCases.js";
 
 /*
  * get html
@@ -13,9 +13,18 @@ function scrapeThePage() {
 }
 
 /*
- * access session data
+ * Additionnal function
  */
-function storeData(key, data) {
+function isIn(arr, url) {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].url  === url) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/* function storeData(key, data) {
     var current = window.localStorage.getItem(key);
     if (!current) {
         current = [];
@@ -39,18 +48,16 @@ function getData(key) {
         current = JSON.parse(current);
     }
     return current;
-}
+} */
 
 /*
- * Additionnal function
+ * Main functionality
  */
-function isIn(arr, url) {
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i].url  === url) {
-            return true;
-        }
-    }
-    return false;
+
+function display(tab, dict, functionality) {
+    var htmlContent = render(tab, dict, functionality);
+    var newWindow = window.open();
+    newWindow.document.write(htmlContent);
 }
 
 /*
@@ -63,24 +70,12 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     document.getElementById('simplify').addEventListener('click', async () => {
 
-        var tmp = await getTab(scrapeThePage);
-        var storedTabs = getData('tabs');
-        if (storedTabs.length === 0 || !isIn(storedTabs, tmp['url'])) {
-            storedTabs.push(tmp);
-        }
+        var currentTab = await getTab(scrapeThePage);
 
-        for (var i = 0; i < storedTabs.length; i++) {
-            // call simplifier 
-            var dict = simplify(storedTabs[i]['html']);
-            console.log('dictionnary : ', dict);
+        var dict = simplify(currentTab['html']);
+        console.log('dictionnary : ', dict);
 
-            var htmlContent = render(storedTabs[i], dict, "simplify");
-        
-            var newWindow = window.open();
-            newWindow.document.write(htmlContent);
-        }
-
-        removeData('tabs');
+        display(currentTab, dict, 'simplify');
 
     });
 
@@ -92,19 +87,18 @@ document.addEventListener('DOMContentLoaded', function () {
         let currentTab = await getTab(scrapeThePage);
         let dict = simplify(currentTab['html']);
 
+        /// we should include this part directly inside the summariser 
+        /// indeed, it's more appropriate
+        /// More over, if we want to switch between simplify <--> summarizer, we can't modify dict
         let wordsMap = getUniversalWordsMap(dict, currentTab['language']);
-
         for(let i = 0; i < dict.length; i++){
             if (dict[i]["p"] !== undefined) {
                 dict[i]["p"] = summarise(dict[i]["p"], wordsMap);
             }
         }
 
-        let htmlContent = render(currentTab, dict, "summarise");
-        let newWindow = window.open();
-        newWindow.document.write(htmlContent);
+        display(currentTab, dict, 'summarise');
 
-        // removeData('tabs');
     });
 
     /*
