@@ -1,13 +1,13 @@
 import { testCase } from "./testCases.js";
 
-const aggregateText = (textList) => {
+const aggregateText = (contentObj) => {
 
     // Aggregates the entire text of the page into a string.
     // Needed mostly for getUniversalWordsMap()
     
     let result = [];
     
-    for(let section of textList){
+    for(let section of contentObj){
         if(section["p"] !== undefined){
             for(let p of section["p"]){
                 result.push(p);
@@ -229,12 +229,12 @@ const getAverageWeight = (sentenceMap) =>{
     return result / length;
 }
 
-const summarise = (textList, wordsMap) =>{
+const summarise = (paragraphList, wordsMap) =>{
 
     // Main function. Returns a string that represents the summary of the input text.
 
     let result = [];
-    let text = textList.join(" ");
+    let text = paragraphList.join(" ");
 
     let sentenceTokens = tokenizeSentences(text);
     let sentencesMap = getSentenceMap(sentenceTokens);
@@ -250,7 +250,22 @@ const summarise = (textList, wordsMap) =>{
     return result;
 }
 
-export { summarise, getUniversalWordsMap };
+const extract = (contentObj, language) =>{
+
+    // Deep copy
+    let result = JSON.parse(JSON.stringify(contentObj));
+
+    let wordsMap = getUniversalWordsMap(result, language);
+    for(let i = 0; i < result.length; i++){
+        if (result[i]["p"] !== undefined) {
+            result[i]["p"] = summarise(result[i]["p"], wordsMap);
+        }
+    }
+
+    return result;
+}
+
+export { extract };
 
 // // // ======== Tests ========
 
