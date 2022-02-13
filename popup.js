@@ -1,4 +1,4 @@
-import { getHtml, getActiveTab } from './reader.js';
+import { getHtml, getActiveTab, getHeader } from './reader.js';
 import { simplify } from './simplifier.js';
 import { summarise, getUniversalWordsMap } from "./summariser.js";
 import { render } from "./engine.js";
@@ -71,11 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (var i = 0; i < storedTabs.length; i++) {
             const html = await getHtml(storedTabs[i], scrapeThePage);
+            var header = await getHeader(storedTabs[i], html);
             // call simplifier 
             var dict = simplify(html);
             console.log('dictionnary : ', dict);
 
-            var htmlContent = render(dict, "simplify", headerTestCase);
+            var htmlContent = render(dict, "simplify", header);
         
             var newWindow = window.open();
             newWindow.document.write(htmlContent);
@@ -92,11 +93,10 @@ document.addEventListener('DOMContentLoaded', function () {
         
         let currentTab = await getActiveTab();
         const html = await getHtml(currentTab, scrapeThePage);
+        var header = await getHeader(currentTab, html);
         let dict = simplify(html);
 
-        let language = await chrome.tabs.detectLanguage(currentTab);
-
-        let wordsMap = getUniversalWordsMap(dict, language);
+        let wordsMap = getUniversalWordsMap(dict, header['language']);
 
         for(let i = 0; i < dict.length; i++){
             if (dict[i]["p"] !== undefined) {
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        let htmlContent = render(dict, "summarise", headerTestCase);
+        let htmlContent = render(dict, "summarise", header);
         let newWindow = window.open();
         newWindow.document.write(htmlContent);
 
