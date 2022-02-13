@@ -99,7 +99,7 @@ footer{
     top: 40%;
 }
 
-#function{
+#functionButton{
     color: white;
     background-color: var(--themeGreen);
     border: 1px solid var(--themeGreen);

@@ -6,7 +6,7 @@ const skeletonHead = `
     <head>
         <title>ClearView</title>
         <link rel="stylesheet" href="./style/page.css">
-        <link rel="shortcut icon" type="image/png" href="./style/favicon.png">
+        <link rel="shortcut icon" href="./style/favicon.png">
     </head>
 
     <body>
@@ -17,7 +17,7 @@ const simplifyPanel = `
     </main>
 
     <aside id="buttonsPanel">
-        <button id="function">Simplify</button>
+        <button id="functionButton">Simplify</button>
         <button id="export">Export</button>
     </aside>
 
@@ -28,17 +28,18 @@ const summarisePanel = `
     </div>
 
     <aside id="buttonsPanel">
-        <button id="function">Summarise</button>
+        <button id="functionButton">Summarise</button>
         <button id="export">Export</button>
     </aside>
 
 `;
 
 const skeletonBody = `
-
     <footer>
         <p>All Rights Reserved</p>
     </footer>
+
+    <script src="renderButtons.js"></script>
     
     </body>
     </html>
