@@ -6,7 +6,7 @@ const skeletonHead = `
     <head>
         <title>ClearView</title>
         <link rel="stylesheet" href="./style/page.css">
-        <link rel="icon" href="favicon.png">
+        <link rel="shortcut icon" type="image/png" href="./style/favicon.png">
     </head>
 
     <body>
@@ -84,13 +84,13 @@ const insertTags = (section, mode) =>{
     return result;
 }
 
-const render = (bodyContent, mode, headerContent) =>{
+const render = (headerContent, bodyContent, mode) =>{
 
     // Takes in a list of dictionaries and returns a string containing HTML Code.
 
     let header = `
     <header>
-        <img id="logo" src=${headerContent["logo"]} alt="logo">
+        <img id="logo" src=${headerContent["icon"]} alt="logo">
         <h1 id="headerTitle">${headerContent["title"]}</h1>
         <a id="url" href=${headerContent["url"]} target="_blank" rel="noopener noreferrer">Original Link</a>
     </header>

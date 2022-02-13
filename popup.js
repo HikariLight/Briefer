@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var dict = simplify(html);
             console.log('dictionnary : ', dict);
 
-            var htmlContent = render(dict, "simplify", header);
+            var htmlContent = render(header, dict, "simplify");
         
             var newWindow = window.open();
             newWindow.document.write(htmlContent);
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        let htmlContent = render(dict, "summarise", header);
+        let htmlContent = render(header, dict, "summarise");
         let newWindow = window.open();
         newWindow.document.write(htmlContent);
 
