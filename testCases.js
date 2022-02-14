@@ -7,7 +7,7 @@ const headerTestCase = {
 
 const testCase = [
     {
-        "img": "https://cdn.arstechnica.net/wp-content/uploads/2022/02/GettyImages-1201452137-800x450.jpg",
+        "img": ["https://cdn.arstechnica.net/wp-content/uploads/2022/02/GettyImages-1201452137-800x450.jpg", "First image", "https://cdn.arstechnica.net/wp-content/uploads/2016/09/shiloh_4-800x572.jpg", "second image"],
         "p": [
             "Training AIs remains very processor-intensive, in part because traditional processing architectures are poor matches for the sorts of neural networks that are widely used. This has led to the development of what has been termed neuromorphic computing hardware, which attempts to model the behavior of biological neurons in hardware.",
             "But most neuromorphic hardware is implemented in silicon, which limits it to behaviors that are set at the hardware level. A group of US researchers is now reporting a type of non-silicon hardware that's substantially more flexible. It works by controlling how much hydrogen is present in an alloy of nickel, with the precise amount of hydrogen switching a single device among four different behaviors, each of which is useful for performing neural-network operations."

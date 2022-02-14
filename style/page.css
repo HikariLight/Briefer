@@ -31,7 +31,7 @@ img{
     display: block;
     width: 40%;
     height: auto;
-    margin: auto;
+    margin: 0.5em auto;
 }
 
 button{
@@ -76,6 +76,11 @@ footer{
 #url{
     margin: 1em 0;
     display: block;
+    color: var(--themeGrey)
+}
+
+#url:hover{
+    color: var(--themeBlue);
 }
 
 #articleTitle{
@@ -111,4 +116,35 @@ footer{
     background-color: var(--themeGrey);
     border: 1px solid var(--themeGrey);
     border-radius: 25px;
+}
+
+@media only screen and (max-width: 800px) {
+    body{
+        margin: 1px;
+        padding: 0;
+    }
+
+    .container{
+        margin: 0;
+        padding: 0.5em;
+
+        width: 100%;
+        display: grid;
+        grid-template-rows: 1fr 1fr auto 1fr;
+    }
+
+    header{
+        height: auto;
+        width: auto;
+    }
+
+    footer{
+        position: relative;
+    }
+
+    #buttonsPanel{
+        position: static;
+        width: auto;
+        height: auto;
+    }
 }

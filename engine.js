@@ -1,10 +1,12 @@
-import { testCase, headerTestCase } from "./testCases.js"
+// import { testCase, headerTestCase } from "./testCases.js"
 
 const skeletonHead = `
+    <!DOCTYPE html>
+    
     <html>
-
     <head>
         <title>ClearView</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style/page.css">
         <link rel="shortcut icon" href="./style/favicon.png">
     </head>
@@ -21,23 +23,27 @@ const simplifyPanel = `
         <button id="export">Export</button>
     </aside>
 
+    <main>
 `;
 
 const summarisePanel = `
-    </main>
-    </div>
-
     <aside id="buttonsPanel">
         <button id="functionButton">Summarise</button>
         <button id="export">Export</button>
     </aside>
 
+    <main>
 `;
 
 const skeletonBody = `
+
+    </main>
+
     <footer>
         <p>All Rights Reserved</p>
     </footer>
+
+    </div>
 
     <script src="renderButtons.js"></script>
     
@@ -54,7 +60,9 @@ const insertTags = (section, mode) =>{
     for(let tag in section){
 
         if(tag == "img"){
-            result += "<" + tag + " src=\"" + section[tag] + "\">\n";
+            for(let i = 0; i < section[tag].length; i += 2){
+                result += "<" + tag + " src=\"" + section[tag][i] + "\" alt=\"" + section[tag][i+1] + "\">\n";
+            }
             continue;
         }
 
@@ -95,19 +103,11 @@ const render = (headerContent, bodyContent, mode) =>{
         <h1 id="headerTitle">${headerContent["title"]}</h1>
         <a id="url" href=${headerContent["url"]} target="_blank" rel="noopener noreferrer">Original Link</a>
     </header>
-
-    <main>
     `;
 
     let result = skeletonHead;
 
     result += header + "\n";
-    
-    for(let i = 0; i < bodyContent.length; i++){
-        result += "<section>\n";
-        result += insertTags(bodyContent[i], mode);
-        result += "\n</section>\n";
-    }
 
     if(mode == "simplify"){
         result += summarisePanel;
@@ -115,13 +115,19 @@ const render = (headerContent, bodyContent, mode) =>{
     else{
         result += simplifyPanel;
     }
+    
+    for(let i = 0; i < bodyContent.length; i++){
+        result += "<section>\n";
+        result += insertTags(bodyContent[i], mode);
+        result += "\n</section>\n";
+    }
 
     result += skeletonBody;
 
     return result;
 }
 
-export { render, headerTestCase };
+export { render };
 
 // // Tests
 // // insertTags test
@@ -130,5 +136,5 @@ export { render, headerTestCase };
 
 // Render test
 // let simplifiedPage = render(testCase, "simplify", headerTestCase);
-// let summarisedPage = render(testCase, "summarise", headerTestCase);
+// let summarisedPage = render(headerTestCase, testCase, "summarise");
 // console.log(summarisedPage);
