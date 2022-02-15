@@ -6,16 +6,15 @@ html{
 }
 
 body{
-    min-width: 200px;
+    min-width: 150px;
     text-align: center;
     color: var(--themeDefault);
 }
 
 button{
-    border-radius: 25px;
-    width: 65%;
-    margin: 0.25em 0;
-    padding: 1em;
+    margin: 0.5em auto;
+    padding: 0;
+    border: 1px solid var(--themeGrey);
 }
 
 .title{
@@ -41,3 +40,21 @@ button{
     color: white;
 }
 
+.buttonsContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+#simplify{
+    background: url("./greySimplify.svg") no-repeat;
+    background-size: contain;
+    height: 75px;
+    width: 75px;
+}
+
+#summarise{
+    background: url("./greySummarise.svg") no-repeat;
+    background-size: contain;
+    height: 75px;
+    width: 75px;
+}
