@@ -2,10 +2,9 @@ import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
 import { extract } from "./summariser.js";
 import { render } from "./engine.js";
-// import { testCase, headerTestCase } from "./testCases.js";
 
 /*
- * get html
+ * Ready Html
  */
 function scrapeThePage() {
     var htmlCode = document.documentElement.outerHTML;
@@ -13,7 +12,7 @@ function scrapeThePage() {
 }
 
 /*
- * Additionnal function
+ * Additionnal Function
  */
 function isIn(arr, url) {
     for (var i = 0; i < arr.length; i++) {
@@ -24,7 +23,11 @@ function isIn(arr, url) {
     return false;
 }
 
-/* function storeData(key, data) {
+/*
+ * Manage Storage
+ */
+
+function storeData(key, data) {
     var current = window.localStorage.getItem(key);
     if (!current) {
         current = [];
@@ -48,14 +51,27 @@ function getData(key) {
         current = JSON.parse(current);
     }
     return current;
-} */
+}
 
 /*
  * Main functionality
  */
 
-function display(tab, dict, functionality) {
-    var htmlContent = render(tab, dict, functionality);
+async function summarize() {
+    localStorage.clear();
+
+    // process
+    var tab = await getTab(scrapeThePage);
+
+    tab["simplifierRender"] = render(tab, simplify(tab['html']), 'simplify');
+    tab["summariserRender"] = render(tab, extract(simplify(tab['html']), tab['language']), 'summarise');
+    // delete tab['html'];
+
+    // // storage
+    storeData('tabs', tab);
+}
+
+function display(htmlContent) {
     var newWindow = window.open();
     newWindow.document.write(htmlContent);
 }
@@ -69,13 +85,14 @@ document.addEventListener('DOMContentLoaded', function () {
      * Simplify
      */
     document.getElementById('simplify').addEventListener('click', async () => {
+        await summarize();
 
-        var currentTab = await getTab(scrapeThePage);
+        // access data
+        var data = getData('tabs')[0];
 
-        var dict = simplify(currentTab['html']);
-        console.log('dictionnary : ', dict);
+        display(data["simplifierRender"]);
 
-        display(currentTab, dict, 'simplify');
+        // wait window.closed === true for removeData('tabs')
 
     });
 
@@ -83,14 +100,12 @@ document.addEventListener('DOMContentLoaded', function () {
      * Summariser
      */
     document.getElementById('summarise').addEventListener('click', async () => {
-        
-        let currentTab = await getTab(scrapeThePage);
-        let dict = simplify(currentTab['html']);
+        await summarize();
 
-        let language = currentTab["language"];
-        let summary = extract(dict, language);
+        // access data
+        let data = getData('tabs')[0];
 
-        display(currentTab, summary, 'summarise');
+        display(data["summariserRender"]);
 
     });
 

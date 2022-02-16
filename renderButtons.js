@@ -1,22 +1,26 @@
-// We'll have to generate a simplified *and* a summarised version of 
-// the original content and save them in localStorage
+let buttonRender = (mode) =>{
+    let htmlContent = "";
+
+    let data = JSON.parse(window.localStorage.getItem("tabs"))[0];
+
+    if(mode === "Simplify"){
+        htmlContent = data["simplifierRender"];
+    }
+    else if(mode === "Summarise"){
+        htmlContent = data["summariserRender"];
+    }
+
+    document.open()
+    document.write(htmlContent);
+}
 
 document.getElementById("export").addEventListener("click", () => {
-    alert("Exporting...");
-    
-    // I think Julien said there's a very easy way of doing this. Was it this?
-    // window.print()
+    window.print()
 });
     
 let functionButton = document.getElementById("functionButton");
     
 functionButton.addEventListener("click", () => {
     let mode = functionButton.innerText;
-
-    if(mode === "Simplify"){
-        alert("Simplifying...");
-    }
-    else if(mode === "Summarise"){
-        alert("Summarising...");
-    }
+    buttonRender(mode);
 })
