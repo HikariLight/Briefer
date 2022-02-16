@@ -58,18 +58,20 @@ function getData(key) {
  */
 
 async function summarize() {
+    localStorage.clear();
+
     // process
     var tab = await getTab(scrapeThePage);
-    tab['simplify'] = simplify(tab['html']);
-    tab['summary'] = extract(tab['simplify'], tab['language']);
-    delete tab['html'];
-    
-    // storage
+
+    tab["simplifierRender"] = render(tab, simplify(tab['html']), 'simplify');
+    tab["summariserRender"] = render(tab, extract(simplify(tab['html']), tab['language']), 'summarise');
+    // delete tab['html'];
+
+    // // storage
     storeData('tabs', tab);
 }
 
-function display(tab, dict, functionality) {
-    var htmlContent = render(tab, dict, functionality);
+function display(htmlContent) {
     var newWindow = window.open();
     newWindow.document.write(htmlContent);
 }
@@ -88,8 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // access data
         var data = getData('tabs')[0];
 
-        // display data
-        display(data, data['simplify'], 'simplify');
+        display(data["simplifierRender"]);
 
         // wait window.closed === true for removeData('tabs')
 
@@ -102,10 +103,9 @@ document.addEventListener('DOMContentLoaded', function () {
         await summarize();
 
         // access data
-        var data = getData('tabs')[0];
+        let data = getData('tabs')[0];
 
-        // display data
-        display(data, data['summary'], 'summarise');
+        display(data["summariserRender"]);
 
     });
 
