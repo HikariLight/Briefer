@@ -1,12 +1,17 @@
 
 async function getHtml(tab, fct) {
-    const result = await chrome.scripting.executeScript(
-        {
-            target: { tabId: tab.id },
-            function: fct,
-        }
-    );
-    return result[0].result;
+    try {    
+        const result = await chrome.scripting.executeScript(
+            {
+                target: { tabId: tab.id },
+                function: fct,
+            }
+        );
+        return result[0].result;
+    } catch (err) {
+        alert('You can not access a chrome URL');
+        return false;
+    }
 }
 
 async function getActiveTab() {
