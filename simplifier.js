@@ -82,9 +82,18 @@ function generateDictionnary(html) {
         if (tag[0] === 'i') { // if img tag
             var imgTag = matchRegexp(tag, /[a-z]*[^\s]/i).join(''); // extract img tag
             var imgSrc = tag.replace(/.*src('|")((.|\n)*?)('|").*/i, '$2'); // extract src
-            tmp[imgTag] = [imgSrc];
+            
             if (matchRegexp(tag, /alt/g) !== null) { // if alt exist
                 var imgAlt = tag.replace(/.*alt('|")((.|\n)*?)('|").*/i, '$2'); // extract alt
+            } else {
+                var imgAlt = '';
+            }
+
+            if (tmp.hasOwnProperty(imgTag)) { // if key already exist
+                tmp[imgTag].push(imgSrc);
+                tmp[imgTag].push(imgAlt);
+            } else {
+                tmp[imgTag] = [imgSrc];
                 tmp[imgTag].push(imgAlt);
             }
             
