@@ -2,20 +2,21 @@ html{
     --themeGreen: #00856F;
     --themeBlue: #118AB2;
     --themeGrey: #364954;
-    --themeDefault: #707070;
 }
 
 body{
-    min-width: 200px;
+    min-width: 150px;
     text-align: center;
-    color: var(--themeDefault);
 }
 
 button{
-    border-radius: 25px;
-    width: 65%;
-    margin: 0.25em 0;
-    padding: 1em;
+    margin: 0.5em auto;
+    padding: 0;
+    border: 1px solid var(--themeBlue);
+}
+
+footer{
+    color: var(--themeBlue)
 }
 
 .title{
@@ -41,3 +42,21 @@ button{
     color: white;
 }
 
+.buttonsContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+#simplify{
+    background: url("./greySimplify.svg") no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+}
+
+#summarise{
+    background: url("./greySummarise.svg") no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+}
