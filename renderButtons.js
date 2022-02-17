@@ -3,10 +3,10 @@ let buttonRender = (mode) =>{
 
     let data = JSON.parse(window.localStorage.getItem("tabs"))[0];
 
-    if(mode === "Simplify"){
+    if(mode === "simplify"){
         htmlContent = data["simplifierRender"];
     }
-    else if(mode === "Summarise"){
+    else if(mode === "summarise"){
         htmlContent = data["summariserRender"];
     }
 
@@ -18,9 +18,9 @@ document.getElementById("export").addEventListener("click", () => {
     window.print()
 });
     
-let functionButton = document.getElementById("functionButton");
+let functionButton = document.getElementsByClassName("functionButton")[0];
     
 functionButton.addEventListener("click", () => {
-    let mode = functionButton.innerText;
+    let mode = functionButton.id;
     buttonRender(mode);
 })

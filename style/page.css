@@ -96,26 +96,31 @@ footer{
     
     margin: 0;
     padding: 1em;
-    width: 7%;
-    max-height: 5em;
 
     position: fixed;
     right: 0;
     top: 40%;
 }
 
-#functionButton{
-    color: white;
-    background-color: var(--themeGreen);
-    border: 1px solid var(--themeGreen);
-    border-radius: 25px;
+#simplify{
+    background: url("./greySimplify.svg") no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
+}
+
+#summarise{
+    background: url("./greySummarise.svg") no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
 }
 
 #export{
-    color: white;
-    background-color: var(--themeGrey);
-    border: 1px solid var(--themeGrey);
-    border-radius: 25px;
+    background: url("greyExport.svg") no-repeat;
+    background-size: contain;
+    height: 80px;
+    width: 80px;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -143,9 +148,10 @@ footer{
     }
 
     #buttonsPanel{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: none;
+        grid-gap: 2em;
         position: static;
         margin: 0.5em auto;
-        width: 40%;
-        height: auto;
     }
 }
