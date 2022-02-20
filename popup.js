@@ -1,5 +1,6 @@
 import { getTab } from './reader.js';
-import { simplify } from './simplifier.js';
+// import { simplify } from './simplifier.js';
+import { simplify } from './newSimplifier.js';
 import { extract } from "./summariser.js";
 import { render } from "./engine.js";
 
@@ -62,9 +63,11 @@ async function summarize() {
 
     // process
     var tab = await getTab(scrapeThePage);
+    
+    var testing = simplify(tab['html']);
 
-    tab["simplifierRender"] = render(tab, simplify(tab['html']), 'simplify');
-    tab["summariserRender"] = render(tab, extract(simplify(tab['html']), tab['language']), 'summarise');
+    // tab["simplifierRender"] = render(tab, simplify(tab['html']), 'simplify');
+    // tab["summariserRender"] = render(tab, extract(simplify(tab['html']), tab['language']), 'summarise');
     // delete tab['html'];
 
     // // storage
@@ -88,9 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
         await summarize();
 
         // access data
-        var data = getData('tabs')[0];
+        // var data = getData('tabs')[0];
 
-        display(data["simplifierRender"]);
+        // display(data["simplifierRender"]);
 
         // wait window.closed === true for removeData('tabs')
 
