@@ -1,6 +1,11 @@
-const buttonRender = (mode) => {
-    let htmlContent = "";
+document.getElementById("export").addEventListener("click", () => {
+    window.print()
+});
+
+document.getElementsByClassName("functionButton")[0].addEventListener("click", () => {
     
+    let htmlContent = "";
+    let mode = document.getElementsByClassName("functionButton")[0].id;
     let data = JSON.parse(window.localStorage.getItem("tabs"))[0];
     
     if(mode === "simplify"){
@@ -9,23 +14,7 @@ const buttonRender = (mode) => {
     else if(mode === "summarise"){
         htmlContent = data["summariserRender"];
     }
-    
-    // This stupid thing won't work -_-
-    // document.open()
-    // document.write(htmlContent);
 
-    window.close();
-    let newWindow = window.open();
-    newWindow.document.write(htmlContent);
-}
-
-document.getElementById("export").addEventListener("click", () => {
-    window.print()
-});
-    
-let functionButton = document.getElementsByClassName("functionButton")[0];
-    
-functionButton.addEventListener("click", () => {
-    let mode = functionButton.id;
-    buttonRender(mode);
+    document.open();
+    document.write(htmlContent);
 })
