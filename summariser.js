@@ -1,13 +1,21 @@
 import { testCase } from "./testCases.js";
 
-const aggregateText = (contentObj) => {
+const aggregateText = (contentObjList) => {
 
     // Aggregates the entire text of the page into a string.
     // Needed mostly for getUniversalWordsMap()
     
+    if(contentObjList == [] || contentObjList == null){
+        throw "Summariser Error:\naggregateText() error. Empty input.";
+    }
+
+    if(typeof(contentObjList) != "object"){
+        throw "Summariser Error:\naggregateText() error. Wrong input type.\nInput type given: " + typeof(contentObjList);
+    }
+
     let result = [];
     
-    for(let section of contentObj){
+    for(let section of contentObjList){
         if(section["p"] !== undefined){
             for(let p of section["p"]){
                 result.push(p);
@@ -58,10 +66,14 @@ const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
+    if(language == null || language == "" || typeof(language) != "string"){
+        throw "Summariser Error:\nfilterText() error. Language not specified";
+    }
+
     let notMeaningful = getNotMeaningful(language);
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
-        wordTokens[i] = wordTokens[i].replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        wordTokens[i] = wordTokens[i].replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
 
         if(notMeaningful.includes(wordTokens[i].toLowerCase())){
             wordTokens.splice(i, 1);
@@ -84,7 +96,15 @@ const tokenizeWords = (text) => {
 
     // Returns a list of all words in a given string
 
-    return text.split(" ");
+    if(text == "" || text == null){
+        throw "Summariser Error:\ntokenizeWords() error. Empty input.";
+    }
+
+    if(typeof(text) != "string"){
+        throw "Summariser Error:\ntokenizeWords() error. Wrong input type.\nInput type given: " + typeof(text);
+    }
+
+    return text.replaceAll("-", " ").split(" ");
 }
 
 const tokenizeSentences = (text) =>{
@@ -145,16 +165,21 @@ const weighWords = (wordsMap) =>{
 
 }
 
-const getUniversalWordsMap = (textList, language) => {
+const getUniversalWordsMap = (contentObjList, language) => {
 
     // Creates a Words Map using the whole page as input
 
-    let text = aggregateText(textList)
-    let tokenizedWords = tokenizeWords(text);
-    filterText(tokenizedWords, language);
+    let result = {};
 
-    let result = getWordsMap(tokenizedWords);
-    weighWords(result);
+    try{
+        let text = aggregateText(contentObjList)
+        let tokenizedWords = tokenizeWords(text);
+        filterText(tokenizedWords, language);
+        result = getWordsMap(tokenizedWords);
+        weighWords(result);
+    }catch(error){
+        console.log(error)
+    }
 
     return result;
 }
@@ -234,10 +259,10 @@ const summarise = (paragraphList, wordsMap) =>{
     return result;
 }
 
-const extract = (contentObj, language) =>{
+const extract = (contentObjList, language) =>{
 
     // Deep copy
-    let result = JSON.parse(JSON.stringify(contentObj));
+    let result = JSON.parse(JSON.stringify(contentObjList));
 
     let wordsMap = getUniversalWordsMap(result, language);
     for(let i = 0; i < result.length; i++){
@@ -281,8 +306,9 @@ export { extract };
 // // console.log(wordsMap);
 
 // UniversalWordsMap test
-// let universalWordsMap = getUniversalWordsMap(testCase);
-// // console.log(universalWordsMap);
+// let universalWordsMap = getUniversalWordsMap(testCase, "en");
+// let universalWordsMap = getUniversalWordsMap([], "en");
+// console.log(universalWordsMap);
 
 // // ==== Sentence Tests ====
 // let sentenceTokens = tokenizeSentences(test_text);
