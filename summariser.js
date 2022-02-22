@@ -96,7 +96,9 @@ const tokenizeWords = (text) => {
 
     // Returns a list of all words in a given string
 
-    if(text == "" || text == null){
+    console.log(text);
+
+    if(text == null){
         throw "Summariser Error:\ntokenizeWords() error. Empty input.";
     }
 
@@ -337,4 +339,8 @@ export { extract };
 //     }
 // }
 
+// console.log(summary);
+
+// // Extract Test:
+// let summary = extract(testCase, "en");
 // console.log(summary);
