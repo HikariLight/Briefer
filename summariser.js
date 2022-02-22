@@ -54,20 +54,6 @@ const getNotMeaningful = (language) => {
     return result;
 }
 
-const filterWord = (word) => {
-
-    // Filters a word out of punctuation
-
-    let result = word;
-    let punctuation = [".", ",", "!", "?", ";"];
-
-    if(punctuation.includes(word.at(-1))){
-        result = word.slice(0, -1);
-    }
-
-    return result;
-}
-
 const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
@@ -75,12 +61,10 @@ const filterText = (wordTokens, language) => {
     let notMeaningful = getNotMeaningful(language);
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
+        wordTokens[i] = wordTokens[i].replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+
         if(notMeaningful.includes(wordTokens[i].toLowerCase())){
             wordTokens.splice(i, 1);
-        }
-
-        else{
-            wordTokens[i] = filterWord(wordTokens[i]);
         }
     }
 }
@@ -271,16 +255,18 @@ export { extract };
 
 // // Aggregate Text test
 // let test_text = aggregateText(testCase);
-// // console.log(test_text);
+// console.log(test_text);
 
 // // // ==== Word Tests ====
 // let wordTokens = tokenizeWords(test_text);
-// // console.log(wordTokens);
+// console.log(wordTokens);
 
 // // Filtering Test:
-// // console.log(wordTokens.length);
+// console.log(wordTokens.length);
+// console.log(wordTokens);
 // filterText(wordTokens, "en");
-// // console.log(wordTokens.length);
+// console.log(wordTokens);
+// console.log(wordTokens.length);
 
 // // Map test:
 // let wordsMap = getWordsMap(wordTokens);
