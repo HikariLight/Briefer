@@ -76,7 +76,7 @@ const insertTags = (section, mode) =>{
                 result += "<ul>";
                 for(let i = 0; i < section[tag].length; i++){
                     result += "<li>"
-                    result += "<" + tag + ">" + section[tag][i] + "</" + tag + ">";
+                    result += "<" + tag + ">" + section[tag][i] + ".</" + tag + ">";
                     result += "</li>";
                 }
                 result += "</ul>";
