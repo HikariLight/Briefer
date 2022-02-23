@@ -62,6 +62,12 @@ const getNotMeaningful = (language) => {
     return result;
 }
 
+const punctuationFilter = (wordTokens) => {
+    for(let i = wordTokens.length - 1; i >= 0 ; i--){
+        wordTokens[i] = wordTokens[i].replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+    }
+}
+
 const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
@@ -111,10 +117,12 @@ const tokenizeSentences = (text) =>{
 
     // Returns a list of all the sentences.
 
-    let result = text.split(".");
+    let result = text.split(". ");
+
     for(let i = 0; i < result.length; i++){
-        result[i] = result[i].split(" ");
+        result[i] = tokenizeWords(result[i]);
     }
+    
     return result;
 }
 
@@ -205,6 +213,7 @@ const scoreSentence = (sentence, wordsMap) =>{
 
     let score = 0;
     let sentenceTokens = tokenizeWords(sentence);
+    punctuationFilter(sentenceTokens);
 
     for(let i = 0; i < sentenceTokens.length; i++){
         if(Object.keys(wordsMap).includes(sentenceTokens[i])){
@@ -316,11 +325,15 @@ export { extract };
 
 // // Map Test:
 // let sentencesMap = getSentenceMap(sentenceTokens);
-// // console.log(sentencesMap);
+// console.log(sentencesMap);
+
+// Universal Words Map
+// let universalWordsMap = getUniversalWordsMap(testCase, "en");
+// console.log(universalWordsMap)
 
 // // Scoring Test:
-// scoreSentences(sentencesMap, wordsMap);
-// // console.log(sentencesMap);
+// scoreSentences(sentencesMap, universalWordsMap, "en");
+// console.log(sentencesMap);
 
 // // // Average Weight Test:
 // let averageWeight = getAverageWeight(sentencesMap);
@@ -328,11 +341,10 @@ export { extract };
 
 // // Summarisation Test:
 // let summary = "";
-// let wordsMap = getUniversalWordsMap(testCase);
 
 // for(let i = 0; i < testCase.length; i++){
 //     if (testCase[i]["p"] !== undefined) {
-//         summary += summarise(testCase[i]["p"], "en", wordsMap);
+//         summary += summarise(testCase[i]["p"], "en", universalWordsMap);
 //     }
 // }
 
