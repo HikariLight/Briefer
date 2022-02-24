@@ -28,23 +28,31 @@ function isIn(arr, url) {
  */
 
 function storeData(key, data) {
-    var current = window.localStorage.getItem(key);
+    var current = localStorage.getItem(key);
     if (!current) {
         current = [];
     } else {
         current = JSON.parse(current);
     }
     current.push(data);
-    window.localStorage.setItem(key, JSON.stringify(current));
-    console.log('data stored');
+
+    try {
+        localStorage.setItem(key, JSON.stringify(current));
+        console.log('data stored');
+    } catch (e) {
+        console.log('[ERROR] ', e);
+        var _lsTotal=0,_xLen,_x;for(_x in localStorage){ if(!localStorage.hasOwnProperty(_x)){continue;} _xLen= ((localStorage[_x].length + _x.length)* 2);_lsTotal+=_xLen; console.log(_x.substr(0,50)+" = "+ (_xLen/1024).toFixed(2)+" KB")};console.log("Local Storage Size = " + (_lsTotal / 1024).toFixed(2) + " KB");
+        alert('Local Storage is full, Please empty data');
+    }
+    
 }
 
 function removeData(key) {
-    window.localStorage.removeItem(key);
+    localStorage.removeItem(key);
 }
 
 function getData(key) {
-    var current = window.localStorage.getItem(key);
+    var current = localStorage.getItem(key);
     if (!current) {
         current = [];
     } else {
@@ -58,14 +66,17 @@ function getData(key) {
  */
 
 async function summarize() {
+    removeData('tabs');
     localStorage.clear();
 
     // process
     var tab = await getTab(scrapeThePage);
 
-    tab["simplifierRender"] = render(tab, simplify(tab['html']), 'simplify');
-    tab["summariserRender"] = render(tab, extract(simplify(tab['html']), tab['language']), 'summarise');
-    // delete tab['html'];
+    var simply = simplify(tab['html']);
+
+    tab["simplifierRender"] = render(tab, simply, 'simplify');
+    tab["summariserRender"] = render(tab, extract(simply, tab['language']), 'summarise');
+    delete tab['html'];
 
     // // storage
     storeData('tabs', tab);
