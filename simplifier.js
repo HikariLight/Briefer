@@ -1,182 +1,256 @@
-/*
- * Define Regular Expression
- */
 
-var tagToKeep = new RegExp('(<\\s*(p(?![a-z])|h[0-9]+)[^>]*>((.|\n)*?)<\\s*\\/\\s*(p(?![a-z])|h[0-9]+)[^>]*>)|<\\s*img[^>]*>', 'g');
-var tagToRemove = new RegExp('<\\s*(head|header|footer)[^>]*>((.|\n)*?)<\\s*\\/\\s*(head|header|footer)[^>]*>', 'g');
-var tagSelector = new RegExp('<\\s*[^>]*\\s*>', 'g'); 
-var attributes = new RegExp('([a-z]+)\\s*=\\s*("|\')[^("|\')]*\\n*("|\')', 'g');
-var metacharacter = new RegExp('(\\n|\\t)*', 'g');
+const unwantedTags = ['head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
+const unwantedAttributes = ['atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'head', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const wantedAttributes = ['article', 'body', 'column', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
+const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
+const tagToReplace = ['strong', 'em', 'i', 'a', 'span'];
 
 /*
- * Additionnal function
+ * Pre-Processing
  */
 
-function callbackImgAttributes(match, p1) {
-    if (p1 === 'src' || p1 === 'alt') {
-        return match;
-    }
-    return '';
-}
+function preProcess(doc) {
+    // remove comments
+    // seems to not working !!
+    /* var html = doc.getElementsByTagName('html')[0].innerHTML;
+    html = html.replace(/<!--(.|\n)*-->/g, '');
+    doc.getElementsByTagName('html')[0].innerHTML = html; */
+    
+    var node = doc.getElementsByTagName('*');
+    for (var i = node.length - 1 ; i >= 0 ; i--) {
+        // remove empty node
+        if (node[i].childNodes.length === 0 && node[i].localName !== 'img') {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        } 
 
-function removeTagInsideTag(str) {
-    var open = false;
-    for (var i = 0; i < str.length; i++) {
-        if ((str.charAt(i) === '<') && (open === false)) {
-            if (str.slice(i+1).match(/\s*img/i) === null) { // if tag is not img
-                open = true;
-            }
-        } else if ((str.charAt(i) === '<') && (str.charAt(i+1) === '/') && (open === true)) {
-            open = false;
-        } else if ((str.charAt(i) === '<') && (open === true)) {
-            var remove = str.slice(i);
-            remove = remove.replace(/<\s*[^>]*\s*>((.|\n)*?)<\s*\/\s*[^>]*>/i, '$1'); // remove the next 2 tags (open & close)
-            str = str.slice(0, i) + remove;
+        // remove unwanted tags
+        if(unwantedTags.includes(node[i].localName)) {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        }
+        
+        // remove empty content
+        /* if ((node[i].textContent === '' || node[i].textContent === '\s') && node[i].localName !== 'img') {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        } */
+
+        // remove hidden node
+        if (node[i].hidden === true) {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        }
+
+        // remove unwanted class
+        // This part seems to have problems for the selection of classes
+        if (((new RegExp(unwantedAttributes.join('|'))).test(node[i].className) &&
+            !(new RegExp(wantedAttributes.join('|'))).test(node[i].className)) ||
+            ((new RegExp(unwantedSocialMedias.join('|'))).test(node[i].className))) {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        }
+
+        // remove unwanted id
+        /* if (((new RegExp(unwantedAttributes.join('|'))).test(node[i].id) &&
+            !(new RegExp(wantedAttributes.join('|'))).test(node[i].id)) ||
+            ((new RegExp(unwantedSocialMedias.join('|'))).test(node[i].id))) {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        } */
+
+        // replace tag inside a paragraph
+        if ((new RegExp(tagToReplace.join('|'))).test(node[i].localName) &&
+            node[i].childElementCount === 0 ) {
+                if (node[i].localName !== 'img') {
+                    if (node[i].parentNode.localName === 'p') {
+                        node[i].replaceWith(node[i].textContent);
+                    } else {
+                        var p = document.createElement('p');
+                        p.innerHTML = node[i].textContent;
+                        node[i].parentNode.replaceChild(p, node[i]);
+                    }
+                } 
         }
     }
-    return str;
-}
-
-function matchRegexp(str, regex) {
-    return str.match(regex);
-}
-
-function replaceRegexp(str, regex, remplacement='') {
-    return str.replace(regex, remplacement);
-}
-
-function replaceRegexpCallback(str, regex, callbackFunction) {
-    return str.replace(regex, callbackFunction);
 }
 
 /*
- * Main function
+ * Classification
  */
 
-export function simplify(html) {
-    html = replaceRegexp(html, metacharacter); // remove metacharacter (\n, \t)
-    html = replaceRegexp(html, tagToRemove); // remove head, header, footer
-    html = matchRegexp(html, tagToKeep).join(''); // extract paragraph, title, images
-    html = replaceRegexpCallback(html, attributes, callbackImgAttributes); // remove attributes except 'src' and 'alt' for images
-    html = removeTagInsideTag(html); // remove tag inside another tag (<p> <strong> </strong> </p>)
-
-    return generateDictionnary(html);
+function scoreCommas(str) {
+    var pts = str.split(',').length - 1;
+    return pts;
 }
 
-function generateDictionnary(html) {
-    var tmp = {};
+function scoreCharacters(str) {
+    var cp = str;
+    cp = cp.replace(/\s|\n/g, '');
+    var pts = Math.floor((cp.length / 50));
+    return pts;
+}
+
+function scoreImages(list, index, score) {
+    var firstCondition = false;
+    var secondCondition = false;
+    for (var i = 0; i < list.length; i++) {
+        if (i < index && list[i][1] >= score) {
+            firstCondition = true;
+        }
+        if (i > index && list[i][1] >= score) {
+            secondCondition = true;
+        }
+    }
+
+    if (firstCondition && secondCondition) {
+        return true;
+    }
+    return false;
+}
+
+function getTextNode(doc, list) {
+    var collection = doc.getElementsByTagName('*');
+
+    for (var j = 0; j < collection.length; j++) {
+
+        if (collection[j].childElementCount === 0) {
+            list.push(collection[j]);
+        }
+    }
+
+    return list;
+}
+
+function scoreNodes(list) {
+    for (var k = 0; k < list.length ; k++) {
+        // calculate score
+        var score = 0;
+        if (list[k].localName[0] === 'h') { // if title tag, start score at 5
+            score = 5;
+        } else { // else score at 1
+            score = 1;
+        }
+        score += scoreCommas(list[k].textContent);
+        score += scoreCharacters(list[k].textContent);
+
+        // modify list
+        list[k] = [list[k], score];
+    }
+    return list;
+}
+
+function grabArticle(doc) {
+    var list = [];
+    
+    list = getTextNode(doc, list);
+    console.log('TEXT NODE : ', list);
+
+    list = scoreNodes(list);
+    console.log('SCORE NODE : ', list);
+    
+    // extract content that is importante (more than 2 pts)
     var res = [];
-    html = matchRegexp(html, tagToKeep); // split each tag into list
+    var threshold = 3;
+    for (var l = 0; l < list.length; l++) {
 
-    for (var i = 0; i < html.length; i++) {
-        var tag = matchRegexp(html[i], /<\s*[^>]*>/i).join(''); // extract first tag encountered
-        tag = replaceRegexp(tag, /\s*<\s*|\s*>\s*|\s*=\s*/g); // remove '<', '>', '=', whitespace stuck to them
+        if (list[l][1] >= threshold) {
+            res.push(list[l][0]);
+        }
 
-        if (tag[0] === 'h') { // if title tag
-            if (Object.keys(tmp).length !== 0) {
-                res.push(tmp);  // update array input
+        if (list[l][0].localName === 'img') {
+            if (scoreImages(list, l, threshold)) {
+                res.push(list[l][0]);
             }
-            tmp = {};
-        } 
-        
-        if (tag[0] === 'i') { // if img tag
-            var imgTag = matchRegexp(tag, /[a-z]*[^\s]/i).join(''); // extract img tag
-            var imgSrc = tag.replace(/.*src('|")((.|\n)*?)('|").*/i, '$2'); // extract src
-            
-            if (matchRegexp(tag, /alt/g) !== null) { // if alt exist
-                var imgAlt = tag.replace(/.*alt('|")((.|\n)*?)('|").*/i, '$2'); // extract alt
+        }
+    }
+    console.log('RESULTAT : ', res);
+    return res;
+}
+
+/*
+ * Data formatting
+ */
+
+function generateDictionnary (list) {
+    var dict = {};
+    var res = [];
+
+    for(var i = 0; i < list.length; i++) {
+        var tag = list[i].localName;
+        var content = list[i].textContent;
+
+        // if title 
+        if (tag[0] === 'h') {
+            if (Object.keys(dict).length !== 0) {
+                res.push(dict);
+            }
+            dict = {};
+        }
+
+        // if images
+        if (tag === 'img') {
+            var imgAttributes = list[i].attributes;
+
+            // src attributes
+            imgSrc = '';
+            if ('src' in imgAttributes && imgSrc === '') {
+                var imgSrc = imgAttributes.src.value;
+            } else if ('srcset' in imgAttributes && imgSrc === '') {
+                var imgSrc = imgAttributes.srcset.value;
+            } else {
+                alert('Images not supported');
+            }
+                    
+            // alt attributes
+            if ('alt' in imgAttributes) { 
+                var imgAlt = imgAttributes.alt.value;
             } else {
                 var imgAlt = '';
             }
 
-            if (tmp.hasOwnProperty(imgTag)) { // if key already exist
-                tmp[imgTag].push(imgSrc);
-                tmp[imgTag].push(imgAlt);
+            // support two consecutive images
+            if (dict.hasOwnProperty(tag)) {
+                dict[tag].push(imgSrc);
+                dict[tag].push(imgAlt);
             } else {
-                tmp[imgTag] = [imgSrc];
-                tmp[imgTag].push(imgAlt);
+                dict[tag] = [imgSrc];
+                dict[tag].push(imgAlt);
             }
             
         } else {
-            var content = replaceRegexp(html[i], tagSelector);
-            if ( tmp.hasOwnProperty(tag)) { // if key already exist
-                tmp[tag].push(content); // add to the list
-            } else { // if it's doesn't
-                tmp[tag] = [content]; // create list
-            }   
+            // other elements
+            if (dict.hasOwnProperty(tag)) {
+                dict[tag].push(content);
+            } else {
+                dict[tag] = [content];
+            }
         }
-
     }
 
-    res.push(tmp);
+    res.push(dict);
 
     return res;
 }
 
-/* OUTPUT
+/*
+ * Main Part
+ */
 
-<!doctype html>
-<html lang='fr'>
-    <head>
-        <meta charset='utf-8'>
-        <title>Titre de la page</title>
-        <link rel='stylesheet' href='style.css'>
-        <script src='script.js'></script>
-    </head>
-    <header>
-        <nav>
-            <h1> news </h1>
-            <h1> contact </h1>
-        </nav>
-    </header>
-    <body>
-        < h1 id='titre1'>Titre1</ h1 >
-        <article>
-            <h2 class='titre2'>Titre2</h2>
-                <p id='paragraph'>Je suis une <strong>partie </strong> du paragraphe</p>
-                <p>encore un autre paragraphe</p>
-        </article>
-        <article>
-            <h2>Titre2</h2>
-                <p>Encore un paragraphe</p>
-                <img src = 'path/to/img' id='img1' alt= 'comment'>
-            <h3>Titre3</h3>
-                <p>Surprise, encore un !</p>
-        </article>
-        <section>
-            <h2>Titre2</h2>
-                <p> Je suis un paragraphe sur plusieurs lignes</p>
-        </section>
-    </body>
-    <footer>
-        <p>Je suis le footer</p>
-        <img src="logo" alt="company">
-    </footer>
-</html>
-*/
+export function simplify(html) {
+    // convert string into DOM Element
+    const parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
 
-/* INPUT
+    // Pre-processing
+    preProcess(doc);
+    console.log('[DOC] : ',doc);
 
-list = [
-    dict1 = {
-        'h1' : ['Titre1']
-    }, 
-    dict2 = {
-        'h2' : ['Titre2'],
-        'p' : ['Je suis un partie du paragraphe', 'encore un autre paragraph']
-    },
-    dict3 = {
-        'h2' : ['Titre2'],
-        'p' : ['Encore un paragraphe'],
-        'img' : ['path/to/img', 'comment']
-    }, 
-    dict4 = {
-        'h3' : ['Titre3'],
-        'p' : ['Suprise, encore un !']
-    }, 
-    dict5 = {
-        'h2' : ['Titre2'],
-        'p' : ['Je suis un paragraphe sur plusieurs lignes']
-    }
-]
-*/
+    // Classification
+    var list = grabArticle(doc);
+
+    // Data formatting
+    var dict = generateDictionnary(list);
+    console.log('[DICT] : ', dict);
+    return dict;
+}
