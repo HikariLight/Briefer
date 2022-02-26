@@ -5,19 +5,22 @@ const wantedAttributes = ['article', 'body', 'column', 'content', 'main', 'shado
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
 const tagToReplace = ['strong', 'em', 'i', 'a', 'span'];
 
-/*
- * Pre-Processing
- */
+//
+//  PRE-PROCESSING
+//
 
 function preProcess(doc) {
-    // remove comments
-    // seems to not working !!
-    /* var html = doc.getElementsByTagName('html')[0].innerHTML;
-    html = html.replace(/<!--(.|\n)*-->/g, '');
-    doc.getElementsByTagName('html')[0].innerHTML = html; */
+    // Pre-Processing the DOM by removing useless contents
+    if(Object.keys(doc).length === 0 && doc.constructor === Object){
+        throw 'Simplifier Error :\npreProcess() error. Empty input.';
+    }
+
+    if(typeof(doc) != 'object'){
+        throw 'Simplifier Error :\npreProcess() error. Wrong input type.\nInput type given : ' + typeof(doc);
+    }
     
-    var node = doc.getElementsByTagName('*');
-    for (var i = node.length - 1 ; i >= 0 ; i--) {
+    let node = doc.getElementsByTagName('*');
+    for (let i = node.length - 1 ; i >= 0 ; i--) {
         // remove empty node
         if (node[i].childNodes.length === 0 && node[i].localName !== 'img') {
             node[i].parentNode.removeChild(node[i]);
@@ -29,12 +32,6 @@ function preProcess(doc) {
             node[i].parentNode.removeChild(node[i]);
             continue;
         }
-        
-        // remove empty content
-        /* if ((node[i].textContent === '' || node[i].textContent === '\s') && node[i].localName !== 'img') {
-            node[i].parentNode.removeChild(node[i]);
-            continue;
-        } */
 
         // remove hidden node
         if (node[i].hidden === true) {
@@ -43,7 +40,6 @@ function preProcess(doc) {
         }
 
         // remove unwanted class
-        // This part seems to have problems for the selection of classes
         if (((new RegExp(unwantedAttributes.join('|'))).test(node[i].className) &&
             !(new RegExp(wantedAttributes.join('|'))).test(node[i].className)) ||
             ((new RegExp(unwantedSocialMedias.join('|'))).test(node[i].className))) {
@@ -51,22 +47,14 @@ function preProcess(doc) {
             continue;
         }
 
-        // remove unwanted id
-        /* if (((new RegExp(unwantedAttributes.join('|'))).test(node[i].id) &&
-            !(new RegExp(wantedAttributes.join('|'))).test(node[i].id)) ||
-            ((new RegExp(unwantedSocialMedias.join('|'))).test(node[i].id))) {
-            node[i].parentNode.removeChild(node[i]);
-            continue;
-        } */
-
-        // replace tag inside a paragraph
+        // replace tag inside a tag paragraph (em, strong, i, a)
         if ((new RegExp(tagToReplace.join('|'))).test(node[i].localName) &&
             node[i].childElementCount === 0 ) {
                 if (node[i].localName !== 'img') {
                     if (node[i].parentNode.localName === 'p') {
                         node[i].replaceWith(node[i].textContent);
                     } else {
-                        var p = document.createElement('p');
+                        let p = document.createElement('p');
                         p.innerHTML = node[i].textContent;
                         node[i].parentNode.replaceChild(p, node[i]);
                     }
@@ -75,26 +63,29 @@ function preProcess(doc) {
     }
 }
 
-/*
- * Classification
- */
+//
+//  CLASSIFICATION
+//
 
 function scoreCommas(str) {
-    var pts = str.split(',').length - 1;
+    // Allow 1 point for each comma in the string
+    let pts = str.split(',').length - 1;
     return pts;
 }
 
 function scoreCharacters(str) {
-    var cp = str;
+    // Allow 1 point for every 50 characters
+    let cp = str;
     cp = cp.replace(/\s|\n/g, '');
-    var pts = Math.floor((cp.length / 50));
+    let pts = Math.floor((cp.length / 50));
     return pts;
 }
 
 function scoreImages(list, index, score) {
-    var firstCondition = false;
-    var secondCondition = false;
-    for (var i = 0; i < list.length; i++) {
+    // Select the image if it is between 2 important contents
+    let firstCondition = false;
+    let secondCondition = false;
+    for (let i = 0; i < list.length; i++) {
         if (i < index && list[i][1] >= score) {
             firstCondition = true;
         }
@@ -110,9 +101,12 @@ function scoreImages(list, index, score) {
 }
 
 function getTextNode(doc, list) {
-    var collection = doc.getElementsByTagName('*');
+    // Extract all nodes that have no child element
+    // [TODO] Improve by extracting every node that containt text element
+    // Need to handle <div> <span>...</span> Text content </div>
+    let collection = doc.getElementsByTagName('*');
 
-    for (var j = 0; j < collection.length; j++) {
+    for (let j = 0; j < collection.length; j++) {
 
         if (collection[j].childElementCount === 0) {
             list.push(collection[j]);
@@ -123,25 +117,27 @@ function getTextNode(doc, list) {
 }
 
 function scoreNodes(list) {
-    for (var k = 0; k < list.length ; k++) {
-        // calculate score
-        var score = 0;
-        if (list[k].localName[0] === 'h') { // if title tag, start score at 5
+    // Allow a score for each extracted node
+    // By default, each node starts with a score of 1
+    // Except for titles which start directly at 5
+    for (let k = 0; k < list.length ; k++) {
+        let score = 0;
+        if (list[k].localName[0] === 'h') {
             score = 5;
-        } else { // else score at 1
+        } else {
             score = 1;
         }
         score += scoreCommas(list[k].textContent);
         score += scoreCharacters(list[k].textContent);
 
-        // modify list
         list[k] = [list[k], score];
     }
     return list;
 }
 
 function grabArticle(doc) {
-    var list = [];
+    // Extract each node that has a score above the threshold
+    let list = [];
     
     list = getTextNode(doc, list);
     console.log('TEXT NODE : ', list);
@@ -149,10 +145,9 @@ function grabArticle(doc) {
     list = scoreNodes(list);
     console.log('SCORE NODE : ', list);
     
-    // extract content that is importante (more than 2 pts)
-    var res = [];
-    var threshold = 3;
-    for (var l = 0; l < list.length; l++) {
+    let res = [];
+    let threshold = 3;
+    for (let l = 0; l < list.length; l++) {
 
         if (list[l][1] >= threshold) {
             res.push(list[l][0]);
@@ -168,17 +163,26 @@ function grabArticle(doc) {
     return res;
 }
 
-/*
- * Data formatting
- */
+//
+//  DATA FORMATTING
+//
 
 function generateDictionnary (list) {
-    var dict = {};
-    var res = [];
+    if(typeof(list) != 'object'){
+        throw 'Simplifier Error :\ngenerateDictionnary() error. Wrong input type.\nInput type given : ' + typeof(list);
+    }
 
-    for(var i = 0; i < list.length; i++) {
-        var tag = list[i].localName;
-        var content = list[i].textContent;
+    if (list === null || list.length === 0) {
+        throw 'Simplifier Error :\ngenerateDictionnary() error. Empty input.';
+    }
+    
+
+    let dict = {};
+    let res = [];
+
+    for(let i = 0; i < list.length; i++) {
+        let tag = list[i].localName;
+        let content = list[i].textContent;
 
         // if title 
         if (tag[0] === 'h') {
@@ -196,23 +200,22 @@ function generateDictionnary (list) {
 
         // if images
         if (tag === 'img') {
-            var imgAttributes = list[i].attributes;
+            let imgAttributes = list[i].attributes;
 
             // src attributes
-            imgSrc = '';
+            let imgSrc = '';
             if ('src' in imgAttributes && imgSrc === '') {
-                var imgSrc = imgAttributes.src.value;
+                imgSrc = imgAttributes.src.value;
             } else if ('srcset' in imgAttributes && imgSrc === '') {
-                var imgSrc = imgAttributes.srcset.value;
+                imgSrc = imgAttributes.srcset.value;
             } else {
                 alert('Images not supported');
             }
                     
             // alt attributes
+            let imgAlt = '';
             if ('alt' in imgAttributes) { 
-                var imgAlt = imgAttributes.alt.value;
-            } else {
-                var imgAlt = '';
+                imgAlt = imgAttributes.alt.value;
             }
 
             // support two consecutive images
@@ -239,24 +242,39 @@ function generateDictionnary (list) {
     return res;
 }
 
-/*
- * Main Part
- */
+//
+//  MAIN FUNCTION
+// 
 
 export function simplify(html) {
-    // convert string into DOM Element
-    const parser = new DOMParser();
-    var doc = parser.parseFromString(html, 'text/html');
+    let dict = {};
 
-    // Pre-processing
-    preProcess(doc);
-    console.log('[DOC] : ',doc);
+    try {
+        if(html == null || html.length == 0 ){
+            throw 'Simplifier Error :\nsimplify() error. Empty Input.';
+        }
+    
+        if(typeof(html) != 'string'){
+            throw 'Simplifier Error :\nsimplify() error. Wrong input type.\nInput type given : ' + typeof(html);
+        } 
 
-    // Classification
-    var list = grabArticle(doc);
+        // convert string into DOM Element
+        const parser = new DOMParser();
+        let doc = parser.parseFromString(html, 'text/html');
 
-    // Data formatting
-    var dict = generateDictionnary(list);
-    console.log('[DICT] : ', dict);
+        // Pre-processing
+        preProcess(doc);
+        console.log('[DOC] : ',doc);
+
+        // Classification
+        let list = grabArticle(doc);
+
+        // Data formatting
+        dict = generateDictionnary(list);
+        console.log('[DICT] : ', dict);
+    } catch (err) {
+        console.log(err);
+    }
+
     return dict;
 }
