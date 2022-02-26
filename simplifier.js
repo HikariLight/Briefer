@@ -1,6 +1,6 @@
 
 const unwantedTags = ['head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'head', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const unwantedAttributes = ['click', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'head', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
 const wantedAttributes = ['article', 'body', 'column', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
 const tagToReplace = ['strong', 'em', 'i', 'a', 'span'];
@@ -185,6 +185,12 @@ function generateDictionnary (list) {
             if (Object.keys(dict).length !== 0) {
                 res.push(dict);
             }
+            dict = {};
+        }
+
+        // To integrate the position of the images between two paragraphs
+        if (dict.hasOwnProperty(tag) && Object.keys(dict)[Object.keys(dict).length-2] === tag) {
+            res.push(dict);
             dict = {};
         }
 

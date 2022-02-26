@@ -103,8 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         display(data["simplifierRender"]);
 
-        // wait window.closed === true for removeData('tabs')
-
     });
 
     /*
