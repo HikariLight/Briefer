@@ -1,4 +1,4 @@
-# ClearView
+# Briefer
 A Chrome extension that summarizes and simplifies articles for easier research.
 
 [Product Website](https://briefer.netlify.app/)
