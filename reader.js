@@ -1,5 +1,6 @@
 
 async function getHtml(tab, fct) {
+    // Execute script and return html source code
     try {    
         const result = await chrome.scripting.executeScript(
             {
@@ -9,40 +10,45 @@ async function getHtml(tab, fct) {
         );
         return result[0].result;
     } catch (err) {
-        alert('You can not access a chrome URL');
-        return false;
+        alert('You can\'t use the extension on this tab');
+        return null;
     }
 }
 
 async function getActiveTab() {
-    // get active tab
     const tabs = await chrome.tabs.query({ active : true, currentWindow : true });
     const tab = tabs[0];
     return tab;
 }
 
-async function getHeader(tab, html) {
-    var header = {};
-    header['title'] = tab['title'];
-    header['icon'] = tab['favIconUrl'];
-    header['url'] = tab['url'];
-    header['language'] = await chrome.tabs.detectLanguage(tab);
-    var date = html.match(/"datePublished":"[^"]+"/i);
-    if (date !== null) {
-        header['datePublished'] = date[0].match(/[0-9]+[-/\s][0-9]+[-/\s][0-9]+/g)[0];
-    }
-    date = html.match(/"dateModified":"[^"]+"/i);
-    if (date !== null) {
-        header['dateModified'] = date[0].match(/[0-9]+[-/\s][0-9]+[-/\s][0-9]+/g)[0];
+async function getTabContent(tab, html) {
+    // Return a dictionnary of the essential information of the tab
+    try {
+        var content = {};
+        content['title'] = tab['title'];
+        content['icon'] = tab['favIconUrl'];
+        content['url'] = tab['url'];
+        content['language'] = await chrome.tabs.detectLanguage(tab);
+        var date = html.match(/"datePublished":"[^"]+"/i);
+        if (date !== null) {
+            content['datePublished'] = date[0].match(/[0-9]+[-/\s][0-9]+[-/\s][0-9]+/g)[0];
+        }
+        date = html.match(/"dateModified":"[^"]+"/i);
+        if (date !== null) {
+            content['dateModified'] = date[0].match(/[0-9]+[-/\s][0-9]+[-/\s][0-9]+/g)[0];
+        }
+        
+        content['html'] = html;
+        return content;
+    } catch (err) {
+        alert('Can\'t extract the necessary information about this tab');
     }
     
-    header['html'] = html;
-    return header;
 }
 
 export async function getTab(fct) {
     var tab = await getActiveTab();
     var html = await getHtml(tab, fct);
-    var header = await getHeader(tab, html);
-    return header;
+    var content = await getTabContent(tab, html);
+    return content;
 }
