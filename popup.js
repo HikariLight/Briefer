@@ -1,6 +1,6 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
-import { extract } from "./summariser.js";
+import { extract } from "./summariser/summariser.js";
 import { render } from "./engine.js";
 
 function scrapeThePage() {
