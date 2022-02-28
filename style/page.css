@@ -11,7 +11,7 @@ body{
     font-family: Arial, Helvetica;
     height: 100vh;
     margin: 0 1em;
-    font-size: 1.25em;
+    font-size: 18px;
 }
 
 a{
@@ -45,7 +45,10 @@ header{
     text-align: center;
     margin: 1em 0;
     padding: 1em;
-    border: 1px solid var(--themeBlue);
+    border-bottom: 2px solid var(--themeBlue);
+
+    display: grid;
+    grid-template-columns: 1fr 9fr;
 }
 
 footer{
@@ -53,6 +56,8 @@ footer{
     margin-top: auto;
     width: 100%;
     text-align: center;
+
+    border-top: 2px solid var(--themeBlue);
 }
 
 .container{
@@ -70,7 +75,9 @@ footer{
 
 #logo{
     display: inline;
-    width: 1.5em;
+    /* width: 2em; */
+    width: 50%;
+    margin: 0 auto;
     height: auto;
 }
 
@@ -142,6 +149,13 @@ footer{
     header{
         height: auto;
         width: auto;
+        grid-template-columns: none;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #logo{
+        width: 50px;
+        margin: auto;
     }
 
     footer{

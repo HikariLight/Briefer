@@ -38,7 +38,7 @@ const skeletonBody = `
     </main>
 
     <footer>
-        <p>All Rights Reserved</p>
+        <p>Genearted by: Briefer Browser Extension</p>
     </footer>
 
     </div>
@@ -98,8 +98,10 @@ const render = (headerContent, bodyContent, mode) =>{
     let header = `
     <header>
         <img id="logo" src=${headerContent["icon"]} alt="logo">
-        <h1 id="headerTitle">${headerContent["title"]}</h1>
-        <a id="url" href=${headerContent["url"]} target="_blank" rel="noopener noreferrer">Original Link</a>
+        <div>
+            <h1 id="headerTitle">${headerContent["title"]}</h1>
+            <a id="url" href=${headerContent["url"]} target="_blank" rel="noopener noreferrer">Original Link</a>
+        </div>
     </header>
     `;
 
