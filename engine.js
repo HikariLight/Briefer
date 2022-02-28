@@ -6,7 +6,7 @@ const skeletonHead = `
         <title>ClearView</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style/page.css">
-        <link rel="shortcut icon" href="./style/favicon.png">
+        <link rel="shortcut icon" href="./assets/favicon.png">
     </head>
 
     <body>

@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "action": {
       "default_popup": "popup.html",
-      "default_icon": "style/favicon.png"
+      "default_icon": "assets/favicon.png"
     },
     "permissions": [
       "activeTab", 
@@ -17,9 +17,9 @@
       "<all_urls>"
     ],
     "icons": {
-      "16": "./style/favicon.png",
-      "32": "./style/favicon.png",
-      "48": "./style/favicon.png",
-      "128": "./style/favicon.png"
+      "16": "./assets/favicon.png",
+      "32": "./assets/favicon.png",
+      "48": "./assets/favicon.png",
+      "128": "./assets/favicon.png"
     }
   }
