@@ -1,5 +1,3 @@
-// import { testCase, headerTestCase } from "./testCases.js"
-
 const skeletonHead = `
     <!DOCTYPE html>
     
@@ -128,13 +126,3 @@ const render = (headerContent, bodyContent, mode) =>{
 }
 
 export { render };
-
-// // Tests
-// // insertTags test
-// let sectionHTML = insertTags(testCase[0])
-// // console.log(sectionHTML);
-
-// Render test
-// let simplifiedPage = render(testCase, "simplify", headerTestCase);
-// let summarisedPage = render(headerTestCase, testCase, "summarise");
-// console.log(summarisedPage);
