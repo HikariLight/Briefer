@@ -20,10 +20,13 @@ const summarise = (paragraphList, wordsMap) =>{
     let sentencesMap = getSentenceMap(sentenceTokens);
     scoreSentences(sentencesMap, wordsMap);
     let averageWeight = getAverageWeight(sentencesMap)
+    
+    let sentences = Object.keys(sentencesMap);
+    result.push(sentences[0]);
 
-    for(let sentence in sentencesMap){
-        if(sentencesMap[sentence] >= averageWeight){
-            result.push(sentence);
+    for(let i = 1; i < sentences.length; i++){
+        if(sentencesMap[sentences[i]] >= averageWeight){
+            result.push(sentences[i]);
         }
     }
 
