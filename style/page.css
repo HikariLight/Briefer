@@ -28,11 +28,19 @@ h1, h2, h3, h4, h5, h6{
     color: var(--themeGrey);
 }
 
+figure{
+    text-align: center
+}
+
 img{
     display: block;
     width: 40%;
     height: auto;
     margin: 0.5em auto;
+}
+
+figcaption{
+    color: var(--themeBlue);
 }
 
 button{
