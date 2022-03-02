@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let data = getData('contentObjectList')[0];
 
-        // display(data["summariserRender"]);
+        display(data["summariserRender"]);
 
     });
 
