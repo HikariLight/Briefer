@@ -1,13 +1,23 @@
 
-const unwantedTags = ['head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['click', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'head', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
-const wantedAttributes = ['article', 'body', 'column', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
+const unwantedTags = ['table', 'noscript', 'head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
+const unwantedAttributes = ['read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+// remove : head
+// add : note, see_also, related
+const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
-const tagToReplace = ['strong', 'em', 'i', 'a', 'span'];
 
 //
 //  PRE-PROCESSING
 //
+
+function restructuring(node) {
+    let text = node.textContent;
+    
+    while (node.lastElementChild) {
+        node.removeChild(node.lastElementChild);
+    }
+    node.textContent = text;
+}
 
 function preProcess(doc) {
     // Pre-Processing the DOM by removing useless contents
@@ -40,25 +50,26 @@ function preProcess(doc) {
         }
 
         // remove unwanted class
-        if (((new RegExp(unwantedAttributes.join('|'))).test(node[i].className) &&
-            !(new RegExp(wantedAttributes.join('|'))).test(node[i].className)) ||
-            ((new RegExp(unwantedSocialMedias.join('|'))).test(node[i].className))) {
+        if (((new RegExp(unwantedAttributes.join('|'), 'i')).test(node[i].className) &&
+            !(new RegExp(wantedAttributes.join('|'), 'i')).test(node[i].className)) ||
+            ((new RegExp(unwantedSocialMedias.join('|'), 'i')).test(node[i].className))) {
             node[i].parentNode.removeChild(node[i]);
             continue;
         }
 
-        // replace tag inside a tag paragraph (em, strong, i, a)
-        if ((new RegExp(tagToReplace.join('|'))).test(node[i].localName) &&
-            node[i].childElementCount === 0 ) {
-                if (node[i].localName !== 'img') {
-                    if (node[i].parentNode.localName === 'p') {
-                        node[i].replaceWith(node[i].textContent);
-                    } else {
-                        let p = document.createElement('p');
-                        p.innerHTML = node[i].textContent;
-                        node[i].parentNode.replaceChild(p, node[i]);
-                    }
-                } 
+        // remove unwanted id
+        if ( ((new RegExp(unwantedAttributes.join('|'), 'i')).test(node[i].id) &&
+            !(new RegExp(wantedAttributes.join('|'), 'i')).test(node[i].id)) ||
+            ((new RegExp(unwantedSocialMedias.join('|'), 'i')).test(node[i].id)) ) {
+            node[i].parentNode.removeChild(node[i]);
+            continue;
+        }
+
+        // paragraph and title restructuration
+        if ( ( (node[i].localName === 'p' || new RegExp('h[0-9]').test(node[i].localName)) 
+            && node[i].children.length >= 1) ) {
+            restructuring(node[i]);
+            
         }
     }
 }
@@ -135,6 +146,18 @@ function scoreNodes(list) {
     return list;
 }
 
+function verification(list) {
+    // remove useless title (at the end of document and any paragraph after)
+    for (let i = list.length - 1; i >= 0; i--) {
+        if (new RegExp('h[0-9]').test(list[i].localName)) {
+            list.pop();
+        } else {
+            break;
+        }
+    }
+    return list;
+}
+
 function grabArticle(doc) {
     // Extract each node that has a score above the threshold
     let list = [];
@@ -159,6 +182,10 @@ function grabArticle(doc) {
             }
         }
     }
+
+    // Verification
+    res = verification(res);
+
     console.log('RESULTAT : ', res);
     return res;
 }
@@ -209,7 +236,7 @@ function generateDictionnary (list) {
             } else if ('srcset' in imgAttributes && imgSrc === '') {
                 imgSrc = imgAttributes.srcset.value;
             } else {
-                alert('Images not supported');
+                // alert('Images not supported');
             }
                     
             // alt attributes
@@ -248,7 +275,7 @@ function generateDictionnary (list) {
 
 export function simplify(html) {
     let dict = {};
-
+    // html = '<p>Im a simple paragraph</p><p>Im a <strong>paragraph</strong> that contains <small><a>elements</a></small></p>';
     try {
         if(html == null || html.length == 0 ){
             throw 'Simplifier Error :\nsimplify() error. Empty Input.';

@@ -65,7 +65,7 @@ async function processing() {
     tab["summariserRender"] = render(tab, extract(simply, tab['language']), 'summarise');
     delete tab['html'];
 
-    storeData('tabs', tab);
+    storeData('contentObjectList', tab);
 }
 
 function display(htmlContent) {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('simplify').addEventListener('click', async () => {
         await processing();
 
-        let data = getData('tabs')[0];
+        let data = getData('contentObjectList')[0];
 
         display(data["simplifierRender"]);
 
@@ -87,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('summarise').addEventListener('click', async () => {
         await processing();
 
-        let data = getData('tabs')[0];
+        let data = getData('contentObjectList')[0];
 
-        display(data["summariserRender"]);
+        // display(data["summariserRender"]);
 
     });
 
