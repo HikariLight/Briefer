@@ -49,6 +49,14 @@ const skeletonBody = `
     </html>
 `;
 
+const filterUrl = (url) =>{
+
+    // Takes out front slashes from the start of img URLs.
+    // Seen in Wikipedia images.
+
+    return url.replace(/\/\//g, "https://");
+}
+
 const insertTags = (section, mode) =>{
 
     // Takes in a dictionary and returns a string containing HTML Code.
@@ -60,7 +68,7 @@ const insertTags = (section, mode) =>{
         if(tag == "img"){
             for(let i = 0; i < section[tag].length; i += 2){
                 result += "<figure>"
-                result += "<" + tag + " src=\"" + section[tag][i] + "\" alt=\"" + section[tag][i+1] + "\">\n";
+                result += "<" + tag + " src=\"" + filterUrl(section[tag][i]) + "\" alt=\"" + section[tag][i+1] + "\">\n";
                 result += "<figcaption>" + section[tag][i+1] + "</figcaption>"
                 result += "</figure>"
             }
@@ -163,3 +171,5 @@ const renderDebugPage = (error) => {
 }
 
 export { render, renderDebugPage };
+
+console.log(filterUrl("//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Pektoral111.JPG/220px-Pektoral111.JPG"));
