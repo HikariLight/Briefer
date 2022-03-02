@@ -35,11 +35,11 @@ const summarise = (paragraphList, wordsMap) =>{
 
 const extract = (contentObjList, language) =>{
 
-    // Deep copy
-    let result = JSON.parse(JSON.stringify(contentObjList));
-
+    let result = [];
     let wordsMap = getUniversalWordsMap(result, language);
-    for(let i = 0; i < result.length; i++){
+    
+    for(let i = 0; i < contentObjList.length; i++){
+        result.push(contentObjList[i]);
         if (result[i]["p"] !== undefined) {
             result[i]["p"] = summarise(result[i]["p"], wordsMap);
         }
