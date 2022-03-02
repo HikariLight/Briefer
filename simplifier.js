@@ -1,8 +1,8 @@
 
 const unwantedTags = ['table', 'noscript', 'head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const unwantedAttributes = ['read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
 // remove : head
-// add : note, see_also
+// add : note, see_also, related
 const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
 
@@ -50,7 +50,6 @@ function preProcess(doc) {
         }
 
         // remove unwanted class
-        //[TODO] include id handling
         if (((new RegExp(unwantedAttributes.join('|'), 'i')).test(node[i].className) &&
             !(new RegExp(wantedAttributes.join('|'), 'i')).test(node[i].className)) ||
             ((new RegExp(unwantedSocialMedias.join('|'), 'i')).test(node[i].className))) {
@@ -58,6 +57,7 @@ function preProcess(doc) {
             continue;
         }
 
+        // remove unwanted id
         if ( ((new RegExp(unwantedAttributes.join('|'), 'i')).test(node[i].id) &&
             !(new RegExp(wantedAttributes.join('|'), 'i')).test(node[i].id)) ||
             ((new RegExp(unwantedSocialMedias.join('|'), 'i')).test(node[i].id)) ) {
