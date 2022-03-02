@@ -171,5 +171,3 @@ const renderDebugPage = (error) => {
 }
 
 export { render, renderDebugPage };
-
-console.log(filterUrl("//upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Pektoral111.JPG/220px-Pektoral111.JPG"));
