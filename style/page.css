@@ -120,21 +120,21 @@ footer{
 }
 
 #simplify{
-    background: url("../assets/greySimplify.svg") no-repeat;
+    background: url("../assets/switch_to_simplify.svg") no-repeat;
     background-size: contain;
     height: 80px;
     width: 80px;
 }
 
 #summarise{
-    background: url("../assets/greySummarise.svg") no-repeat;
+    background: url("../assets/switch_to_summarize.svg") no-repeat;
     background-size: contain;
     height: 80px;
     width: 80px;
 }
 
 #export{
-    background: url("../assets/greyExport.svg") no-repeat;
+    background: url("../assets/save.svg") no-repeat;
     background-size: contain;
     height: 80px;
     width: 80px;

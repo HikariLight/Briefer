@@ -48,14 +48,14 @@ footer{
 }
 
 #simplify{
-    background: url("../assets/greySimplify.svg") no-repeat;
+    background: url("../assets/simplify.svg") no-repeat;
     background-size: contain;
     height: 80px;
     width: 80px;
 }
 
 #summarise{
-    background: url("../assets/greySummarise.svg") no-repeat;
+    background: url("../assets/summarize.svg") no-repeat;
     background-size: contain;
     height: 80px;
     width: 80px;
