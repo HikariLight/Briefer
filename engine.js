@@ -54,7 +54,7 @@ const filterUrl = (url) =>{
     // Takes out front slashes from the start of img URLs.
     // Seen in Wikipedia images.
 
-    return url.replace(/\/\//g, "https://");
+    return url.replace(/^\/\//g, "https://");
 }
 
 const insertTags = (section, mode) =>{
