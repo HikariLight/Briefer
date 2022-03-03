@@ -1,45 +1,25 @@
 html{
-    --themeGreen: #00856F;
-    --themeBlue: #118AB2;
-    --themeGrey: #364954;
+    --blue: #118AB2;
+    --grey: #364954;
+    --green: #00856F;
+    --purple: #8911B2;
+    --lightBlue: #EBF2FA;
 }
 
 body{
-    min-width: 150px;
+    width: 200px;
     text-align: center;
+    background-color: var(--lightBlue);
 }
 
 button{
+    border: none;
     margin: 0.5em auto;
     padding: 0;
-    border: 1px solid var(--themeBlue);
 }
 
 footer{
-    color: var(--themeBlue)
-}
-
-.title{
-    color: var(--themeBlue);
-    text-decoration: underline;
-}
-
-.greenButton{
-    border: 1px solid var(--themeGreen);
-    background-color: var(--themeGreen);
-    color: white;
-}
-
-.blueButton{
-    border: 1px solid var(--themeBlue);
-    background-color: var(--themeBlue);
-    color: white;
-}
-
-.greyButton{
-    border: 1px solid var(--themeGrey);
-    background-color: var(--themeGrey);
-    color: white;
+    color: var(--grey)
 }
 
 .buttonsContainer{
@@ -47,16 +27,24 @@ footer{
     grid-template-rows: 1fr 1fr;
 }
 
+#nameLogo{
+    margin-top: 0.5em;
+    width: 90%;
+    height: auto;
+}
+
 #simplify{
+    object-fit: cover;
     background: url("../assets/simplify.svg") no-repeat;
     background-size: contain;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
 
 #summarise{
     background: url("../assets/summarize.svg") no-repeat;
     background-size: contain;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
+
