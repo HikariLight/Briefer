@@ -6,7 +6,7 @@ document.getElementsByClassName("functionButton")[0].addEventListener("click", (
     
     let htmlContent = "";
     let mode = document.getElementsByClassName("functionButton")[0].id;
-    let data = JSON.parse(window.localStorage.getItem("tabs"))[0];
+    let data = JSON.parse(window.localStorage.getItem("contentObjectList"))[0];
     
     if(mode === "simplify"){
         htmlContent = data["simplifierRender"];
