@@ -18,8 +18,6 @@ const simplifyPanel = `
         <button id="simplify" class="functionButton"></button>
         <button id="export"></button>
     </aside>
-
-    <main>
 `;
 
 const summarisePanel = `
@@ -27,9 +25,9 @@ const summarisePanel = `
         <button id="summarise" class="functionButton"></button>
         <button id="export"></button>
     </aside>
-
-    <main>
 `;
+
+const mainStartTag = "</main>";
 
 const mainEndTag = "</main>";
 
@@ -125,6 +123,8 @@ const render = (headerContent, bodyContent, mode) =>{
     else{
         result += simplifyPanel;
     }
+
+    result += mainStartTag;
     
     for(let i = 0; i < bodyContent.length; i++){
         result += "<section>\n";
@@ -143,6 +143,37 @@ const render = (headerContent, bodyContent, mode) =>{
     return result;
 }
 
+const renderProgressBar = (contentObjList) =>{
+
+    let result = documentStartTags;
+
+    result += `
+    <header>
+        <img src="./assets/favicon.png">
+        <h1>Briefer | Loading Page</h1>
+    </header>
+    `;
+
+    result += mainStartTag;
+
+    result = `
+    <div id="progressBar">
+        <div id="progressBarProgress">0%</div>
+    </div>
+    `;
+
+    result += `
+        <script>
+            let progressBar = document.getElementById("progressBarProgress");
+
+            // Hmmm, not sure how this will work yet.
+            // processing(contentObjList);
+        </script>
+    `;
+
+    return result;
+}
+
 const renderDebugPage = (error) => {
 
     // Renders any JS object into an HTML page.
@@ -157,7 +188,7 @@ const renderDebugPage = (error) => {
     </header>
     `;
 
-    result += "<main>";
+    result += mainStartTag;
 
     result += "<p>" + JSON.stringify(error, null, 4) + "</p>";
 
