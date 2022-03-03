@@ -1,13 +1,16 @@
-html{
-    --themeGreen: #00856F;
-    --themeBlue: #118AB2;
-    --themeGrey: #364954;
-    --themeDefault: #707070;
+:root{
+    --blue: #118AB2;
+    --darkGrey: #202B32;
+    --grey: #364954;
+    --lightGrey: #486170;
+    --green: #00856F;
+    --purple: #8911B2;
+    --lightBlue: #EBF2FA;
 }
 
 body{
-    background-color: #F5F5F5;
-    color: var(--themeDefault);
+    background-color: var(--lightBlue);
+    color: var(--darkGrey);
     font-family: Arial, Helvetica;
     height: 100vh;
     margin: 0 1em;
@@ -16,20 +19,16 @@ body{
 
 a{
     text-decoration: none;
-    color: var(--themeDefault);
-}
-
-h1{
-    color: var(--themeBlue);
+    color: var(--darkGrey);
 }
 
 h1, h2, h3, h4, h5, h6{
     text-align: center;
-    color: var(--themeGrey);
+    color: var(--grey);
 }
 
 figure{
-    text-align: center
+    text-align: center;
 }
 
 img{
@@ -40,12 +39,12 @@ img{
 }
 
 figcaption{
-    color: var(--themeBlue);
+    color: var(--lightGrey);
 }
 
 button{
-    padding: 1em;
-    margin: 0.25em 0;
+    margin: 0.5em 0;
+    border: none;
 }
 
 header{
@@ -53,7 +52,7 @@ header{
     text-align: center;
     margin: 1em 0;
     padding: 1em;
-    border-bottom: 2px solid var(--themeBlue);
+    border-bottom: 2px solid var(--blue);
 
     display: grid;
     grid-template-columns: 1fr 9fr;
@@ -65,7 +64,7 @@ footer{
     width: 100%;
     text-align: center;
 
-    border-top: 2px solid var(--themeBlue);
+    border-top: 2px solid var(--blue);
 }
 
 .container{
@@ -77,14 +76,13 @@ footer{
 }
 
 #headerTitle{
-    color: var(--themeBlue);
+    color: var(--blue);
     text-decoration: underline;
     display: inline;
 }
 
 #logo{
     display: inline;
-    /* width: 2em; */
     width: 50%;
     margin: 0 auto;
     height: auto;
@@ -92,27 +90,22 @@ footer{
 
 #url{
     margin: 1em 0;
-    display: block;
-    color: var(--themeGrey)
+    display: inline-block;
+    color: var(--grey)
 }
 
 #url:hover{
-    color: var(--themeBlue);
-}
-
-#articleTitle{
-    color: var(--themeGreen);
-    text-align: center;
+    color: var(--grey);
 }
 
 #buttonsPanel{
     display: grid;
     grid-template-rows: 1fr 1fr;
 
-    border: 1px solid var(--themeBlue);
+    border: 1px solid var(--blue);
     
-    margin: 0;
-    padding: 1em;
+    margin: 0 1em;
+    padding: 0.5em;
 
     position: fixed;
     right: 0;
@@ -122,22 +115,22 @@ footer{
 #simplify{
     background: url("../assets/switch_to_simplify.svg") no-repeat;
     background-size: contain;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
 
 #summarise{
     background: url("../assets/switch_to_summarize.svg") no-repeat;
     background-size: contain;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
 
 #export{
     background: url("../assets/save.svg") no-repeat;
     background-size: contain;
-    height: 80px;
-    width: 80px;
+    height: 100px;
+    width: 100px;
 }
 
 @media only screen and (max-width: 1280px) {

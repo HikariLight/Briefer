@@ -5,7 +5,7 @@ const documentStartTags = `
     <head>
         <title>ClearView</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./style/page.css">
+        <link rel="stylesheet" href="./style/renderedPage.css">
         <link rel="shortcut icon" href="./assets/favicon.png">
     </head>
 
@@ -109,7 +109,7 @@ const render = (headerContent, bodyContent, mode) =>{
     <header>
         <img id="logo" src=${headerContent["icon"]} alt="logo">
         <div>
-            <h1 id="headerTitle">${headerContent["title"]}</h1>
+            <h1 id="headerTitle">${headerContent["title"]}</h1><br>
             <a id="url" href=${headerContent["url"]} target="_blank" rel="noopener noreferrer">Original Link</a>
         </div>
     </header>
