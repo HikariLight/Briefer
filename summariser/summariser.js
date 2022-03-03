@@ -36,7 +36,7 @@ const summarise = (paragraphList, wordsMap) =>{
 const extract = (contentObjList, language) =>{
 
     let result = [];
-    let wordsMap = getUniversalWordsMap(result, language);
+    let wordsMap = getUniversalWordsMap(contentObjList, language);
     
     for(let i = 0; i < contentObjList.length; i++){
         result.push(contentObjList[i]);
