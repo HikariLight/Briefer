@@ -53,9 +53,21 @@ function getData(key) {
 //  MAIN FUNCTIONNALITY
 //  
 
+const getLatestPageId = () =>{
+
+    let result = 0;
+
+    for(let key in localStorage){
+        if(parseInt(key) > result){
+            result = parseInt(key);
+        }
+    }
+
+    return result;
+}
+
 async function processing() {
     // Generate render of simplify and summary content
-    // localStorage.clear();
 
     let tab = await getTab(scrapeThePage);
 
@@ -76,26 +88,12 @@ function display(htmlContent) {
     newWindow.document.write(htmlContent);
 }
 
-const getLatestPageId = () =>{
-
-    let result = 0;
-
-    for(let key in localStorage){
-        if(parseInt(key) > result){
-            result = parseInt(key);
-        }
-    }
-
-    return result;
-}
-
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
         await processing();
 
         let pageId = getLatestPageId();
-
         let data = getData(pageId.toString())[0];
 
         display(data["simplifierRender"]);
@@ -105,7 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('summarise').addEventListener('click', async () => {
         await processing();
 
-        let data = getData('contentObjectList')[0];
+        let pageId = getLatestPageId();
+        let data = getData(pageId.toString())[0];
 
         display(data["summariserRender"]);
 
