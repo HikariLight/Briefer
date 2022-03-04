@@ -27,7 +27,7 @@ const summarisePanel = `
     </aside>
 `;
 
-const mainStartTag = "</main>";
+const mainStartTag = "<main>";
 
 const mainEndTag = "</main>";
 
@@ -143,33 +143,54 @@ const render = (headerContent, bodyContent, mode) =>{
     return result;
 }
 
-const renderProgressBar = (contentObjList) =>{
+const renderProgressBar = () =>{
 
     let result = documentStartTags;
 
     result += `
     <header>
-        <img src="./assets/favicon.png">
+        <img src="./assets/logo.png">
         <h1>Briefer | Loading Page</h1>
     </header>
     `;
 
-    result += mainStartTag;
+    result += "<main class='centered'>";
 
-    result = `
-    <div id="progressBar">
-        <div id="progressBarProgress">0%</div>
+    result += `
+
+    <img id='brieferProgressLogo' src='./assets/logo.png'>
+    <h2>Loading...</h2>
+    <div id="progressBarBorder">
+        <div id="progressBar">0%</div>
     </div>
     `;
 
     result += `
         <script>
-            let progressBar = document.getElementById("progressBarProgress");
+            let progressBar = document.getElementById("progressBar");
 
-            // Hmmm, not sure how this will work yet.
-            // processing(contentObjList);
-        </script>
+            let width = getComputedStyle(progressBar).getPropertyValue('width').replace(/px/g, "");
+
+            const process = () => {
+                if(width >= 300){
+                    clearInterval(progress);
+                } else{
+                    width += 3;
+                    progressBar.innerText = (width / 3) + '%';
+                    progressBar.style.width = width + 'px';
+                }
+            }
+
+            let progress = setInterval(process, 50);
+        
+            </script>
     `;
+
+    result += mainEndTag;
+
+    result += footerTags;
+
+    result += documentEndTags;
 
     return result;
 }
@@ -183,7 +204,7 @@ const renderDebugPage = (error) => {
 
     result += `
     <header>
-        <img src="./assets/favicon.png">
+        <img src="./assets/logo.png">
         <h1>Briefer | Debug Page</h1>
     </header>
     `;

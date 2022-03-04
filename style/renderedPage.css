@@ -58,12 +58,15 @@ header{
     grid-template-columns: 1fr 9fr;
 }
 
+main{
+    min-height: 75vh;
+}
+
 footer{
     min-height: 2em;
     margin-top: auto;
     width: 100%;
     text-align: center;
-
     border-top: 2px solid var(--blue);
 }
 
@@ -73,6 +76,11 @@ footer{
     padding: 1em;
     background-color: white;
     min-height: 96vh;
+}
+
+.centered{
+    display: grid;
+    place-items: center;
 }
 
 #headerTitle{
@@ -131,6 +139,25 @@ footer{
     background-size: contain;
     height: 100px;
     width: 100px;
+}
+
+#brieferProgressLogo{
+    width: 25%;
+    height: auto;
+}
+
+#progressBarBorder{
+    border: 1px solid var(--blue);
+    padding: 1em;
+    margin: 0;
+    width: 300px;
+}
+
+#progressBar{
+    text-align: center;
+    color: var(--green);
+    background-color: var(--purple);
+    width: 1%;
 }
 
 @media only screen and (max-width: 1280px) {
