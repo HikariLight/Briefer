@@ -6,7 +6,9 @@ document.getElementsByClassName("functionButton")[0].addEventListener("click", (
     
     let htmlContent = "";
     let mode = document.getElementsByClassName("functionButton")[0].id;
-    let data = JSON.parse(window.localStorage.getItem("contentObjectList"))[0];
+
+    let pageId = document.getElementsByTagName("header")[0].id;
+    let data = JSON.parse(window.localStorage.getItem(pageId))[0];
     
     if(mode === "simplify"){
         htmlContent = data["simplifierRender"];
@@ -17,4 +19,10 @@ document.getElementsByClassName("functionButton")[0].addEventListener("click", (
 
     document.open();
     document.write(htmlContent);
+})
+
+window.addEventListener("beforeunload", (e) => {
+    e.preventDefault();
+    let pageId = document.getElementsByTagName("header")[0].id;
+    window.localStorage.removeItem(pageId);
 })

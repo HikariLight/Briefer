@@ -104,7 +104,7 @@ const render = (headerContent, bodyContent, mode) =>{
     // Takes in a list of dictionaries and returns a string containing HTML Code.
 
     let header = `
-    <header>
+    <header id=${headerContent["pageId"]}>
         <img id="logo" src=${headerContent["icon"]} alt="logo">
         <div>
             <h1 id="headerTitle">${headerContent["title"]}</h1><br>

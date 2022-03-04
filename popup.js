@@ -55,17 +55,20 @@ function getData(key) {
 
 async function processing() {
     // Generate render of simplify and summary content
-    localStorage.clear();
+    // localStorage.clear();
 
     let tab = await getTab(scrapeThePage);
 
     let simply = simplify(tab['html']);
 
+    let pageId = getLatestPageId() + 1;
+    tab["pageId"] = pageId.toString();
+
     tab["simplifierRender"] = render(tab, simply, 'simplify');
     tab["summariserRender"] = render(tab, extract(simply, tab['language']), 'summarise');
     delete tab['html'];
 
-    storeData('contentObjectList', tab);
+    storeData(tab["pageId"], tab);
 }
 
 function display(htmlContent) {
@@ -73,12 +76,27 @@ function display(htmlContent) {
     newWindow.document.write(htmlContent);
 }
 
+const getLatestPageId = () =>{
+
+    let result = 0;
+
+    for(let key in localStorage){
+        if(parseInt(key) > result){
+            result = parseInt(key);
+        }
+    }
+
+    return result;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
         await processing();
 
-        let data = getData('contentObjectList')[0];
+        let pageId = getLatestPageId();
+
+        let data = getData(pageId.toString())[0];
 
         display(data["simplifierRender"]);
 
