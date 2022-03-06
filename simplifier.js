@@ -199,10 +199,11 @@ function dataFormatting (list) {
     //      [ 'h1', 'content' ],
     //      [ 'h2', 'content' ],
     //      [ 'p', 'content' ],
-    //      [ 'p', 'conent' ],
+    //      [ 'p', 'content' ],
     //      [ 'img', 'src', 'alt' ]
     // ]
 
+    /*
     if ( typeof(list) != 'object' ) {
 
         throw 'Simplifier Error :\ndataFormatting() error. Wrong input type.\nInput type given : ' + typeof(list);
@@ -244,6 +245,91 @@ function dataFormatting (list) {
         } else {
 
             result.push([tag, content]);
+
+        }
+
+    }
+
+    return result;
+    */
+
+    // [OUTPUT] of the following part
+    // [
+    //      [ 'h1', [ 'content' ] ],
+    //      [ 'h2', [ 'content' ] ],
+    //      [ 'p', [ 'content1', 'content2' ] ],
+    //      [ 'img', [ 'src', 'alt' ] ],
+    //      [ 'h2', [ 'content' ] ],
+    //      [ 'p', [ 'content' ] ],
+    //      [ 'img', [ 'src1', 'alt1', 'src2', 'alt2' ] ]
+    // ]
+
+    if ( typeof(list) != 'object' ) {
+
+        throw 'Simplifier Error :\ndataFormatting() error. Wrong input type.\nInput type given : ' + typeof(list);
+    
+    } else if ( list === null || list.length === 0 ) {
+
+        throw 'Simplifier Error :\ndataFormatting() error. Empty input.';
+    }
+
+    let result = [];
+    let tmp = [];
+
+    for ( let i = 0; i < list.length; i++ ) {
+
+        let tag = list[i].localName;
+        let content = list[i].textContent;
+        
+        if ( tag === 'img' ) {
+
+            let imgAttributes = list[i].attributes;
+
+            let imgSrc = '';
+
+            if ( 'src' in imgAttributes ) {
+
+                imgSrc = imgAttributes.src.value;
+
+            }
+
+            let imgAlt = '';
+
+            if ( 'alt' in imgAttributes ) {
+
+                imgAlt = imgAttributes.alt.value;
+
+            }
+
+            if ( tmp.includes(tag) ) {
+
+                tmp[1].push(imgSrc, imgAlt);
+
+            } else {
+
+                tmp.push(tag, [imgSrc, imgAlt]);
+
+            }
+            
+
+        } else {
+
+            if ( tmp.includes(tag) ) {
+
+                tmp[1].push(content);
+
+            } else {
+
+                tmp.push(tag, [content]);
+
+            }
+
+        }
+
+        if ( !(i+1 !== list.length && tag === list[i+1].localName) ) {
+
+            result.push(tmp);
+            tmp = [];
 
         }
 
