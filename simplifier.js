@@ -1,8 +1,8 @@
 
 const unwantedTags = ['table', 'noscript', 'head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const unwantedAttributes = ['connatix', 'read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
 // remove : head
-// add : note, see_also, related
+// add : note, see_also, related, connatix
 const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
 
@@ -146,6 +146,7 @@ function scoreNodes(list) {
     return list;
 }
 
+// post processing
 function verification(list) {
     // remove useless title (at the end of document and any paragraph after)
     for (let i = list.length - 1; i >= 0; i--) {
@@ -163,10 +164,8 @@ function grabArticle(doc) {
     let list = [];
     
     list = getTextNode(doc, list);
-    console.log('TEXT NODE : ', list);
 
     list = scoreNodes(list);
-    console.log('SCORE NODE : ', list);
     
     let res = [];
     let threshold = 3;
@@ -183,10 +182,9 @@ function grabArticle(doc) {
         }
     }
 
-    // Verification
+    // post-processing
     res = verification(res);
 
-    console.log('RESULTAT : ', res);
     return res;
 }
 
@@ -194,79 +192,65 @@ function grabArticle(doc) {
 //  DATA FORMATTING
 //
 
-function generateDictionnary (list) {
-    if(typeof(list) != 'object'){
-        throw 'Simplifier Error :\ngenerateDictionnary() error. Wrong input type.\nInput type given : ' + typeof(list);
-    }
+function dataFormatting (list) {
 
-    if (list === null || list.length === 0) {
-        throw 'Simplifier Error :\ngenerateDictionnary() error. Empty input.';
-    }
+    // [OUTPUT] of the following part
+    // [
+    //      [ 'h1', 'content' ],
+    //      [ 'h2', 'content' ],
+    //      [ 'p', 'content' ],
+    //      [ 'p', 'conent' ],
+    //      [ 'img', 'src', 'alt' ]
+    // ]
+
+    if ( typeof(list) != 'object' ) {
+
+        throw 'Simplifier Error :\ndataFormatting() error. Wrong input type.\nInput type given : ' + typeof(list);
     
+    } else if ( list === null || list.length === 0 ) {
 
-    let dict = {};
-    let res = [];
+        throw 'Simplifier Error :\ndataFormatting() error. Empty input.';
+    }
 
-    for(let i = 0; i < list.length; i++) {
+    let result = [];
+
+    for ( let i = 0; i < list.length; i++ ) {
+
         let tag = list[i].localName;
         let content = list[i].textContent;
+        
+        if ( tag === 'img' ) {
 
-        // if title 
-        if (tag[0] === 'h') {
-            if (Object.keys(dict).length !== 0) {
-                res.push(dict);
-            }
-            dict = {};
-        }
-
-        // To integrate the position of the images between two paragraphs
-        if (dict.hasOwnProperty(tag) && Object.keys(dict)[Object.keys(dict).length-2] === tag) {
-            res.push(dict);
-            dict = {};
-        }
-
-        // if images
-        if (tag === 'img') {
             let imgAttributes = list[i].attributes;
 
-            // src attributes
             let imgSrc = '';
-            if ('src' in imgAttributes && imgSrc === '') {
+
+            if ( 'src' in imgAttributes ) {
+
                 imgSrc = imgAttributes.src.value;
-            } else if ('srcset' in imgAttributes && imgSrc === '') {
-                imgSrc = imgAttributes.srcset.value;
-            } else {
-                // alert('Images not supported');
-            }
-                    
-            // alt attributes
-            let imgAlt = '';
-            if ('alt' in imgAttributes) { 
-                imgAlt = imgAttributes.alt.value;
+
             }
 
-            // support two consecutive images
-            if (dict.hasOwnProperty(tag)) {
-                dict[tag].push(imgSrc);
-                dict[tag].push(imgAlt);
-            } else {
-                dict[tag] = [imgSrc];
-                dict[tag].push(imgAlt);
+            let imgAlt = '';
+
+            if ( 'alt' in imgAttributes ) {
+
+                imgAlt = imgAttributes.alt.value;
+
             }
-            
+
+            result.push([tag, imgSrc, imgAlt]);
+
         } else {
-            // other elements
-            if (dict.hasOwnProperty(tag)) {
-                dict[tag].push(content);
-            } else {
-                dict[tag] = [content];
-            }
+
+            result.push([tag, content]);
+
         }
+
     }
 
-    res.push(dict);
+    return result;
 
-    return res;
 }
 
 //
@@ -274,15 +258,19 @@ function generateDictionnary (list) {
 // 
 
 export function simplify(html) {
-    let dict = {};
-    // html = '<p>Im a simple paragraph</p><p>Im a <strong>paragraph</strong> that contains <small><a>elements</a></small></p>';
+
+    let output = [];
+
     try {
-        if(html == null || html.length == 0 ){
+
+        if ( html == null || html.length == 0 ) {
+            
             throw 'Simplifier Error :\nsimplify() error. Empty Input.';
-        }
-    
-        if(typeof(html) != 'string'){
+        
+        } else if ( typeof(html) != 'string' ) {
+            
             throw 'Simplifier Error :\nsimplify() error. Wrong input type.\nInput type given : ' + typeof(html);
+        
         } 
 
         // convert string into DOM Element
@@ -291,17 +279,21 @@ export function simplify(html) {
 
         // Pre-processing
         preProcess(doc);
-        console.log('[DOC] : ',doc);
+        console.log('[pre-processing] : ',doc);
 
         // Classification
         let list = grabArticle(doc);
+        console.log('[important content list] : ', list);
 
         // Data formatting
-        dict = generateDictionnary(list);
-        console.log('[DICT] : ', dict);
+        output = dataFormatting(list);
+        console.log('[output] : ', output);
+
     } catch (err) {
+
         console.log(err);
+
     }
 
-    return dict;
+    return output;
 }
