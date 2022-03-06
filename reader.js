@@ -1,22 +1,25 @@
 
+const unexpectedWebsite = ['https://www.facebook.com', 'https://web.whatsapp.com', 'https://www.instagram.com', 'https://www.tiktok.com', 'https://www.snapchat.com', 'https://www.reddit.com', 'https://www.pinterest.com', 'https://twitter.com', 'https://www.linkedin.com', 'https://www.youtube.com', 'https://www.dailymotion.com'];
+
 async function getHtml(tab, fct) {
     // Execute script and return html source code
-    // [TODO] implement handling URL of streaming webpage, social network, chrome, local
     if (typeof(tab) !== 'object') {
+
         throw 'Reader Error :\ngetHtml() error. Wrong input type.\nTab type given : ' + typeof(tab);
+    
+    } else if ( new RegExp(unexpectedWebsite.join('|')).test(tab.url) ) {
+
+        throw 'Error: Cannot access an unexpected URL';
+
     }
 
-    try {    
-        const result = await chrome.scripting.executeScript(
-            {
-                target: { tabId: tab.id },
-                function: fct,
-            }
-        );
-        return result[0].result;
-    } catch (err) {
-        alert('You can\'t use the extension on this tab');
-    }
+    const result = await chrome.scripting.executeScript(
+        {
+            target: { tabId: tab.id },
+            function: fct,
+        }
+    );
+    return result[0].result;
 }
 
 async function getActiveTab() {
@@ -60,13 +63,12 @@ async function getTabContent(tab, html) {
 
 export async function getTab(fct) {
     let content = {};
-
     try {
         let tab = await getActiveTab();
         let html = await getHtml(tab, fct);
         content = await getTabContent(tab, html);
     } catch (err) {
-        console.log(err);
+        alert(err);
     }
 
     return content;
