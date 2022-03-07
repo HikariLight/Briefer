@@ -45,7 +45,9 @@ const filterText = (wordTokens, language) => {
     // Filters text of unwanted words, punctuation and spaces.
 
     if(language == null || language == "" || typeof(language) != "string"){
-        throw "Summariser Error:\nfilterText() error. Language not specified";
+        throw {
+            name : 'TypeError', message : '"language" is ' + typeof(language) +' instead of string', fileName : 'filters.js', functionName : 'filterText()', lineNumber : 43
+        }
     }
 
     let notMeaningful = getNotMeaningful(language);
