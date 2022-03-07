@@ -12,7 +12,7 @@ async function getHtml (tab, fct) {
     
     if ( new RegExp(unexpectedWebsite.join('|')).test(tab.url) || tab.url === '') {
         throw {
-            name : 'Warning', message : 'Cannot process an unexpected URL\r\nMore details on our website : "link"'
+            name : 'Warning', message : 'Cannot process an unexpected URL\r\nMore details on our website : \r\n\r\nhttps://briefer.netlify.app/faq'
         }
     }
 
