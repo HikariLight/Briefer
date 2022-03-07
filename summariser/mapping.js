@@ -27,15 +27,12 @@ const getUniversalWordsMap = (contentObjList, language) => {
 
     let result = {};
 
-    try{
-        let text = aggregateText(contentObjList)
-        let tokenizedWords = tokenizeWords(text);
-        filterText(tokenizedWords, language);
-        result = getWordsMap(tokenizedWords);
-        scoreWords(result);
-    }catch(error){
-        console.log(error)
-    }
+    
+    let text = aggregateText(contentObjList)
+    let tokenizedWords = tokenizeWords(text);
+    filterText(tokenizedWords, language);
+    result = getWordsMap(tokenizedWords);
+    scoreWords(result);
 
     return result;
 }
