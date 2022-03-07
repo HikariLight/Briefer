@@ -81,6 +81,9 @@ async function processing() {
     delete tab['html'];
 
     storeData(tab["pageId"], tab);
+
+    
+    
 }
 
 function display(htmlContent) {
@@ -91,22 +94,47 @@ function display(htmlContent) {
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
-        await processing();
+        try {
 
-        let pageId = getLatestPageId();
-        let data = getData(pageId.toString())[0];
+            await processing();
 
-        display(data["simplifierRender"]);
+            let pageId = getLatestPageId();
+            let data = getData(pageId.toString())[0];
+
+            display(data["simplifierRender"]);
+
+        } catch (err) {
+
+            if ( err.name === 'Warning' ) {
+                alert(err.message);
+            } else {
+                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+            }
+
+        }
 
     });
 
     document.getElementById('summarise').addEventListener('click', async () => {
-        await processing();
 
-        let pageId = getLatestPageId();
-        let data = getData(pageId.toString())[0];
+        try {
 
-        display(data["summariserRender"]);
+            await processing();
+
+            let pageId = getLatestPageId();
+            let data = getData(pageId.toString())[0];
+
+            display(data["summariserRender"]);
+
+        } catch (err) {
+
+            if ( err.name === 'Warning' ) {
+                alert(err.message);
+            } else {
+                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+            }
+
+        }
 
     });
 

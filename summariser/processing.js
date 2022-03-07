@@ -3,12 +3,16 @@ const aggregateText = (contentObjList) => {
     // Aggregates the entire text of the page into a string.
     // Needed mostly for getUniversalWordsMap()
     
-    if(contentObjList == [] || contentObjList == null){
-        throw "Summariser Error:\naggregateText() error. Empty input.";
+    if(contentObjList == null || contentObjList == []){
+        throw {
+            name : 'RangeError', message : '"contentObjList" is empty', fileName : 'processing.js', functionName : 'aggregateText()', lineNumber : 1
+        }
     }
 
     if(typeof(contentObjList) != "object"){
-        throw "Summariser Error:\naggregateText() error. Wrong input type.\nInput type given: " + typeof(contentObjList);
+        throw {
+            name : 'TypeError', message : '"contentObjList" is ' + typeof(contentObjList) +' instead of object', fileName : 'processing.js', functionName : 'aggregateText()', lineNumber : 1
+        }
     }
 
     let result = [];

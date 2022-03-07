@@ -22,11 +22,15 @@ function restructuring(node) {
 function preProcess(doc) {
     // Pre-Processing the DOM by removing useless contents
     if(Object.keys(doc).length === 0 && doc.constructor === Object){
-        throw 'Simplifier Error :\npreProcess() error. Empty input.';
+        throw {
+            name : 'RangeError', message : '"doc" is empty', fileName : 'simplifier.js', functionName : 'preProcess()', lineNumber : 22
+        }
     }
 
-    if(typeof(doc) != 'object'){
-        throw 'Simplifier Error :\npreProcess() error. Wrong input type.\nInput type given : ' + typeof(doc);
+    if ( typeof(doc) != 'object' ) {
+        throw {
+            name : 'TypeError', message : '"doc" is ' + typeof(doc) +' instead of object', fileName : 'simplifier.js', functionName : 'preProcess()', lineNumber : 22
+        }
     }
     
     let node = doc.getElementsByTagName('*');
@@ -195,12 +199,16 @@ function grabArticle(doc) {
 //
 
 function generateDictionnary (list) {
-    if(typeof(list) != 'object'){
-        throw 'Simplifier Error :\ngenerateDictionnary() error. Wrong input type.\nInput type given : ' + typeof(list);
+    if ( !Array.isArray(list) ) {
+        throw {
+            name : 'TypeError', message : '"list" is ' + typeof(list) +' instead of array', fileName : 'simplifier.js', functionName : 'generateDictionnary()', lineNumber : 197
+        }
     }
 
     if (list === null || list.length === 0) {
-        throw 'Simplifier Error :\ngenerateDictionnary() error. Empty input.';
+        throw {
+            name : 'RangeError', message : '"list" is empty', fileName : 'simplifier.js', functionName : 'generateDictionnary()', lineNumber : 197
+        }
     }
     
 
@@ -276,32 +284,33 @@ function generateDictionnary (list) {
 export function simplify(html) {
     let dict = {};
     // html = '<p>Im a simple paragraph</p><p>Im a <strong>paragraph</strong> that contains <small><a>elements</a></small></p>';
-    try {
-        if(html == null || html.length == 0 ){
-            throw 'Simplifier Error :\nsimplify() error. Empty Input.';
+
+    if ( html == null || html.length == 0 ) {
+        throw {
+            name : 'RangeError', message : '"html" is empty', fileName : 'simplifier.js', functionName : 'simplify()', lineNumber : 276
         }
-    
-        if(typeof(html) != 'string'){
-            throw 'Simplifier Error :\nsimplify() error. Wrong input type.\nInput type given : ' + typeof(html);
-        } 
-
-        // convert string into DOM Element
-        const parser = new DOMParser();
-        let doc = parser.parseFromString(html, 'text/html');
-
-        // Pre-processing
-        preProcess(doc);
-        console.log('[DOC] : ',doc);
-
-        // Classification
-        let list = grabArticle(doc);
-
-        // Data formatting
-        dict = generateDictionnary(list);
-        console.log('[DICT] : ', dict);
-    } catch (err) {
-        console.log(err);
     }
+    
+    if ( typeof(html) != 'string' ) {
+        throw {
+            name : 'TypeError', message : '"html" is ' + typeof(html) +' instead of string', fileName : 'simplifier.js', functionName : 'simplify()', lineNumber : 276
+        }
+    } 
+
+    // convert string into DOM Element
+    const parser = new DOMParser();
+    let doc = parser.parseFromString(html, 'text/html');
+
+    // Pre-processing
+    preProcess(doc);
+    console.log('[DOC] : ',doc);
+
+    // Classification
+    let list = grabArticle(doc);
+
+    // Data formatting
+    dict = generateDictionnary(list);
+    console.log('[DICT] : ', dict);
 
     return dict;
 }
