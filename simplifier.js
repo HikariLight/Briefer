@@ -1,9 +1,9 @@
 
 const unwantedTags = ['table', 'noscript', 'head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['connatix', 'read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const unwantedAttributes = ['josh', 'connatix', 'read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
 // remove : head
 // add : note, see_also, related, connatix
-const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
+const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img'];
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
 
 //
@@ -290,6 +290,7 @@ function dataFormatting (list) {
             if ( 'src' in imgAttributes ) {
 
                 imgSrc = imgAttributes.src.value;
+                console.log('img src : ', imgSrc);
 
             }
 
@@ -298,6 +299,7 @@ function dataFormatting (list) {
             if ( 'alt' in imgAttributes ) {
 
                 imgAlt = imgAttributes.alt.value;
+                console.log('img alt : ', imgAlt);
 
             }
 
