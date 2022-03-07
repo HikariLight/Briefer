@@ -290,7 +290,6 @@ function dataFormatting (list) {
             if ( 'src' in imgAttributes ) {
 
                 imgSrc = imgAttributes.src.value;
-                console.log('img src : ', imgSrc);
 
             }
 
@@ -299,7 +298,6 @@ function dataFormatting (list) {
             if ( 'alt' in imgAttributes ) {
 
                 imgAlt = imgAttributes.alt.value;
-                console.log('img alt : ', imgAlt);
 
             }
 
