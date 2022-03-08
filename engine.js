@@ -6,7 +6,7 @@ const documentStartTags = `
         <title>ClearView</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style/renderedPage.css">
-        <link rel="shortcut icon" href="./assets/favicon.png">
+        <link rel="shortcut icon" href="./assets/logo.png">
     </head>
 
     <body>
@@ -195,6 +195,36 @@ const renderProgressBar = () =>{
     return result;
 }
 
+const renderErrorPage = (errorObj) =>{
+    let result = documentStartTags;
+
+    result += `
+    <header>
+        <img src="./assets/logo.png">
+        <h1>Briefer | Error Page</h1>
+    </header>
+    `;
+
+    result += "<main class='centered'>";
+
+    result += "<div>"
+
+    result += "<h1>Internal Error</h1>"
+    for(let field in errorObj){
+        result += `<p><span class='greenText'>${field}:</span> ${errorObj[field]}</p>`;
+    }
+
+    result += "</div>"
+
+    result += mainEndTag;
+
+    result += footerTags;
+
+    result += documentEndTags;
+
+    return result;
+}
+
 const renderDebugPage = (error) => {
 
     // Renders any JS object into an HTML page.
@@ -223,4 +253,4 @@ const renderDebugPage = (error) => {
     newWindow.document.write(result);
 }
 
-export { render, renderDebugPage };
+export { render, renderErrorPage, renderDebugPage };
