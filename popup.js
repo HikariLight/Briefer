@@ -1,7 +1,7 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
 import { extract } from "./summariser/summariser.js";
-import { render, renderErrorPage } from "./engine.js";
+import { renderPage, renderErrorPage } from "./html-engine/renderEngine.js";
 
 function scrapeThePage() {
     // Function used bu reader.js but need to be here to get the html source code
@@ -76,8 +76,8 @@ async function processing() {
     let pageId = getLatestPageId() + 1;
     tab["pageId"] = pageId.toString();
 
-    tab["simplifierRender"] = render(tab, simply, 'simplify');
-    tab["summariserRender"] = render(tab, extract(simply, tab['language']), 'summarise');
+    tab["simplifierRender"] = renderPage(tab, simply, 'simplify');
+    tab["summariserRender"] = renderPage(tab, extract(simply, tab['language']), 'summarise');
     delete tab['html'];
 
     storeData(tab["pageId"], tab);
