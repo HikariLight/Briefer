@@ -5,8 +5,8 @@ const documentStartTags = `
     <head>
         <title>ClearView</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./style/renderedPage.css">
-        <link rel="shortcut icon" href="./assets/favicon.png">
+        <link rel="stylesheet" href="../style/renderedPage.css">
+        <link rel="shortcut icon" href="../assets/logo.png">
     </head>
 
     <body>
@@ -31,8 +31,6 @@ const mainStartTag = "<main>";
 
 const mainEndTag = "</main>";
 
-const scriptTags = `<script src="renderButtons.js"></script>`; 
-
 const footerTags = `
     <footer>
         <p>Genearted by: Briefer Browser Extension</p>
@@ -41,7 +39,7 @@ const footerTags = `
 
 const documentEndTags = `
     </div>
-    
+
     </body>
     </html>
 `;
@@ -64,10 +62,10 @@ const insertTags = (section, mode) =>{
 
         if(tag == "img"){
             for(let i = 0; i < section[tag].length; i += 2){
-                result += "<figure>"
-                result += "<" + tag + " src=\"" + filterUrl(section[tag][i]) + "\" alt=\"" + section[tag][i+1] + "\">\n";
-                result += "<figcaption>" + section[tag][i+1] + "</figcaption>"
-                result += "</figure>"
+                result += `<figure>
+                                <${tag} src = ${filterUrl(section[tag][i])} alt= ${section[tag][i+1]}\>
+                                <figcaption>${section[tag][i+1]}</figcaption>
+                            </figure>`;
             }
             continue;
         }
@@ -75,15 +73,13 @@ const insertTags = (section, mode) =>{
         if(tag == "p"){
             if(mode == "simplify"){
                 for(let i = 0; i < section[tag].length; i++){
-                    result += "<" + tag + ">" + section[tag][i] + "</" + tag + ">";
+                    result += `<${tag}>${section[tag][i]}</${tag}>`;
                 }
             }
             else if(mode == "summarise"){
                 result += "<ul>";
                 for(let i = 0; i < section[tag].length; i++){
-                    result += "<li>"
-                    result += "<" + tag + ">" + section[tag][i] + ".</" + tag + ">";
-                    result += "</li>";
+                    result += `<li><${tag}>${section[tag][i]}.</${tag}></li>`;
                 }
                 result += "</ul>";
             }
@@ -91,15 +87,13 @@ const insertTags = (section, mode) =>{
             continue;
         }
 
-        result += "<" + tag + ">\n";
-        result += section[tag];
-        result += "\n</" + tag + ">\n";
+        result += `<${tag}> ${section[tag]}</${tag}>`;
     }
 
     return result;
 }
 
-const render = (headerContent, bodyContent, mode) =>{
+const renderPage = (headerContent, bodyContent, mode) =>{
 
     // Takes in a list of dictionaries and returns a string containing HTML Code.
 
@@ -136,7 +130,7 @@ const render = (headerContent, bodyContent, mode) =>{
 
     result += footerTags;
 
-    result += scriptTags;
+    result += `<script src='./html-engine/renderedPage.js'></script>`; 
 
     result += documentEndTags;
 
@@ -149,42 +143,56 @@ const renderProgressBar = () =>{
 
     result += `
     <header>
-        <img src="./assets/logo.png">
+        <img src="../assets/logo.png">
         <h1>Briefer | Loading Page</h1>
     </header>
     `;
 
     result += "<main class='centered'>";
 
-    result += `
+    result += "<div>";
 
-    <img id='brieferProgressLogo' src='./assets/logo.png'>
+    result += `
+    <img id='brieferProgressLogo' src='../assets/logo.png'>
     <h2>Loading...</h2>
     <div id="progressBarBorder">
         <div id="progressBar">0%</div>
     </div>
     `;
 
+    result += "</div>";
+
+    result += `<script src='./html-engine/progressBar.js'></script>`;
+
+    result += mainEndTag;
+
+    result += footerTags;
+
+    result += documentEndTags;
+
+    return result;
+}
+
+const renderErrorPage = (errorObj) =>{
+    let result = documentStartTags;
+
     result += `
-        <script>
-            let progressBar = document.getElementById("progressBar");
-
-            let width = getComputedStyle(progressBar).getPropertyValue('width').replace(/px/g, "");
-
-            const process = () => {
-                if(width >= 300){
-                    clearInterval(progress);
-                } else{
-                    width += 3;
-                    progressBar.innerText = (width / 3) + '%';
-                    progressBar.style.width = width + 'px';
-                }
-            }
-
-            let progress = setInterval(process, 50);
-        
-            </script>
+    <header>
+        <img src="../assets/logo.png">
+        <h1>Briefer | Error Page</h1>
+    </header>
     `;
+
+    result += "<main class='centered'>";
+
+    result += "<div>"
+
+    result += "<h1>Internal Error</h1>"
+    for(let field in errorObj){
+        result += `<p><span class='greenText'>${field}:</span> ${errorObj[field]}</p>`;
+    }
+
+    result += "</div>"
 
     result += mainEndTag;
 
@@ -204,7 +212,7 @@ const renderDebugPage = (error) => {
 
     result += `
     <header>
-        <img src="./assets/logo.png">
+        <img src="../assets/logo.png">
         <h1>Briefer | Debug Page</h1>
     </header>
     `;
@@ -223,4 +231,4 @@ const renderDebugPage = (error) => {
     newWindow.document.write(result);
 }
 
-export { render, renderDebugPage };
+export { renderPage, renderErrorPage, renderDebugPage };

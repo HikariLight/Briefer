@@ -1,7 +1,7 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
 import { extract } from "./summariser/summariser.js";
-import { render } from "./engine.js";
+import { renderPage, renderErrorPage } from "./html-engine/renderEngine.js";
 
 function scrapeThePage() {
     // Function used bu reader.js but need to be here to get the html source code
@@ -76,11 +76,14 @@ async function processing() {
     let pageId = getLatestPageId() + 1;
     tab["pageId"] = pageId.toString();
 
-    tab["simplifierRender"] = render(tab, simply, 'simplify');
-    tab["summariserRender"] = render(tab, extract(simply, tab['language']), 'summarise');
+    tab["simplifierRender"] = renderPage(tab, simply, 'simplify');
+    tab["summariserRender"] = renderPage(tab, extract(simply, tab['language']), 'summarise');
     delete tab['html'];
 
     storeData(tab["pageId"], tab);
+
+    
+    
 }
 
 function display(htmlContent) {
@@ -91,22 +94,49 @@ function display(htmlContent) {
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
-        await processing();
+        try {
 
-        let pageId = getLatestPageId();
-        let data = getData(pageId.toString())[0];
+            await processing();
 
-        display(data["simplifierRender"]);
+            let pageId = getLatestPageId();
+            let data = getData(pageId.toString())[0];
+
+            display(data["simplifierRender"]);
+
+        } catch (err) {
+
+            if ( err.name === 'Warning' ) {
+                alert(err.message);
+            } else {
+                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+            }
+
+            display(renderErrorPage(err));
+        }
 
     });
 
     document.getElementById('summarise').addEventListener('click', async () => {
-        await processing();
 
-        let pageId = getLatestPageId();
-        let data = getData(pageId.toString())[0];
+        try {
 
-        display(data["summariserRender"]);
+            await processing();
+
+            let pageId = getLatestPageId();
+            let data = getData(pageId.toString())[0];
+
+            display(data["summariserRender"]);
+
+        } catch (err) {
+
+            if ( err.name === 'Warning' ) {
+                alert(err.message);
+            } else {
+                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+            }
+
+            display(renderErrorPage(err));
+        }
 
     });
 

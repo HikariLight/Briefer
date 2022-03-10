@@ -11,11 +11,7 @@ const summarise = (paragraphList, wordsMap) =>{
     let text = paragraphList.join(" ");
     
     let sentenceTokens = [];
-    try{
-        sentenceTokens = tokenizeSentences(text);
-    }catch(error){
-        console.log(error);
-    }
+    sentenceTokens = tokenizeSentences(text);
 
     let sentencesMap = getSentenceMap(sentenceTokens);
     scoreSentences(sentencesMap, wordsMap);

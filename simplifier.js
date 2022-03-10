@@ -22,11 +22,15 @@ function restructuring(node) {
 function preProcess(doc) {
     // Pre-Processing the DOM by removing useless contents
     if(Object.keys(doc).length === 0 && doc.constructor === Object){
-        throw 'Simplifier Error :\npreProcess() error. Empty input.';
+        throw {
+            name : 'RangeError', message : '"doc" is empty', fileName : 'simplifier.js', functionName : 'preProcess()', lineNumber : 22
+        }
     }
 
-    if(typeof(doc) != 'object'){
-        throw 'Simplifier Error :\npreProcess() error. Wrong input type.\nInput type given : ' + typeof(doc);
+    if ( typeof(doc) != 'object' ) {
+        throw {
+            name : 'TypeError', message : '"doc" is ' + typeof(doc) +' instead of object', fileName : 'simplifier.js', functionName : 'preProcess()', lineNumber : 22
+        }
     }
     
     let node = doc.getElementsByTagName('*');
@@ -194,16 +198,6 @@ function grabArticle(doc) {
 
 function dataFormatting (list) {
 
-    // [OUTPUT] of the following part
-    // [
-    //      [ 'h1', 'content' ],
-    //      [ 'h2', 'content' ],
-    //      [ 'p', 'content' ],
-    //      [ 'p', 'content' ],
-    //      [ 'img', 'src', 'alt' ]
-    // ]
-
-    /*
     if ( typeof(list) != 'object' ) {
 
         throw 'Simplifier Error :\ndataFormatting() error. Wrong input type.\nInput type given : ' + typeof(list);
@@ -214,72 +208,18 @@ function dataFormatting (list) {
     }
 
     let result = [];
-
-    for ( let i = 0; i < list.length; i++ ) {
-
-        let tag = list[i].localName;
-        let content = list[i].textContent;
-        
-        if ( tag === 'img' ) {
-
-            let imgAttributes = list[i].attributes;
-
-            let imgSrc = '';
-
-            if ( 'src' in imgAttributes ) {
-
-                imgSrc = imgAttributes.src.value;
-
-            }
-
-            let imgAlt = '';
-
-            if ( 'alt' in imgAttributes ) {
-
-                imgAlt = imgAttributes.alt.value;
-
-            }
-
-            result.push([tag, imgSrc, imgAlt]);
-
-        } else {
-
-            result.push([tag, content]);
-
-        }
-
-    }
-
-    return result;
-    */
-
-    // [OUTPUT] of the following part
-    // [
-    //      [ 'h1', [ 'content' ] ],
-    //      [ 'h2', [ 'content' ] ],
-    //      [ 'p', [ 'content1', 'content2' ] ],
-    //      [ 'img', [ 'src', 'alt' ] ],
-    //      [ 'h2', [ 'content' ] ],
-    //      [ 'p', [ 'content' ] ],
-    //      [ 'img', [ 'src1', 'alt1', 'src2', 'alt2' ] ]
-    // ]
-
-    if ( typeof(list) != 'object' ) {
-
-        throw 'Simplifier Error :\ndataFormatting() error. Wrong input type.\nInput type given : ' + typeof(list);
-    
-    } else if ( list === null || list.length === 0 ) {
-
-        throw 'Simplifier Error :\ndataFormatting() error. Empty input.';
-    }
-
-    let result = [];
+    let section = [];
     let tmp = [];
 
     for ( let i = 0; i < list.length; i++ ) {
 
         let tag = list[i].localName;
         let content = list[i].textContent;
+
+        if ( i!= 0 && tag[0] === 'h' ) {
+            result.push(section);
+            section = [];
+        }
         
         if ( tag === 'img' ) {
 
@@ -328,12 +268,14 @@ function dataFormatting (list) {
 
         if ( !(i+1 !== list.length && tag === list[i+1].localName) ) {
 
-            result.push(tmp);
+            section.push(tmp);
             tmp = [];
 
         }
 
     }
+
+    result.push(section);
 
     return result;
 
@@ -359,9 +301,9 @@ export function simplify(html) {
         
         } 
 
-        // convert string into DOM Element
-        const parser = new DOMParser();
-        let doc = parser.parseFromString(html, 'text/html');
+    // convert string into DOM Element
+    const parser = new DOMParser();
+    let doc = parser.parseFromString(html, 'text/html');
 
         // Pre-processing
         preProcess(doc);
