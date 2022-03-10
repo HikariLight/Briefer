@@ -1,7 +1,7 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
 import { extract } from "./summariser/summariser.js";
-import { renderPage, renderErrorPage } from "./html-engine/renderEngine.js";
+import { renderPage, renderProgressBar, renderErrorPage } from "./html-engine/renderEngine.js";
 
 function scrapeThePage() {
     // Function used bu reader.js but need to be here to get the html source code
@@ -82,8 +82,6 @@ async function processing() {
 
     storeData(tab["pageId"], tab);
 
-    
-    
 }
 
 function display(htmlContent) {
@@ -95,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
         try {
+
+            document.write(renderProgressBar());
 
             await processing();
 
@@ -120,12 +120,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
 
+            document.write(renderProgressBar());
+
             await processing();
 
             let pageId = getLatestPageId();
             let data = getData(pageId.toString())[0];
 
-            display(data["summariserRender"]);
+            // display(data["summariserRender"]);
 
         } catch (err) {
 
@@ -135,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
             }
 
-            display(renderErrorPage(err));
+            // display(renderErrorPage(err));
         }
 
     });

@@ -132,41 +132,43 @@ const renderPage = (headerContent, bodyContent, mode) =>{
 
     result += `<script src='./html-engine/renderedPage.js'></script>`; 
 
-    result += documentEndTags;
+    result += `
+    </body>
+    </html>`;
 
     return result;
 }
 
 const renderProgressBar = () =>{
 
-    let result = documentStartTags;
+    let result = `<!DOCTYPE html>
+    
+    <html>
+    <head>
+        <title>ClearView</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style/popup.css">
+    </head>
+
+    <body>`;
 
     result += `
     <header>
-        <img src="../assets/logo.png">
-        <h1>Briefer | Loading Page</h1>
+        <img id="nameLogo" src="./assets/name.svg" alt="Briefer">
     </header>
     `;
 
     result += "<main class='centered'>";
 
-    result += "<div>";
-
-    result += `
-    <img id='brieferProgressLogo' src='../assets/logo.png'>
-    <h2>Loading...</h2>
-    <div id="progressBarBorder">
-        <div id="progressBar">0%</div>
-    </div>
-    `;
-
-    result += "</div>";
-
-    result += `<script src='./html-engine/progressBar.js'></script>`;
+    result += `<div class="loading"></div>`;
 
     result += mainEndTag;
 
-    result += footerTags;
+    result += `
+    <footer>
+        <p>Briefer browser extension</p>
+    </footer>
+    `;
 
     result += documentEndTags;
 
@@ -231,4 +233,4 @@ const renderDebugPage = (error) => {
     newWindow.document.write(result);
 }
 
-export { renderPage, renderErrorPage, renderDebugPage };
+export { renderPage, renderProgressBar, renderErrorPage, renderDebugPage };
