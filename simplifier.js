@@ -1,9 +1,9 @@
 
 const unwantedTags = ['table', 'noscript', 'head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const unwantedAttributes = ['josh', 'connatix', 'read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
 // remove : head
-// add : note, see_also, related
-const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img', 'wrappe'];
+// add : note, see_also, related, connatix
+const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img'];
 const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsapp', 'twitter', 'pinterest', 'linkedin', 'gmail', 'viadeo', 'mailto', 'social'];
 
 //
@@ -150,6 +150,7 @@ function scoreNodes(list) {
     return list;
 }
 
+// post processing
 function verification(list) {
     // remove useless title (at the end of document and any paragraph after)
     for (let i = list.length - 1; i >= 0; i--) {
@@ -167,10 +168,8 @@ function grabArticle(doc) {
     let list = [];
     
     list = getTextNode(doc, list);
-    console.log('TEXT NODE : ', list);
 
     list = scoreNodes(list);
-    console.log('SCORE NODE : ', list);
     
     let res = [];
     let threshold = 3;
@@ -187,10 +186,9 @@ function grabArticle(doc) {
         }
     }
 
-    // Verification
+    // post-processing
     res = verification(res);
 
-    console.log('RESULTAT : ', res);
     return res;
 }
 
@@ -198,83 +196,89 @@ function grabArticle(doc) {
 //  DATA FORMATTING
 //
 
-function generateDictionnary (list) {
-    if ( !Array.isArray(list) ) {
-        throw {
-            name : 'TypeError', message : '"list" is ' + typeof(list) +' instead of array', fileName : 'simplifier.js', functionName : 'generateDictionnary()', lineNumber : 197
-        }
-    }
+function dataFormatting (list) {
 
-    if (list === null || list.length === 0) {
-        throw {
-            name : 'RangeError', message : '"list" is empty', fileName : 'simplifier.js', functionName : 'generateDictionnary()', lineNumber : 197
-        }
-    }
+    if ( typeof(list) != 'object' ) {
+
+        throw 'Simplifier Error :\ndataFormatting() error. Wrong input type.\nInput type given : ' + typeof(list);
     
+    } else if ( list === null || list.length === 0 ) {
 
-    let dict = {};
-    let res = [];
+        throw 'Simplifier Error :\ndataFormatting() error. Empty input.';
+    }
 
-    for(let i = 0; i < list.length; i++) {
+    let result = [];
+    let section = [];
+    let tmp = [];
+
+    for ( let i = 0; i < list.length; i++ ) {
+
         let tag = list[i].localName;
         let content = list[i].textContent;
 
-        // if title 
-        if (tag[0] === 'h') {
-            if (Object.keys(dict).length !== 0) {
-                res.push(dict);
-            }
-            dict = {};
+        if ( i!= 0 && tag[0] === 'h' ) {
+            result.push(section);
+            section = [];
         }
+        
+        if ( tag === 'img' ) {
 
-        // To integrate the position of the images between two paragraphs
-        if (dict.hasOwnProperty(tag) && Object.keys(dict)[Object.keys(dict).length-2] === tag) {
-            res.push(dict);
-            dict = {};
-        }
-
-        // if images
-        if (tag === 'img') {
             let imgAttributes = list[i].attributes;
 
-            // src attributes
             let imgSrc = '';
-            if ('src' in imgAttributes && imgSrc === '') {
+
+            if ( 'src' in imgAttributes ) {
+
                 imgSrc = imgAttributes.src.value;
-            } else if ('srcset' in imgAttributes && imgSrc === '') {
-                imgSrc = imgAttributes.srcset.value;
-            } else {
-                // alert('Images not supported');
-            }
-                    
-            // alt attributes
-            let imgAlt = '';
-            if ('alt' in imgAttributes) { 
-                imgAlt = imgAttributes.alt.value;
+
             }
 
-            // support two consecutive images
-            if (dict.hasOwnProperty(tag)) {
-                dict[tag].push(imgSrc);
-                dict[tag].push(imgAlt);
+            let imgAlt = '';
+
+            if ( 'alt' in imgAttributes ) {
+
+                imgAlt = imgAttributes.alt.value;
+
+            }
+
+            if ( tmp.includes(tag) ) {
+
+                tmp[1].push(imgSrc, imgAlt);
+
             } else {
-                dict[tag] = [imgSrc];
-                dict[tag].push(imgAlt);
+
+                tmp.push(tag, [imgSrc, imgAlt]);
+
             }
             
+
         } else {
-            // other elements
-            if (dict.hasOwnProperty(tag)) {
-                dict[tag].push(content);
+
+            if ( tmp.includes(tag) ) {
+
+                tmp[1].push(content);
+
             } else {
-                dict[tag] = [content];
+
+                tmp.push(tag, [content]);
+
             }
+
         }
+
+        if ( !(i+1 !== list.length && tag === list[i+1].localName) ) {
+
+            section.push(tmp);
+            tmp = [];
+
+        }
+
     }
 
-    res.push(dict);
+    result.push(section);
 
-    return res;
+    return result;
+
 }
 
 //
@@ -282,35 +286,42 @@ function generateDictionnary (list) {
 // 
 
 export function simplify(html) {
-    let dict = {};
-    // html = '<p>Im a simple paragraph</p><p>Im a <strong>paragraph</strong> that contains <small><a>elements</a></small></p>';
 
-    if ( html == null || html.length == 0 ) {
-        throw {
-            name : 'RangeError', message : '"html" is empty', fileName : 'simplifier.js', functionName : 'simplify()', lineNumber : 276
-        }
-    }
-    
-    if ( typeof(html) != 'string' ) {
-        throw {
-            name : 'TypeError', message : '"html" is ' + typeof(html) +' instead of string', fileName : 'simplifier.js', functionName : 'simplify()', lineNumber : 276
-        }
-    } 
+    let output = [];
+
+    try {
+
+        if ( html == null || html.length == 0 ) {
+            
+            throw 'Simplifier Error :\nsimplify() error. Empty Input.';
+        
+        } else if ( typeof(html) != 'string' ) {
+            
+            throw 'Simplifier Error :\nsimplify() error. Wrong input type.\nInput type given : ' + typeof(html);
+        
+        } 
 
     // convert string into DOM Element
     const parser = new DOMParser();
     let doc = parser.parseFromString(html, 'text/html');
 
-    // Pre-processing
-    preProcess(doc);
-    console.log('[DOC] : ',doc);
+        // Pre-processing
+        preProcess(doc);
+        console.log('[pre-processing] : ',doc);
 
-    // Classification
-    let list = grabArticle(doc);
+        // Classification
+        let list = grabArticle(doc);
+        console.log('[important content list] : ', list);
 
-    // Data formatting
-    dict = generateDictionnary(list);
-    console.log('[DICT] : ', dict);
+        // Data formatting
+        output = dataFormatting(list);
+        console.log('[output] : ', output);
 
-    return dict;
+    } catch (err) {
+
+        console.log(err);
+
+    }
+
+    return output;
 }
