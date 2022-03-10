@@ -29,15 +29,20 @@ const summarise = (paragraphList, wordsMap) =>{
     return result;
 }
 
-const extract = (contentObjList, language) =>{
+const extract = (contentList, language) =>{
 
     let result = [];
-    let wordsMap = getUniversalWordsMap(contentObjList, language);
+    let wordsMap = getUniversalWordsMap(contentList, language);
+
+    // console.log(wordsMap);
     
-    for(let i = 0; i < contentObjList.length; i++){
-        result.push(contentObjList[i]);
-        if (result[i]["p"] !== undefined) {
-            result[i]["p"] = summarise(result[i]["p"], wordsMap);
+    for(let i = 0; i < contentList.length; i++){
+        result.push(contentList[i]);
+
+        for(let j = 0; j < result[i].length; j++){
+            if(result[i][j][0] == "p"){
+                result[i][j][1] = summarise(result[i][j][1], wordsMap);
+            }
         }
     }
 

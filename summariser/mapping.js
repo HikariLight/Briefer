@@ -21,14 +21,13 @@ const getWordsMap = (tokenizedWords) =>{
     return wordsMap;
 }
 
-const getUniversalWordsMap = (contentObjList, language) => {
+const getUniversalWordsMap = (contentList, language) => {
 
     // Creates a Words Map using the whole page as input
 
     let result = {};
 
-    
-    let text = aggregateText(contentObjList)
+    let text = aggregateText(contentList)
     let tokenizedWords = tokenizeWords(text);
     filterText(tokenizedWords, language);
     result = getWordsMap(tokenizedWords);
