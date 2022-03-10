@@ -58,28 +58,28 @@ const insertTags = (section, mode) =>{
 
     let result = "";
 
-    for(let tag in section){
+    for(let element of section){
 
-        if(tag == "img"){
-            for(let i = 0; i < section[tag].length; i += 2){
+        if(element[0] == "img"){
+            for(let i = 0; i < element[1].length; i += 2){
                 result += `<figure>
-                                <${tag} src = ${filterUrl(section[tag][i])} alt= ${section[tag][i+1]}\>
-                                <figcaption>${section[tag][i+1]}</figcaption>
+                                <${element[0]} src = ${filterUrl(element[1][i])} alt= ${element[1][i+1]}\>
+                                <figcaption>${element[1][i+1]}</figcaption>
                             </figure>`;
             }
             continue;
         }
 
-        if(tag == "p"){
+        if(element[0] == "p"){
             if(mode == "simplify"){
-                for(let i = 0; i < section[tag].length; i++){
-                    result += `<${tag}>${section[tag][i]}</${tag}>`;
+                for(let i = 0; i < element[1].length; i++){
+                    result += `<${element[0]}>${element[1][i]}</${element[0]}>`;
                 }
             }
             else if(mode == "summarise"){
                 result += "<ul>";
-                for(let i = 0; i < section[tag].length; i++){
-                    result += `<li><${tag}>${section[tag][i]}.</${tag}></li>`;
+                for(let i = 0; i < element[1].length; i++){
+                    result += `<li><${element[0]}>${element[1][i]}</${element[0]}></li>`;
                 }
                 result += "</ul>";
             }
@@ -87,7 +87,7 @@ const insertTags = (section, mode) =>{
             continue;
         }
 
-        result += `<${tag}> ${section[tag]}</${tag}>`;
+        result += `<${element[0]}> ${element[1]}</${element[0]}>`;
     }
 
     return result;
@@ -120,9 +120,9 @@ const renderPage = (headerContent, bodyContent, mode) =>{
 
     result += mainStartTag;
     
-    for(let i = 0; i < bodyContent.length; i++){
+    for(let section of bodyContent){
         result += "<section>\n";
-        result += insertTags(bodyContent[i], mode);
+        result += insertTags(section, mode);
         result += "\n</section>\n";
     }
 
