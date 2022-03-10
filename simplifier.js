@@ -10,13 +10,45 @@ const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsa
 //  PRE-PROCESSING
 //
 
-function restructuring(node) {
+function restructuringContent ( node ) {
     let text = node.textContent;
     
     while (node.lastElementChild) {
         node.removeChild(node.lastElementChild);
     }
     node.textContent = text;
+}
+
+
+function restructuringImages ( node ) {
+
+    let imgList = node.getElementsByTagName('img');
+    let altList = node.getElementsByClassName('thumbcaption');
+    let result = [];
+    let size;
+
+    if ( imgList.length !== altList.length ) {
+        size = Math.min(imgList.length, altList.length);
+    } else {
+        size = imgList.length;
+    }
+
+    if ( size == 0 ) {
+        return; 
+    }
+
+    for ( let i = 0; i < size; i++ ) {
+        imgList[i].attributes.alt.value = altList[i].innerText;
+        result.push(imgList[i]);
+    }
+
+    while ( node.firstChild ) {
+        node.firstChild.remove();
+    }
+
+    result.forEach( childnode => {
+        node.appendChild(childnode);
+    });
 }
 
 function preProcess(doc) {
@@ -35,6 +67,12 @@ function preProcess(doc) {
     
     let node = doc.getElementsByTagName('*');
     for (let i = node.length - 1 ; i >= 0 ; i--) {
+
+        // restructure images without alt
+        if ( node[i].className === 'thumbinner' ) {
+            restructuringImages(node[i]);
+        }
+
         // remove empty node
         if (node[i].childNodes.length === 0 && node[i].localName !== 'img') {
             node[i].parentNode.removeChild(node[i]);
@@ -72,7 +110,7 @@ function preProcess(doc) {
         // paragraph and title restructuration
         if ( ( (node[i].localName === 'p' || new RegExp('h[0-9]').test(node[i].localName)) 
             && node[i].children.length >= 1) ) {
-            restructuring(node[i]);
+            restructuringContent(node[i]);
             
         }
     }
@@ -301,9 +339,9 @@ export function simplify(html) {
         
         } 
 
-    // convert string into DOM Element
-    const parser = new DOMParser();
-    let doc = parser.parseFromString(html, 'text/html');
+        // convert string into DOM Element
+        const parser = new DOMParser();
+        let doc = parser.parseFromString(html, 'text/html');
 
         // Pre-processing
         preProcess(doc);
