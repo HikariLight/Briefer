@@ -109,11 +109,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert(err.message);
             } else {
                 console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+                display(renderErrorPage(err));
             }
-
-            display(renderErrorPage(err));
         }
-
     });
 
     document.getElementById('summarise').addEventListener('click', async () => {
@@ -135,11 +133,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert(err.message);
             } else {
                 console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+                display(renderErrorPage(err));
             }
-
-            display(renderErrorPage(err));
         }
-
     });
 
     // document.getElementById('remember').addEventListener('click', async () => {
