@@ -1,3 +1,5 @@
+import { ukraineProblem } from "./testCases.js";
+
 const tokenizeWords = (text) => {
 
     // Returns a list of all words in a given string
@@ -33,7 +35,7 @@ const tokenizeSentences = (text) =>{
         }
     }
 
-    let result = text.split(". ");
+    let result = text.split(". ").filter(sentence => sentence.length > 0);
 
     for(let i = 0; i < result.length; i++){
         result[i] = tokenizeWords(result[i]);
