@@ -1,5 +1,3 @@
-import { ukraineProblem } from "./testCases.js";
-
 const tokenizeWords = (text) => {
 
     // Returns a list of all words in a given string

@@ -10,13 +10,7 @@ const summarise = (paragraphList, wordsMap) =>{
     let result = [];
     let text = paragraphList.join(" ");
     
-    let sentenceTokens = [];
-    try{
-        sentenceTokens = tokenizeSentences(text);
-    } catch(error){
-        console.log(error.name);
-    }
-    
+    let sentenceTokens = tokenizeSentences(text);
     let sentencesMap = getSentenceMap(sentenceTokens);
     scoreSentences(sentencesMap, wordsMap);
     let averageWeight = getAverageWeight(sentencesMap)
@@ -40,10 +34,6 @@ const extract = (contentList, language) =>{
   
 
     for(let i = 0; i < contentList.length; i++){
-        
-        console.log("--------- TESTING ---------");
-        console.log(JSON.stringify(result, null, 1));
-        
         result.push(contentList[i]);
     
         for(let j = 0; j < result[i].length; j++){
@@ -52,7 +42,6 @@ const extract = (contentList, language) =>{
             }
         }
     }
-
 
     return result;
 }
