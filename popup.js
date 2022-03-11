@@ -104,13 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
             display(data["simplifierRender"]);
 
         } catch (err) {
-
-            if ( err.name === 'Warning' ) {
-                alert(err.message);
-            } else {
-                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
-                display(renderErrorPage(err));
-            }
+            document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
+            console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
         }
     });
 
@@ -128,13 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
             display(data["summariserRender"]);
 
         } catch (err) {
-
-            if ( err.name === 'Warning' ) {
-                alert(err.message);
-            } else {
-                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
-                display(renderErrorPage(err));
-            }
+            document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
+            console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
         }
     });
 
