@@ -58,6 +58,10 @@ footer{
     width: 100px;
 }
 
+.greyText{
+    color: var(--grey);
+}
+
 .centered{
     display: grid;
     place-items: center;
@@ -87,4 +91,9 @@ footer{
     100% {
         transform: rotate(360deg);
     }
+}
+
+#alertImage{
+    width: 40%;
+    height: auto;
 }

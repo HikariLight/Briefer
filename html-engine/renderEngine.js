@@ -176,31 +176,38 @@ const renderProgressBar = () =>{
 }
 
 const renderErrorPage = (errorObj) =>{
-    let result = documentStartTags;
 
-    result += `
+    let result = `
+    <body>
     <header>
-        <img src="../assets/logo.png">
-        <h1>Briefer | Error Page</h1>
+        <img id="nameLogo" src="./assets/name.svg" alt="Briefer">
     </header>
     `;
 
     result += "<main class='centered'>";
 
-    result += "<div>"
+    result += "<div>";
 
-    result += "<h1>Internal Error</h1>"
-    for(let field in errorObj){
-        result += `<p><span class='greenText'>${field}:</span> ${errorObj[field]}</p>`;
+    result += "<img id='alertImage' src='./assets/alert.svg'>";
+    result += "<h1 class='greyText'>Internal Error</h1>";
+
+    result += `<p>Message: ${errorObj["message"]}</p>`;
+    
+    if(errorObj["name"] != "Warning"){
+        result += `<p>Function: ${errorObj["functionName"]}</p>`;
     }
-
-    result += "</div>"
+    
+    result += "</div>";
 
     result += mainEndTag;
 
-    result += footerTags;
+    result += `
+    <footer>
+        <p>Briefer browser extension</p>
+    </footer>
+    `;
 
-    result += documentEndTags;
+    result += "</div>";
 
     return result;
 }
