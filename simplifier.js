@@ -24,6 +24,11 @@ function restructuringImages ( node ) {
 
     let imgList = node.getElementsByTagName('img');
     let altList = node.getElementsByClassName('thumbcaption');
+    
+    if ( altList.length === 0 ) {
+        altList = node.getElementsByClassName('gallerytext');
+    }
+
     let result = [];
     let size;
 
@@ -69,7 +74,7 @@ function preProcess(doc) {
     for (let i = node.length - 1 ; i >= 0 ; i--) {
 
         // restructure images without alt
-        if ( node[i].className === 'thumbinner' ) {
+        if ( node[i].className === 'thumbinner' || node[i].className === 'gallerybox' ) {
             restructuringImages(node[i]);
         }
 
