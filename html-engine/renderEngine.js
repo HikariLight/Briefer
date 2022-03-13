@@ -80,7 +80,7 @@ const insertTags = (section, mode) =>{
             else if(mode == "summarise"){
                 result += "<ul>";
                 for(let i = 0; i < element[1].length; i++){
-                    result += `<li><${element[0]}>${element[1][i]}</${element[0]}></li>`;
+                    result += `<li><${element[0]}>${element[1][i]}.</${element[0]}></li>`;
                 }
                 result += "</ul>";
             }

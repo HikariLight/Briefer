@@ -5,13 +5,13 @@ const aggregateText = (contentList) => {
     
     if(contentList == null || contentList == []){
         throw {
-            name : 'RangeError', message : '"contentList" is empty', fileName : 'processing.js', functionName : 'aggregateText()', lineNumber : 1
+            name : 'RangeError', message : '"contentList" is empty', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 
     if(typeof(contentList) != "object"){
         throw {
-            name : 'TypeError', message : '"contentList" is ' + typeof(contentList) +' instead of object', fileName : 'processing.js', functionName : 'aggregateText()', lineNumber : 1
+            name : 'TypeError', message : '"contentList" is ' + typeof(contentList) +' instead of object', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 

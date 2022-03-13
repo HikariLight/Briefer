@@ -19,7 +19,14 @@ const scoreSentence = (sentence, wordsMap) =>{
     // Calculates the score of a single sentence.
 
     let score = 0;
-    let sentenceTokens = tokenizeWords(sentence);
+    let sentenceTokens;
+
+    try{
+        sentenceTokens = tokenizeWords(sentence);
+    } catch(error){
+        console.log(error);
+    }
+
     punctuationFilter(sentenceTokens);
 
     for(let i = 0; i < sentenceTokens.length; i++){

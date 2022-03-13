@@ -3,14 +3,20 @@ import { scoreSentences } from "./scoring.js";
 import { getAverageWeight } from "./processing.js";
 import { getUniversalWordsMap, getSentenceMap } from "./mapping.js";
 
-const summarise = (paragraphList, wordsMap) =>{
+const summarise = (text, wordsMap) =>{
 
-    // Returns an array that represents the summary of the input text.
+    // Input: String of text 
+    // Output: An array of sentences that represents the summary of the input text.
 
     let result = [];
-    let text = paragraphList.join(" ");
-    
-    let sentenceTokens = tokenizeSentences(text);
+    let sentenceTokens;
+
+    try{
+        sentenceTokens = tokenizeSentences(text);
+    } catch(error){
+        console.log(error);
+    }
+
     let sentencesMap = getSentenceMap(sentenceTokens);
     scoreSentences(sentencesMap, wordsMap);
     let averageWeight = getAverageWeight(sentencesMap)
@@ -29,6 +35,15 @@ const summarise = (paragraphList, wordsMap) =>{
 
 const extract = (contentList, language) =>{
 
+    // Input: Array of HTML elements.
+    // Output: The same input array with the p tags' content replaced with summarised text.
+
+    if(contentList == undefined || contentList.length == 0){
+        throw {
+            name : 'EmptyInputError', message : '"contentList" is empty', fileName : 'summariser.js', functionName : 'extract()'
+        }
+    }
+
     let result = [];
     let wordsMap = getUniversalWordsMap(contentList, language);
   
@@ -38,7 +53,7 @@ const extract = (contentList, language) =>{
     
         for(let j = 0; j < result[i].length; j++){
             if(result[i][j][0] === "p"){
-                result[i][j][1] = summarise(result[i][j][1], wordsMap);
+                result[i][j][1] = summarise(result[i][j][1].join(" "), wordsMap);
             }
         }
     }
