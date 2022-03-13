@@ -1,29 +1,37 @@
 
 const unexpectedWebsite = ['https://www.facebook.com', 'https://web.whatsapp.com', 'https://www.instagram.com', 'https://www.tiktok.com', 'https://www.snapchat.com', 'https://www.reddit.com', 'https://www.pinterest.com', 'https://twitter.com', 'https://www.linkedin.com', 'https://www.youtube.com', 'https://www.dailymotion.com', 'chrome://', 'file://', 'chrome-extension://'];
 
-async function getHtml (tab, fct) {
+async function getHtml (url) {
     // Execute script and return html source code
 
-    if ( typeof(tab) !== 'object' ) {
+    if ( typeof(url) !== 'string' ) {
         throw {
-            name : 'TypeError', message : '"tab" is ' + typeof(tab) +' instead of object', fileName : 'reader.js', lineNumber : 4
+            name : 'TypeError', message : '"tab" is ' + typeof(tab) +' instead of object', fileName : 'reader.js'
         }
     } 
     
-    if ( new RegExp(unexpectedWebsite.join('|')).test(tab.url) || tab.url === '') {
+    if ( new RegExp(unexpectedWebsite.join('|')).test(url) || url === '') {
         throw {
             name : 'Warning', message : 'Cannot process an unexpected URL\r\nMore details on our website : \r\n\r\nhttps://briefer.netlify.app/faq'
         }
     }
 
-    const result = await chrome.scripting.executeScript(
-        {
-            target: { tabId: tab.id },
-            function: fct,
+    const data = await fetch(url, {})
+    .then( (response) => {
+        if (response.status === 200) {
+            return response.text()
+        } else {
+            throw Error('Something went wrong ;(')
         }
-    );
-    
-    return result[0].result;
+    })
+    .then( (html) => {
+        return html
+    })
+    .catch( (error) => {
+        console.log('[error] Failed : ', error)
+    });
+
+    return data;
 }
 
 async function getActiveTab () {
@@ -76,12 +84,12 @@ async function getTabContent(tab, html) {
     
 }
 
-export async function getTab(fct) {
+export async function getTab() {
     
     let content = {};
 
     let tab = await getActiveTab();
-    let html = await getHtml(tab, fct);
+    let html = await getHtml(tab.url);
     content = await getTabContent(tab, html);
 
     return content;
