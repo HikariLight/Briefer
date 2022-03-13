@@ -10,8 +10,13 @@ const scoreWords = (wordsMap) =>{
 
     for(let word in wordsMap){
         wordsMap[word] /= mostFrequent[1];
-    }
 
+        // Giving capitalized words 50% higher score.
+        // Need to better filter the wordTokens list to do this.
+        // if(word[0] === word[0].toUpperCase()){
+        //     wordsMap[word] += wordsMap[word] * 0.5;
+        // }
+    }
 }
 
 const scoreSentence = (sentence, wordsMap) =>{

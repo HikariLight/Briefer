@@ -44,6 +44,12 @@ const extract = (contentList, language) =>{
         }
     }
 
+    if(language == undefined || language == ""){
+        throw {
+            name : 'EmptyInputError', message : 'language is empty', fileName : 'summariser.js', functionName : 'extract()'
+        }
+    }
+
     let result = [];
     let wordsMap = getUniversalWordsMap(contentList, language);
   
