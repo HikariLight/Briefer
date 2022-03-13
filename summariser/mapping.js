@@ -9,13 +9,17 @@ const getWordsMap = (tokenizedWords) =>{
 
     let wordsMap = {}
 
-    for(let i = 0; i < tokenizedWords.length; i++){
-        if(Object.keys(wordsMap).includes(tokenizedWords[i])){
-            wordsMap[tokenizedWords[i]] += 1;
+    try{
+        for(let i = 0; i < tokenizedWords.length; i++){
+            if(Object.keys(wordsMap).includes(tokenizedWords[i])){
+                wordsMap[tokenizedWords[i]] += 1;
+            }
+            else{
+                wordsMap[tokenizedWords[i]] = 1;
+            }
         }
-        else{
-            wordsMap[tokenizedWords[i]] = 1;
-        }
+    } catch(error){
+        console.log(error);
     }
 
     return wordsMap;
@@ -28,7 +32,14 @@ const getUniversalWordsMap = (contentList, language) => {
     let result = {};
 
     let text = aggregateText(contentList)
-    let tokenizedWords = tokenizeWords(text);
+    let tokenizedWords;
+
+    try{
+        tokenizedWords = tokenizeWords(text);
+    } catch(error){
+        console.log(error);
+    }
+    
     filterText(tokenizedWords, language);
     result = getWordsMap(tokenizedWords);
     scoreWords(result);
