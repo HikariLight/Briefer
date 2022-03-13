@@ -3,12 +3,6 @@ import { simplify } from './simplifier.js';
 import { extract } from "./summariser/summariser.js";
 import { render } from "./engine.js";
 
-function scrapeThePage() {
-    // Function used bu reader.js but need to be here to get the html source code
-    let htmlCode = document.documentElement.outerHTML;
-    return htmlCode;
-}
-
 //
 //  MANAGE LOCAL STORAGE 
 //
@@ -69,7 +63,7 @@ const getLatestPageId = () =>{
 async function processing() {
     // Generate render of simplify and summary content
 
-    let tab = await getTab(scrapeThePage);
+    let tab = await getTab();
 
     let simply = simplify(tab['html']);
 
@@ -108,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if ( err.name === 'Warning' ) {
                 alert(err.message);
             } else {
-                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
             }
 
         }
@@ -131,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if ( err.name === 'Warning' ) {
                 alert(err.message);
             } else {
-                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName +', line ' + err.lineNumber);
+                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
             }
 
         }
