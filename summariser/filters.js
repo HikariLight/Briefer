@@ -44,16 +44,27 @@ const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
+    if(wordTokens == null || wordTokens.length == 0){
+        throw {
+            name : 'EmptyInputError', message : 'wordTokens is empty', fileName : 'filters.js', functionName : 'filterText()'
+        }
+    }
+    
     if(language == null || language == "" || typeof(language) != "string"){
         throw {
-            name : 'TypeError', message : '"language" is ' + typeof(language) +' instead of string', fileName : 'filters.js', functionName : 'filterText()', lineNumber : 43
+            name : 'TypeError', message : '"language" is ' + typeof(language) +' instead of string', fileName : 'filters.js', functionName : 'filterText()'
         }
     }
 
     let notMeaningful = getNotMeaningful(language);
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
-        wordTokens[i] = wordTokens[i].replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        if(wordTokens[i] == ""){
+            wordTokens.splice(i, 1);
+            continue;
+        }
+
+        wordTokens[i] = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
 
         if(notMeaningful.includes(wordTokens[i].toLowerCase())){
             wordTokens.splice(i, 1);
@@ -61,14 +72,58 @@ const filterText = (wordTokens, language) => {
     }
 }
 
+const getSentenceFilterList = (language) => {
+
+    // returns a list of common sentence openers depending on language.
+
+    if(language == null){
+        throw {
+            name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'getSentenceFilterList()'
+        }
+    }
+
+    let result = [];
+
+    if(language == "en"){
+        result = ["in any case", "in the same way", "another reason", "also"];
+    }
+    
+    else if(language == "fr"){
+        result = ["d'ailleurs"];
+    }
+
+    return result;
+}
+
+const filterSentence = (sentenceTokens, filterList) => {
+    
+    // Takes out sentence openers
+    
+    let result = [];
+
+    return result;
+}
+
 const filterSentences = (sentenceTokens, language) =>{
 
-    // DEPRECATED
-    // Filters sentences out of things that might make the words uncreognisable by the wordsMap.
     // To be rewritten to remove connectors at the start of sentences.
 
+    if (sentenceTokens == undefined || sentenceTokens.length == 0){
+        throw {
+            name : 'EmptyInputError', message : '"sentenceTokens" is empty', fileName : 'filters.js', functionName : 'filterSentences()'
+        }        
+    }
+
+    else if(language == "" || language == undefined){
+        throw {
+            name : 'EmptyInputError', message : '"language" is empty', fileName : 'filters.js', functionName : 'filterSentences()'
+        }
+    }
+
+    let filterList = getSentenceFilterList(language);
+
     for(let i = 0; i < sentenceTokens.length; i++){
-        filterText(sentenceTokens[i], language);
+        filterSentence(sentenceTokens[i], filterList);
     }
 }
 

@@ -21,21 +21,24 @@ const getWordsMap = (tokenizedWords) =>{
     return wordsMap;
 }
 
-const getUniversalWordsMap = (contentObjList, language) => {
+const getUniversalWordsMap = (contentList, language) => {
 
     // Creates a Words Map using the whole page as input
 
     let result = {};
 
+    let text = aggregateText(contentList)
+    let tokenizedWords;
+
     try{
-        let text = aggregateText(contentObjList)
-        let tokenizedWords = tokenizeWords(text);
-        filterText(tokenizedWords, language);
-        result = getWordsMap(tokenizedWords);
-        scoreWords(result);
-    }catch(error){
-        console.log(error)
+        tokenizedWords = tokenizeWords(text);
+    } catch(error){
+        console.log(error);
     }
+    
+    filterText(tokenizedWords, language);
+    result = getWordsMap(tokenizedWords);
+    scoreWords(result);
 
     return result;
 }
@@ -55,4 +58,4 @@ const getSentenceMap = (sentenceTokens) =>{
     return sentenceMap;
 }
 
-export { getUniversalWordsMap, getSentenceMap }
+export { getWordsMap, getUniversalWordsMap, getSentenceMap }

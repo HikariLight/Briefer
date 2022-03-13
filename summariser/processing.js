@@ -1,27 +1,35 @@
-const aggregateText = (contentObjList) => {
+const aggregateText = (contentList) => {
 
     // Aggregates the entire text of the page into a string.
     // Needed mostly for getUniversalWordsMap()
     
-    if(contentObjList == null || contentObjList == []){
+    if(contentList == null || contentList == []){
         throw {
-            name : 'RangeError', message : '"contentObjList" is empty', fileName : 'processing.js', functionName : 'aggregateText()', lineNumber : 1
+            name : 'EmptyInputError', message : 'contentList is empty', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 
-    if(typeof(contentObjList) != "object"){
+    if(typeof(contentList) != "object"){
         throw {
-            name : 'TypeError', message : '"contentObjList" is ' + typeof(contentObjList) +' instead of object', fileName : 'processing.js', functionName : 'aggregateText()', lineNumber : 1
+            name : 'TypeError', message : '"contentList" is ' + typeof(contentList) +' instead of object', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 
     let result = [];
     
-    for(let section of contentObjList){
-        if(section["p"] !== undefined){
-            for(let p of section["p"]){
-                result.push(p);
+    for(let section of contentList){
+        for(let element of section){
+            if(element[0] == "p"){
+                for(let p of element){
+                    result.push(p);
+                }
             }
+        }
+    }
+
+    if(result.length == 0){
+        throw {
+            name : 'InputError', message : '"contentList doesn\'t have any paragraphs', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 

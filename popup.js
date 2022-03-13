@@ -1,7 +1,7 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
 import { extract } from "./summariser/summariser.js";
-import { render } from "./engine.js";
+import { renderPage, renderProgressBar, renderErrorPage, renderDebugPage } from "./html-engine/renderEngine.js";
 
 //
 //  MANAGE LOCAL STORAGE 
@@ -70,14 +70,12 @@ async function processing() {
     let pageId = getLatestPageId() + 1;
     tab["pageId"] = pageId.toString();
 
-    tab["simplifierRender"] = render(tab, simply, 'simplify');
-    tab["summariserRender"] = render(tab, extract(simply, tab['language']), 'summarise');
+    tab["simplifierRender"] = renderPage(tab, simply, 'simplify');
+    tab["summariserRender"] = renderPage(tab, extract(simply, tab['language']), 'summarise');
     delete tab['html'];
 
     storeData(tab["pageId"], tab);
 
-    
-    
 }
 
 function display(htmlContent) {
@@ -90,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('simplify').addEventListener('click', async () => {
         try {
 
+            document.write(renderProgressBar());
+
             await processing();
 
             let pageId = getLatestPageId();
@@ -98,20 +98,16 @@ document.addEventListener('DOMContentLoaded', function () {
             display(data["simplifierRender"]);
 
         } catch (err) {
-
-            if ( err.name === 'Warning' ) {
-                alert(err.message);
-            } else {
-                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
-            }
-
+            document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
+            console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
         }
-
     });
 
     document.getElementById('summarise').addEventListener('click', async () => {
 
         try {
+
+            document.write(renderProgressBar());
 
             await processing();
 
@@ -121,15 +117,9 @@ document.addEventListener('DOMContentLoaded', function () {
             display(data["summariserRender"]);
 
         } catch (err) {
-
-            if ( err.name === 'Warning' ) {
-                alert(err.message);
-            } else {
-                console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
-            }
-
+            document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
+            console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
         }
-
     });
 
     // document.getElementById('remember').addEventListener('click', async () => {
