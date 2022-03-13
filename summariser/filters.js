@@ -44,6 +44,12 @@ const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
+    if(wordTokens == null || wordTokens.length == 0){
+        throw {
+            name : 'EmptyInputError', message : 'wordTokens is empty', fileName : 'filters.js', functionName : 'filterText()'
+        }
+    }
+    
     if(language == null || language == "" || typeof(language) != "string"){
         throw {
             name : 'TypeError', message : '"language" is ' + typeof(language) +' instead of string', fileName : 'filters.js', functionName : 'filterText()'
@@ -53,7 +59,12 @@ const filterText = (wordTokens, language) => {
     let notMeaningful = getNotMeaningful(language);
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
-        wordTokens[i] = wordTokens[i].replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        if(wordTokens[i] == ""){
+            wordTokens.splice(i, 1);
+            continue;
+        }
+
+        wordTokens[i] = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
 
         if(notMeaningful.includes(wordTokens[i].toLowerCase())){
             wordTokens.splice(i, 1);
@@ -64,6 +75,12 @@ const filterText = (wordTokens, language) => {
 const getSentenceFilterList = (language) => {
 
     // returns a list of common sentence openers depending on language.
+
+    if(language == null){
+        throw {
+            name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'getSentenceFilterList()'
+        }
+    }
 
     let result = [];
 

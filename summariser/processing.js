@@ -5,7 +5,7 @@ const aggregateText = (contentList) => {
     
     if(contentList == null || contentList == []){
         throw {
-            name : 'RangeError', message : '"contentList" is empty', fileName : 'processing.js', functionName : 'aggregateText()'
+            name : 'EmptyInputError', message : 'contentList is empty', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 
@@ -24,6 +24,12 @@ const aggregateText = (contentList) => {
                     result.push(p);
                 }
             }
+        }
+    }
+
+    if(result.length == 0){
+        throw {
+            name : 'InputError', message : '"contentList doesn\'t have any paragraphs', fileName : 'processing.js', functionName : 'aggregateText()'
         }
     }
 

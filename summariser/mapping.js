@@ -9,17 +9,13 @@ const getWordsMap = (tokenizedWords) =>{
 
     let wordsMap = {}
 
-    try{
-        for(let i = 0; i < tokenizedWords.length; i++){
-            if(Object.keys(wordsMap).includes(tokenizedWords[i])){
-                wordsMap[tokenizedWords[i]] += 1;
-            }
-            else{
-                wordsMap[tokenizedWords[i]] = 1;
-            }
+    for(let i = 0; i < tokenizedWords.length; i++){
+        if(Object.keys(wordsMap).includes(tokenizedWords[i])){
+            wordsMap[tokenizedWords[i]] += 1;
         }
-    } catch(error){
-        console.log(error);
+        else{
+            wordsMap[tokenizedWords[i]] = 1;
+        }
     }
 
     return wordsMap;
@@ -62,4 +58,4 @@ const getSentenceMap = (sentenceTokens) =>{
     return sentenceMap;
 }
 
-export { getUniversalWordsMap, getSentenceMap }
+export { getWordsMap, getUniversalWordsMap, getSentenceMap }
