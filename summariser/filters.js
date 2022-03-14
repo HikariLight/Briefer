@@ -56,20 +56,25 @@ const filterText = (wordTokens, language) => {
         }
     }
 
+    let result = []
     let notMeaningful = getNotMeaningful(language);
+    let word;
 
-    for(let i = wordTokens.length - 1; i >= 0 ; i--){
-        if(wordTokens[i] == ""){
-            wordTokens.splice(i, 1);
+    for(let i = 0; i < wordTokens.length; i++){
+        word = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
+
+        if(word == ""){
             continue;
         }
 
-        wordTokens[i] = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
-
-        if(notMeaningful.includes(wordTokens[i].toLowerCase())){
-            wordTokens.splice(i, 1);
+        if(notMeaningful.includes(word.toLowerCase())){
+            continue;
         }
+
+        result.push(word);
     }
+
+    return result;
 }
 
 const getSentenceFilterList = (language) => {
@@ -85,7 +90,7 @@ const getSentenceFilterList = (language) => {
     let result = [];
 
     if(language == "en"){
-        result = ["in any case", "in the same way", "another reason", "also"];
+        result = [["and"], ["also"], ["in any case"], ["in the same way"], ["another reason"]];
     }
     
     else if(language == "fr"){
@@ -95,13 +100,17 @@ const getSentenceFilterList = (language) => {
     return result;
 }
 
-const filterSentence = (sentenceTokens, filterList) => {
+const filterSentence = (sentence, filterList) => {
     
     // Takes out sentence openers
-    
-    let result = [];
 
-    return result;
+    const equals = (firstArray, secondArray) => JSON.stringify(firstArray) === JSON.stringify(secondArray);
+
+    for(let filter of filterList){
+        if(equals(filter, sentence.slice(0, filter.length))){
+            console.log(filter);
+        }
+    }
 }
 
 const filterSentences = (sentenceTokens, language) =>{
