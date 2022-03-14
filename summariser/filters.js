@@ -90,7 +90,7 @@ const getSentenceFilterList = (language) => {
     let result = [];
 
     if(language == "en"){
-        result = ["in any case", "in the same way", "another reason", "also"];
+        result = [["and"], ["also"], ["in any case"], ["in the same way"], ["another reason"]];
     }
     
     else if(language == "fr"){
@@ -100,13 +100,17 @@ const getSentenceFilterList = (language) => {
     return result;
 }
 
-const filterSentence = (sentenceTokens, filterList) => {
+const filterSentence = (sentence, filterList) => {
     
     // Takes out sentence openers
-    
-    let result = [];
 
-    return result;
+    const equals = (firstArray, secondArray) => JSON.stringify(firstArray) === JSON.stringify(secondArray);
+
+    for(let filter of filterList){
+        if(equals(filter, sentence.slice(0, filter.length))){
+            console.log(filter);
+        }
+    }
 }
 
 const filterSentences = (sentenceTokens, language) =>{
