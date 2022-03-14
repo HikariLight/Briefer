@@ -1,9 +1,10 @@
 import { tokenizeSentences } from "./tokenization.js";
 import { scoreSentences } from "./scoring.js";
+import { filterSentence } from "./filters.js";
 import { getAverageWeight } from "./processing.js";
 import { getUniversalWordsMap, getSentenceMap } from "./mapping.js";
 
-const summarise = (text, wordsMap) =>{
+const summarise = (text, wordsMap, language) =>{
 
     // Input: String of text 
     // Output: An array of sentences that represents the summary of the input text.
@@ -19,14 +20,16 @@ const summarise = (text, wordsMap) =>{
 
     let sentencesMap = getSentenceMap(sentenceTokens);
     scoreSentences(sentencesMap, wordsMap);
-    let averageWeight = getAverageWeight(sentencesMap)
+    let threshhold = getAverageWeight(sentencesMap)
     
     let sentences = Object.keys(sentencesMap);
+    
+    // Adding the first sentence in each paragraph by default.
     result.push(sentences[0]);
 
     for(let i = 1; i < sentences.length; i++){
-        if(sentencesMap[sentences[i]] >= averageWeight){
-            result.push(sentences[i]);
+        if(sentencesMap[sentences[i]] >= threshhold){
+            result.push(filterSentence(sentences[i], language));
         }
     }
 
@@ -59,7 +62,7 @@ const extract = (contentList, language) =>{
     
         for(let j = 0; j < result[i].length; j++){
             if(result[i][j][0] === "p"){
-                result[i][j][1] = summarise(result[i][j][1].join(" "), wordsMap);
+                result[i][j][1] = summarise(result[i][j][1].join(" "), wordsMap, language);
             }
         }
     }

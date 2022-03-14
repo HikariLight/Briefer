@@ -81,7 +81,7 @@ const getSentenceFilterList = (language) => {
 
     // returns a list of common sentence openers depending on language.
 
-    if(language == null){
+    if(language == null || language == "" || typeof(language) != "string"){
         throw {
             name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'getSentenceFilterList()'
         }
@@ -90,50 +90,62 @@ const getSentenceFilterList = (language) => {
     let result = [];
 
     if(language == "en"){
-        result = [["and"], ["also"], ["in any case"], ["in the same way"], ["another reason"]];
+        result = ["And,", "Also,", "Thus,", "In any case,", "In the same way,", "Another reason,", "However,", "In contrast,", "Nevertheless,", "Nonetheless,", "Yet,", "On the other hand,", "By comparaison,", "On the contrary,", "Instead,", "Unlike,", "Otherwise,", "At the same time,", "Conversely,", "Even so,", "Whereas,"];
     }
     
     else if(language == "fr"){
-        result = ["d'ailleurs"];
+        result = ["Et,", "Aussi,", "Ainsi,", "En tout cas,", "De la même façon,", "Une autre raison,", "Cependant,", "En revanche,", "Néanmoins,", "Néanmoins,", "Pourtant,", "Par contre,", "Par comparaison,", "Au contraire,", "Au contraire,", "Contrairement,", "Autrement,", "En même temps,", "Inversement,", "Quand même,", "Attendu,"];
+    }
+    
+    else if(language == "de"){
+        result = ["Und,", "Auch,", "So,", "Auf jeden Fall,", "Ebenso,", "Ein anderer Grund,", "Jedoch,", "Im Gegensatz,", "Trotzdem,", "Trotzdem,", "Doch,", "Andererseits", "Im Vergleich", "Im Gegenteil", "Stattdessen", "Im Gegensatz", "Sonst", "Gleichzeitig", "Umgekehrt", "Auch so", "Wohingegen"];
+    }
+
+    else if(language == "nl"){
+        result = ["En,", "Ook,", "Dus,", "In ieder geval,", "Op dezelfde manier,", "Een andere reden,", "Maar,", "In tegenstelling,", "Niettemin,", "Niettemin,", "Maar toch,", [Anderzijds], "Ter vergelijking", "Integendeel", "In plaats daarvan", "In tegenstelling tot", "Anders", "Tegelijkertijd", "Tegenovergesteld", "Zelfs zo", "Overwegende dat"];
+    }
+
+    else if(language == "es"){
+        result = ["Y,", "También,", "Así,", "En cualquier caso,", "De la misma manera,", "Otra razón,", "Sin embargo,", "En contraste,", "No obstante,", "Sin embargo,", "Por otra parte,", "En comparación,", "Por el contrario,", "En cambio,", "A diferencia de,", "Por lo demás,", "Al mismo tiempo,", "A la inversa,", "Aun así,", "Considerando,"];
+    }
+
+    else if(language == "it"){
+        result = ["E,", "Anche,", "Così,", "In ogni caso,", "Allo stesso modo,", "Un'altra ragione,", "Tuttavia,", "In contrasto,", "Tuttavia,", "Ciononostante,", "Eppure,", "D'altra parte,", "A confronto,", "Al contrario,", "Invece,", "A differenza,", "Altrimenti,", "Allo stesso tempo,", "Al contrario,", "Anche così,", "Mentre,"];
+    }
+
+    else if(language == "pt"){
+        result = ["E,", "Também,", "Assim,", "Em qualquer caso,", "Da mesma forma,", "Outra razão,", "No entanto,", "Em contraste,", "No entanto,", "Ainda assim,", "Ainda assim,", "Ainda,", "Por outro lado,", "Por comparação,", "Pelo contrário,", "Ao contrário,", "Ao contrário,", "Ao contrário,", "Ao contrário,", "Ao mesmo tempo,", "Pelo contrário,", "Mesmo assim,", "Considerando,"];
     }
 
     return result;
 }
 
-const filterSentence = (sentence, filterList) => {
+const filterSentence = (sentence, language) => {
     
     // Takes out sentence openers
 
-    const equals = (firstArray, secondArray) => JSON.stringify(firstArray) === JSON.stringify(secondArray);
-
-    for(let filter of filterList){
-        if(equals(filter, sentence.slice(0, filter.length))){
-            console.log(filter);
+    if(sentence == null || sentence == "" || typeof(sentence) != "string"){
+        throw {
+            name : 'EmptyInputError', message : 'sentence is empty' ,fileName : 'filters.js', functionName : 'filterSentence()'
         }
     }
-}
 
-const filterSentences = (sentenceTokens, language) =>{
-
-    // To be rewritten to remove connectors at the start of sentences.
-
-    if (sentenceTokens == undefined || sentenceTokens.length == 0){
+    if(language == null || language == "" || typeof(language) != "string"){
         throw {
-            name : 'EmptyInputError', message : '"sentenceTokens" is empty', fileName : 'filters.js', functionName : 'filterSentences()'
-        }        
-    }
-
-    else if(language == "" || language == undefined){
-        throw {
-            name : 'EmptyInputError', message : '"language" is empty', fileName : 'filters.js', functionName : 'filterSentences()'
+            name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'filterSentence()'
         }
     }
 
     let filterList = getSentenceFilterList(language);
+    let result = "";
 
-    for(let i = 0; i < sentenceTokens.length; i++){
-        filterSentence(sentenceTokens[i], filterList);
+    for(let filter of filterList){
+        if(filter == sentence.substring(0, filter.length)){
+            result = sentence.replace(filter, "");
+        }
     }
+
+    return result;
 }
 
-export { punctuationFilter, filterText }
+export { punctuationFilter, filterText, filterSentence }
