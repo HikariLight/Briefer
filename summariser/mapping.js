@@ -36,7 +36,7 @@ const getUniversalWordsMap = (contentList, language) => {
         console.log(error);
     }
     
-    filterText(tokenizedWords, language);
+    tokenizedWords = filterText(tokenizedWords, language);
     result = getWordsMap(tokenizedWords);
     scoreWords(result);
 

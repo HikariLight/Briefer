@@ -56,20 +56,25 @@ const filterText = (wordTokens, language) => {
         }
     }
 
+    let result = []
     let notMeaningful = getNotMeaningful(language);
+    let word;
 
-    for(let i = wordTokens.length - 1; i >= 0 ; i--){
-        if(wordTokens[i] == ""){
-            wordTokens.splice(i, 1);
+    for(let i = 0; i < wordTokens.length; i++){
+        word = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
+
+        if(word == ""){
             continue;
         }
 
-        wordTokens[i] = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
-
-        if(notMeaningful.includes(wordTokens[i].toLowerCase())){
-            wordTokens.splice(i, 1);
+        if(notMeaningful.includes(word.toLowerCase())){
+            continue;
         }
+
+        result.push(word);
     }
+
+    return result;
 }
 
 const getSentenceFilterList = (language) => {
