@@ -287,7 +287,7 @@ function dataFormatting (list) {
                     } 
                 }
             }
-            console.log('selected src : ', imgSrc);
+
             if ( imgSrc === '' ) {
                 continue;
             }
@@ -309,26 +309,6 @@ function dataFormatting (list) {
                 tmp.push(tag, [imgSrc, imgAlt]);
 
             }
-
-            /* var imgAttributes = list[i].attributes;
-            if ( 'width' in imgAttributes ) {
-                imgAttributes.removeNamedItem('width');
-            } 
-            if ( 'height' in imgAttributes ) {
-                imgAttributes.removeNamedItem('height');
-            } 
-            if ( !('alt' in imgAttributes) ) {
-                imgAttributes.setNamedItem('alt');
-                imgAttributes.alt.value = '';
-            }
-
-            if ( tmp.includes(tag) ) {
-                tmp[1].push(imgAttributes);
-
-            } else {
-                tmp.push(tag, [imgAttributes]);
-
-            } */
             
 
         } else {
