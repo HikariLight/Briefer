@@ -3,6 +3,12 @@ import { simplify } from './simplifier.js';
 import { extract } from "./summariser/summariser.js";
 import { renderPage, renderProgressBar, renderErrorPage, renderDebugPage } from "./html-engine/renderEngine.js";
 
+function scrapeThePage() {
+    // Function used bu reader.js but need to be here to get the html source code
+    let htmlCode = document.documentElement.outerHTML;
+    return htmlCode;
+}
+
 //
 //  MANAGE LOCAL STORAGE 
 //
@@ -63,7 +69,7 @@ const getLatestPageId = () =>{
 async function processing() {
     // Generate render of simplify and summary content
 
-    let tab = await getTab();
+    let tab = await getTab(scrapeThePage);
 
     let simply = simplify(tab['html']);
 
