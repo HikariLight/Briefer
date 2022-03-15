@@ -1,6 +1,6 @@
 
 const unwantedTags = ['table', 'noscript', 'head', 'script', 'style', 'symbol', 'path', 'footer', 'nav', 'iframe', 'link'];
-const unwantedAttributes = ['edit', 'pane-custom', 'josh', 'connatix', 'read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
+const unwantedAttributes = ['paywall', 'edit', 'pane-custom', 'josh', 'connatix', 'read-more', 'related', 'see_also', 'note', 'metadata', 'indicator', 'source', 'ref', 'nowrap', 'navigation', 'search', 'reference', 'click', 'toc', 'atm', 'banner', 'breadcrumbs', 'btn', 'button', 'card', 'comment', 'community', 'cookie', 'copyright', 'extension', 'extra', 'footer', 'footnote', 'hidden', 'langs', 'menu', 'nav', 'notification', 'popup', 'replies', 'rss', 'inline', 'sidebar', 'share', 'social', 'sponsor', 'supplemental', 'widget'];
 // remove : 
 // add : pane-custom, edit
 const wantedAttributes = ['article', 'body', 'content', 'main', 'shadow', 'image', 'img', 'root'];
@@ -12,6 +12,15 @@ const unwantedSocialMedias = ['facebook', 'instagram', 'telegram', 'vk', 'whatsa
 
 function restructuringContent ( node ) {
     let text = node.textContent;
+    if ( new RegExp('<img.+?>', 'g').test(node.innerHTML) ) {
+        return;
+/*         let imagesList = node.innerHTML.match(new RegExp('<img.+?>'));
+        for (let i = 0; i < imagesList.length; i++ ) {
+            let element = document.createElement('img');
+            element.innerHTML = imagesList[i];
+            imagesNodeList.push(element);
+        } */
+    }
     
     while (node.lastElementChild) {
         node.removeChild(node.lastElementChild);
@@ -266,14 +275,21 @@ function dataFormatting (list) {
         
         if ( tag === 'img' ) {
 
-            let imgAttributes = list[i].attributes;
+            var imgAttributes = list[i].attributes;
 
             let imgSrc = '';
+            for ( let j = 0; j < imgAttributes.length; j++ ) {
+                if ( new RegExp('src').test(imgAttributes[j].name) ) {
 
-            if ( 'src' in imgAttributes ) {
-
-                imgSrc = imgAttributes.src.value;
-
+                    let isValid = imgAttributes[j].value.match(new RegExp('((https://|http://).[^\\s]*)|//'));
+                    if ( isValid !== null && isValid.length !== 0 ) {
+                        imgSrc = imgAttributes[j].value;
+                    } 
+                }
+            }
+            console.log('selected src : ', imgSrc);
+            if ( imgSrc === '' ) {
+                continue;
             }
 
             let imgAlt = '';
@@ -293,6 +309,26 @@ function dataFormatting (list) {
                 tmp.push(tag, [imgSrc, imgAlt]);
 
             }
+
+            /* var imgAttributes = list[i].attributes;
+            if ( 'width' in imgAttributes ) {
+                imgAttributes.removeNamedItem('width');
+            } 
+            if ( 'height' in imgAttributes ) {
+                imgAttributes.removeNamedItem('height');
+            } 
+            if ( !('alt' in imgAttributes) ) {
+                imgAttributes.setNamedItem('alt');
+                imgAttributes.alt.value = '';
+            }
+
+            if ( tmp.includes(tag) ) {
+                tmp[1].push(imgAttributes);
+
+            } else {
+                tmp.push(tag, [imgAttributes]);
+
+            } */
             
 
         } else {
