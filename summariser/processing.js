@@ -20,7 +20,7 @@ const aggregateText = (contentList) => {
     for(let section of contentList){
         for(let element of section){
             if(element[0] == "p"){
-                for(let p of element){
+                for(let p of element[1]){
                     result.push(p);
                 }
             }
