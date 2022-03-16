@@ -15,7 +15,8 @@ const tokenizeSentences = (text) =>{
     
     checkStringInput(text, "text", "tokenization.js", "tokenizeSentences()")
 
-    let result = text.split(". ").filter(sentence => sentence.length > 0);
+    // In American English, the period comes before the end quotation mark.
+    let result = text.replaceAll(".\"", "\".").split(". ").filter(sentence => sentence.length > 0);
 
     try{
         for(let i = 0; i < result.length; i++){
