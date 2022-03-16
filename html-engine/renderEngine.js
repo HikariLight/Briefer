@@ -63,8 +63,11 @@ const insertTags = (section, mode) =>{
 
         if(element[0] == "img"){
             for(let i = 0; i < element[1].length; i += 2){
-                result += `<figure>
-                                <${element[0]} src = ${filterUrl(element[1][i])} alt= ${element[1][i+1]}\>
+                result += ` <div class="overlay">
+                                <${element[0]} class="contentOverlay" src = ${filterUrl(element[1][i])} >
+                            </div>
+                            <figure>
+                                <${element[0]} class="imgOverlay" src = ${filterUrl(element[1][i])} alt= ${element[1][i+1]}\>
                                 <figcaption>${element[1][i+1]}</figcaption>
                             </figure>`;
             }

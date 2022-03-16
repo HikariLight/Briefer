@@ -26,3 +26,24 @@ window.addEventListener("beforeunload", (e) => {
     let pageId = document.getElementsByTagName("header")[0].id;
     window.localStorage.removeItem(pageId);
 })
+
+let imgOverlay = document.getElementsByClassName("imgOverlay");
+
+[...imgOverlay].forEach(element => {
+    element.addEventListener("click", (ev) => {
+        ev.target.parentNode.previousElementSibling.style.display = "block";
+    });
+});
+
+let overlay = document.getElementsByClassName("overlay");
+
+[...overlay].forEach(element => {
+    element.addEventListener("click", (ev) => {
+        if (ev.target.localName === "div") {
+            ev.target.style.display = "none";
+        } else {
+            ev.target.parentNode.style.display="none";
+        }
+        
+    });
+});
