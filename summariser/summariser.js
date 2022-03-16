@@ -3,12 +3,16 @@ import { scoreSentences } from "./scoring.js";
 import { filterSentence } from "./filters.js";
 import { getAverageWeight } from "./processing.js";
 import { getUniversalWordsMap, getSentenceMap } from "./mapping.js";
-import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
 const summarise = (text, wordsMap, language) =>{
 
     // Input: String of text 
     // Output: An array of sentences that represents the summary of the input text.
+
+    checkStringInput(text, "text", "summariser.js", "summarise()")
+    checkObjectInput(wordsMap, "wordsMap", "summariser.js", "summarise()")
+    checkStringInput(language, "language", "summariser.js", "summarise()")
 
     let result = [];
     let sentenceTokens;
@@ -41,18 +45,12 @@ const extract = (contentList, language) =>{
 
     // Input: Array of HTML elements.
     // Output: The same input array with the p tags' content replaced with summarised text.
-
-    checkIfNull(contentList, "contentList", "summariser.js", "extract()");
-    checkIfObject(contentList, "contentList", "summariser.js", "extract()");
-    checkLength(contentList, "contentList", "summariser.js", "extract()");
-
-    checkIfNull(language, "language", "summariser.js", "extract()");
-    checkIfString(language, "language", "summariser.js", "extract()");
-    checkLength(language, "language", "summariser.js", "extract()");
+    
+    checkObjectInput(contentList, "contentList", "summariser.js", "extract()")
+    checkStringInput(language, "language", "summariser.js", "extract()")
 
     let result = [];
     let wordsMap = getUniversalWordsMap(contentList, language);
-  
 
     for(let i = 0; i < contentList.length; i++){
         result.push(contentList[i]);

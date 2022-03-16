@@ -1,6 +1,8 @@
-import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+import {checkStringInput, checkObjectInput} from "../exceptionHandling.js";
 
 const getNotMeaningful = (language) => {
+
+    checkStringInput(language, "language", "filters.js", "getNotMeaningful()");
 
     let result = [];
 
@@ -37,6 +39,9 @@ const getNotMeaningful = (language) => {
 }
 
 const punctuationFilter = (wordTokens) => {
+
+    checkObjectInput(wordTokens, "wordTokens", "filters.js", "punctuationFilter()")
+
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
         wordTokens[i] = wordTokens[i].replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
     }
@@ -46,13 +51,8 @@ const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
-    checkIfNull(wordTokens, "wordTokens", "filters.js", "filterText()");
-    checkIfObject(wordTokens, "wordTokens", "filters.js", "filterText()");
-    checkLength(wordTokens, "wordTokens", "filters.js", "filterText()");
-
-    checkIfNull(language, "language", "filters.js", "filterText()");
-    checkIfString(language, "language", "filters.js", "filterText()");
-    checkLength(language, "language", "filters.js", "filterText()");
+    checkObjectInput(wordTokens, "wordTokens", "filters.js", "filterText()")
+    checkStringInput(language, "language", "filters.js", "filterText()")
 
     let result = []
     let notMeaningful = getNotMeaningful(language);
@@ -79,9 +79,7 @@ const getSentenceFilterList = (language) => {
 
     // returns a list of common sentence openers depending on language.
 
-    checkIfNull(language, "language", "filters.js", "getSentenceFilterList()");
-    checkIfString(language, "language", "filters.js", "getSentenceFilterList()");
-    checkLength(language, "language", "filters.js", "getSentenceFilterList()");
+    checkStringInput(language, "language", "filters.js", "getSentenceFilterList()")
 
     let result = [];
 
@@ -118,16 +116,11 @@ const getSentenceFilterList = (language) => {
 
 const filterSentence = (sentence, language) => {
     
-    // Input: an array representing a sentence in tokenized form.
-    // Output: same sentence array without sentence openers.
+    // Input: A sentence in string form.
+    // Output: same sentence without the openers.
 
-    checkIfNull(sentence, "sentence", "filters.js", "filterSentence()");
-    checkIfString(sentence, "sentence", "filters.js", "filterSentence()");
-    checkLength(sentence, "sentence", "filters.js", "filterSentence()");
-
-    checkIfNull(language, "language", "filters.js", "filterSentence()");
-    checkIfString(language, "language", "filters.js", "filterSentence()");
-    checkLength(language, "language", "filters.js", "filterSentence()");
+    checkStringInput(sentence, "sentence", "filters.js", "filterSentence()")
+    checkStringInput(language, "language", "filters.js", "filterSentence()")
 
     let filterList = getSentenceFilterList(language);
     let result = sentence;

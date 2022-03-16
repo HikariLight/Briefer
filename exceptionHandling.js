@@ -1,5 +1,5 @@
-const checkIfNull = (element, variableName, fileName, functionName) =>{
-    if(element == null){
+const checkIfNull = (input, variableName, fileName, functionName) =>{
+    if(input == null){
         throw {
             name : 'EmptyInputError',
             message : `${variableName} is null`,
@@ -9,8 +9,8 @@ const checkIfNull = (element, variableName, fileName, functionName) =>{
     } 
 }
 
-const checkLength = (element, variableName, fileName, functionName) =>{
-    if(element == null || element.length == 0){
+const checkLength = (input, variableName, fileName, functionName) =>{
+    if(input == null || input.length == 0){
         throw {
             name : 'EmptyInputError',
             message : `${variableName} is empty`,
@@ -20,26 +20,38 @@ const checkLength = (element, variableName, fileName, functionName) =>{
     }
 }
 
-const checkIfString = (element, variableName, fileName, functionName) =>{
-    if(typeof(element) != "string"){
+const checkIfString = (input, variableName, fileName, functionName) =>{
+    if(typeof(input) != "string"){
         throw {
             name : 'TypeError',
-            message : `${variableName}" is ${typeof(element)} instead of string`,
+            message : `${variableName}" is ${typeof(input)} instead of string`,
             fileName : `${fileName}`,
             functionName: `${functionName}`
         }
     }
 }
 
-const checkIfObject = (element) =>{
-    if(typeof(element) != "object"){
+const checkIfObject = (input) =>{
+    if(typeof(input) != "object"){
         throw {
             name : 'TypeError',
-            message : `${variableName} is ${typeof(element)} instead of object`,
+            message : `${variableName} is ${typeof(input)} instead of object`,
             fileName : `${fileName}`,
             functionName: `${functionName}`
         }
     }
 }
 
-export { checkIfNull, checkLength, checkIfString, checkIfObject }
+const checkStringInput = (input, variableName, fileName, functionName) =>{
+    checkIfNull(input, variableName, fileName, functionName);
+    checkIfString(input, variableName, fileName, functionName);
+    checkLength(input, variableName, fileName, functionName);
+}
+
+const checkObjectInput = (input, variableName, fileName, functionName) =>{
+    checkIfNull(input, variableName, fileName, functionName);
+    checkIfObject(input, variableName, fileName, functionName);
+    checkLength(input, variableName, fileName, functionName);
+}
+
+export { checkStringInput, checkObjectInput }

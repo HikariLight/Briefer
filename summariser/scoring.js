@@ -1,9 +1,11 @@
 import { tokenizeWords } from "./tokenization.js";
 import { punctuationFilter } from "./filters.js";
 import { getMostFrequent } from "./processing.js";
-import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
 const scoreWords = (wordsMap) =>{
+
+    checkObjectInput(wordsMap, "wordsMap", "scoring.js", "scoreWords()");
 
     // Replaces word occurences with their weights in wordsMap
 
@@ -22,6 +24,9 @@ const scoreWords = (wordsMap) =>{
 const scoreSentence = (sentence, wordsMap) =>{
     
     // Calculates the score of a single sentence.
+
+    checkStringInput(sentence, "sentence", "scoring.js", "scoreSentence()");
+    checkObjectInput(wordsMap, "wordsMap", "scoring.js", "scoreSentence()");
 
     let score = 0;
     let sentenceTokens;
@@ -46,6 +51,9 @@ const scoreSentence = (sentence, wordsMap) =>{
 const scoreSentences = (sentenceMap, wordsMap) =>{
     
     // Returns a dictionary of sentences and their weights.
+
+    checkObjectInput(sentenceMap, "sentenceMap", "scoring.js", "scoreSentences()");
+    checkObjectInput(wordsMap, "wordsMap", "scoring.js", "scoreSentences()");
 
     for(let sentence in sentenceMap){
         sentenceMap[sentence] = scoreSentence(sentence, wordsMap);
