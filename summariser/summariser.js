@@ -3,6 +3,7 @@ import { scoreSentences } from "./scoring.js";
 import { filterSentence } from "./filters.js";
 import { getAverageWeight } from "./processing.js";
 import { getUniversalWordsMap, getSentenceMap } from "./mapping.js";
+import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
 
 const summarise = (text, wordsMap, language) =>{
 
@@ -41,17 +42,13 @@ const extract = (contentList, language) =>{
     // Input: Array of HTML elements.
     // Output: The same input array with the p tags' content replaced with summarised text.
 
-    if(contentList == undefined || contentList.length == 0){
-        throw {
-            name : 'EmptyInputError', message : '"contentList" is empty', fileName : 'summariser.js', functionName : 'extract()'
-        }
-    }
+    checkIfNull(contentList, "contentList", "summariser.js", "extract()");
+    checkIfObject(contentList, "contentList", "summariser.js", "extract()");
+    checkLength(contentList, "contentList", "summariser.js", "extract()");
 
-    if(language == undefined || language == ""){
-        throw {
-            name : 'EmptyInputError', message : 'language is empty', fileName : 'summariser.js', functionName : 'extract()'
-        }
-    }
+    checkIfNull(language, "language", "summariser.js", "extract()");
+    checkIfString(language, "language", "summariser.js", "extract()");
+    checkLength(language, "language", "summariser.js", "extract()");
 
     let result = [];
     let wordsMap = getUniversalWordsMap(contentList, language);

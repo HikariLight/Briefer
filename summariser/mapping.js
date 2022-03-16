@@ -2,6 +2,7 @@ import { aggregateText } from "./processing.js";
 import { tokenizeWords } from "./tokenization.js";
 import { filterText } from "./filters.js";
 import { scoreWords } from "./scoring.js"
+import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
 
 const getWordsMap = (tokenizedWords) =>{
     

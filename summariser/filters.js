@@ -1,3 +1,5 @@
+import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+
 const getNotMeaningful = (language) => {
 
     let result = [];
@@ -44,17 +46,13 @@ const filterText = (wordTokens, language) => {
 
     // Filters text of unwanted words, punctuation and spaces.
 
-    if(wordTokens == null || wordTokens.length == 0){
-        throw {
-            name : 'EmptyInputError', message : 'wordTokens is empty', fileName : 'filters.js', functionName : 'filterText()'
-        }
-    }
-    
-    if(language == null || language == "" || typeof(language) != "string"){
-        throw {
-            name : 'TypeError', message : '"language" is ' + typeof(language) +' instead of string', fileName : 'filters.js', functionName : 'filterText()'
-        }
-    }
+    checkIfNull(wordTokens, "wordTokens", "filters.js", "filterText()");
+    checkIfObject(wordTokens, "wordTokens", "filters.js", "filterText()");
+    checkLength(wordTokens, "wordTokens", "filters.js", "filterText()");
+
+    checkIfNull(language, "language", "filters.js", "filterText()");
+    checkIfString(language, "language", "filters.js", "filterText()");
+    checkLength(language, "language", "filters.js", "filterText()");
 
     let result = []
     let notMeaningful = getNotMeaningful(language);
@@ -81,11 +79,9 @@ const getSentenceFilterList = (language) => {
 
     // returns a list of common sentence openers depending on language.
 
-    if(language == null || language == "" || typeof(language) != "string"){
-        throw {
-            name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'getSentenceFilterList()'
-        }
-    }
+    checkIfNull(language, "language", "filters.js", "getSentenceFilterList()");
+    checkIfString(language, "language", "filters.js", "getSentenceFilterList()");
+    checkLength(language, "language", "filters.js", "getSentenceFilterList()");
 
     let result = [];
 
@@ -125,29 +121,13 @@ const filterSentence = (sentence, language) => {
     // Input: an array representing a sentence in tokenized form.
     // Output: same sentence array without sentence openers.
 
-    if(sentence == null || sentence == ""){
-        throw {
-            name : 'EmptyInputError', message : 'sentence is empty' ,fileName : 'filters.js', functionName : 'filterSentence()'
-        }
-    }
+    checkIfNull(sentence, "sentence", "filters.js", "filterSentence()");
+    checkIfString(sentence, "sentence", "filters.js", "filterSentence()");
+    checkLength(sentence, "sentence", "filters.js", "filterSentence()");
 
-    else if (typeof(sentence) != "string"){
-        throw {
-            name : 'WrongInputType', message : `sentence is ${typeof(sentence)} instead of string` ,fileName : 'filters.js', functionName : 'filterSentence()'
-        }
-    }
-
-    if(language == null || language == ""){
-        throw {
-            name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'filterSentence()'
-        }
-    }
-
-    else if (typeof(language) != "string"){
-        throw {
-            name : 'WrongInputType', message : `language is ${typeof(language)} instead of string` ,fileName : 'filters.js', functionName : 'filterSentence()'
-        }
-    }
+    checkIfNull(language, "language", "filters.js", "filterSentence()");
+    checkIfString(language, "language", "filters.js", "filterSentence()");
+    checkLength(language, "language", "filters.js", "filterSentence()");
 
     let filterList = getSentenceFilterList(language);
     let result = sentence;

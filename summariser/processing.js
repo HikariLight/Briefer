@@ -1,20 +1,14 @@
+import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+
 const aggregateText = (contentList) => {
 
     // Aggregates the entire text of the page into a string. Needed mostly for getUniversalWordsMap()
     // Input: Array representing page elements.
     // Output: A string containing all the paragraphs in a page.
-    
-    if(contentList == null || contentList == []){
-        throw {
-            name : 'EmptyInputError', message : 'contentList is empty', fileName : 'processing.js', functionName : 'aggregateText()'
-        }
-    }
 
-    if(typeof(contentList) != "object"){
-        throw {
-            name : 'TypeError', message : '"contentList" is ' + typeof(contentList) +' instead of object', fileName : 'processing.js', functionName : 'aggregateText()'
-        }
-    }
+    checkIfNull(contentList, "contentList", "processing.js", "aggregateText()");
+    checkIfObject(contentList, "contentList", "processing.js", "aggregateText()");
+    checkLength(contentList, "contentList", "processing.js", "aggregateText()");
 
     let result = "";
     
