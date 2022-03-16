@@ -29,8 +29,7 @@ const summarise = (text, wordsMap, language) =>{
 
     for(let i = 1; i < sentences.length; i++){
         if(sentencesMap[sentences[i]] >= threshhold){
-            // result.push(filterSentence(sentences[i], language));
-            result.push(sentences[i]);
+            result.push(filterSentence(sentences[i], language));
         }
     }
 

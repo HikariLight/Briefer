@@ -122,26 +122,40 @@ const getSentenceFilterList = (language) => {
 
 const filterSentence = (sentence, language) => {
     
-    // Takes out sentence openers
+    // Input: an array representing a sentence in tokenized form.
+    // Output: same sentence array without sentence openers.
 
-    if(sentence == null || sentence == "" || typeof(sentence) != "string"){
+    if(sentence == null || sentence == ""){
         throw {
             name : 'EmptyInputError', message : 'sentence is empty' ,fileName : 'filters.js', functionName : 'filterSentence()'
         }
     }
 
-    if(language == null || language == "" || typeof(language) != "string"){
+    else if (typeof(sentence) != "string"){
+        throw {
+            name : 'WrongInputType', message : `sentence is ${typeof(sentence)} instead of string` ,fileName : 'filters.js', functionName : 'filterSentence()'
+        }
+    }
+
+    if(language == null || language == ""){
         throw {
             name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'filterSentence()'
         }
     }
 
+    else if (typeof(language) != "string"){
+        throw {
+            name : 'WrongInputType', message : `language is ${typeof(language)} instead of string` ,fileName : 'filters.js', functionName : 'filterSentence()'
+        }
+    }
+
     let filterList = getSentenceFilterList(language);
-    let result = "";
+    let result = sentence;
 
     for(let filter of filterList){
         if(filter == sentence.substring(0, filter.length)){
             result = sentence.replace(filter, "");
+            result = result.charAt(0).toUpperCase() + result.slice(1);
         }
     }
 
