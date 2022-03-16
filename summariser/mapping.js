@@ -2,11 +2,13 @@ import { aggregateText } from "./processing.js";
 import { tokenizeWords } from "./tokenization.js";
 import { filterText } from "./filters.js";
 import { scoreWords } from "./scoring.js"
-import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
 const getWordsMap = (tokenizedWords) =>{
     
     // Returns a map of words and their occurences.
+
+    checkObjectInput(tokenizedWords, "tokenizedWords", "mapping.js", "getWordsMap()");
 
     let wordsMap = {}
 
@@ -23,6 +25,9 @@ const getWordsMap = (tokenizedWords) =>{
 }
 
 const getUniversalWordsMap = (contentList, language) => {
+
+    checkObjectInput(contentList, "contentList", "mapping.js", "getUniversalWordsMap()");
+    checkStringInput(language, "language", "mapping.js", "getUniversalWordsMap()");
 
     // Creates a Words Map using the whole page as input
 
@@ -47,6 +52,8 @@ const getUniversalWordsMap = (contentList, language) => {
 const getSentenceMap = (sentenceTokens) =>{
 
     // Returns a dicitonary of sentences and a score initialized at 0.
+
+    checkObjectInput(sentenceTokens, "sentenceTokens", "mapping.js", "getSentenceMap()");
 
     let sentenceMap = {};
 

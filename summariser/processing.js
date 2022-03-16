@@ -1,4 +1,4 @@
-import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+import { checkStringInput, checkObjectInput} from "../exceptionHandling.js";
 
 const aggregateText = (contentList) => {
 
@@ -6,9 +6,7 @@ const aggregateText = (contentList) => {
     // Input: Array representing page elements.
     // Output: A string containing all the paragraphs in a page.
 
-    checkIfNull(contentList, "contentList", "processing.js", "aggregateText()");
-    checkIfObject(contentList, "contentList", "processing.js", "aggregateText()");
-    checkLength(contentList, "contentList", "processing.js", "aggregateText()");
+    checkObjectInput(contentList, "contentList", "processing.js", "aggregateText()")
 
     let result = "";
     
@@ -33,6 +31,8 @@ const getMostFrequent = (tokenizedWords) =>{
 
     // Returns the most frequent word and its number of occurences.
 
+    checkObjectInput(tokenizedWords, "tokenizedWords", "processing.js", "getMostFrequent()")
+
     let maxOccurence = 0;
     let frequentWord = "";
 
@@ -49,6 +49,8 @@ const getMostFrequent = (tokenizedWords) =>{
 const getAverageWeight = (sentenceMap) =>{
 
     // Returns the average sentence weight so we can use it as a threshhold in summarisation.
+
+    checkObjectInput(sentenceMap, "sentenceMap", "processing.js", "getAverageWeight()")
 
     let result = 0;
     let length = Object.keys(sentenceMap).length;
