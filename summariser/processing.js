@@ -1,7 +1,8 @@
 const aggregateText = (contentList) => {
 
-    // Aggregates the entire text of the page into a string.
-    // Needed mostly for getUniversalWordsMap()
+    // Aggregates the entire text of the page into a string. Needed mostly for getUniversalWordsMap()
+    // Input: Array representing page elements.
+    // Output: A string containing all the paragraphs in a page.
     
     if(contentList == null || contentList == []){
         throw {
@@ -15,14 +16,12 @@ const aggregateText = (contentList) => {
         }
     }
 
-    let result = [];
+    let result = "";
     
     for(let section of contentList){
         for(let element of section){
             if(element[0] == "p"){
-                for(let p of element){
-                    result.push(p);
-                }
+                result += element[1].join(" ") + " ";
             }
         }
     }
@@ -33,7 +32,7 @@ const aggregateText = (contentList) => {
         }
     }
 
-    return result.join(" ");
+    return result;
 }
 
 const getMostFrequent = (tokenizedWords) =>{

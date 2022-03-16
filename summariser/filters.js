@@ -90,31 +90,31 @@ const getSentenceFilterList = (language) => {
     let result = [];
 
     if(language == "en"){
-        result = ["And,", "Also,", "Thus,", "In any case,", "In the same way,", "Another reason,", "However,", "In contrast,", "Nevertheless,", "Nonetheless,", "Yet,", "On the other hand,", "By comparaison,", "On the contrary,", "Instead,", "Unlike,", "Otherwise,", "At the same time,", "Conversely,", "Even so,", "Whereas,"];
+        result = ["And, ", "Also, ", "In particular, ", "In that respect, ", "But, ", "Thus, ", "In any case, ", "In the same way, ", "Another reason, ", "However, ", "In contrast, ", "Nevertheless, ", "Nonetheless, ", "Yet, ", "On the other hand, ", "By comparaison, ", "On the contrary, ", "Instead, ", "Unlike, ", "Otherwise, ", "At the same time, ", "Conversely, ", "Even so, ", "Whereas, "];
     }
     
     else if(language == "fr"){
-        result = ["Et,", "Aussi,", "Ainsi,", "En tout cas,", "De la même façon,", "Une autre raison,", "Cependant,", "En revanche,", "Néanmoins,", "Néanmoins,", "Pourtant,", "Par contre,", "Par comparaison,", "Au contraire,", "Au contraire,", "Contrairement,", "Autrement,", "En même temps,", "Inversement,", "Quand même,", "Attendu,"];
+        result = ["Et, ", "Aussi, ", "En particulier, ", "A cet égard, ", "Mais, ", "Ainsi, ", "En tout cas, ", "De la même manière, ", "Pour une autre raison, ", "Cependant, ", "En revanche, ", "Néanmoins, ", "Néanmoins, ", "Pourtant, ", "D'autre part, ", "Par comparaison, ", "Au contraire, ", "Au lieu de, ", "Contrairement à, ", "Sinon, ", "En même temps, ", "Inversement, ", "Même si, ", "Considérant, "];
     }
     
     else if(language == "de"){
-        result = ["Und,", "Auch,", "So,", "Auf jeden Fall,", "Ebenso,", "Ein anderer Grund,", "Jedoch,", "Im Gegensatz,", "Trotzdem,", "Trotzdem,", "Doch,", "Andererseits", "Im Vergleich", "Im Gegenteil", "Stattdessen", "Im Gegensatz", "Sonst", "Gleichzeitig", "Umgekehrt", "Auch so", "Wohingegen"];
+        result = ["Und, ", "Auch, ", "Insbesondere, ", "In dieser Hinsicht, ", "Aber, ", "So, ", "Auf jeden Fall, ", "In gleicher Weise, ", "Ein anderer Grund, ", "Jedoch, ", "Im Gegensatz, ", "Dennoch, ", "Trotzdem, ", "Doch, ", "Andererseits, ", "Im Vergleich, ", "Im Gegenteil, ", "Stattdessen, ", "Im Gegensatz, ", "Sonst, ", "Gleichzeitig, ", "Umgekehrt, ", "Trotzdem, ", "Wohingegen, "];
     }
 
     else if(language == "nl"){
-        result = ["En,", "Ook,", "Dus,", "In ieder geval,", "Op dezelfde manier,", "Een andere reden,", "Maar,", "In tegenstelling,", "Niettemin,", "Niettemin,", "Maar toch,", [Anderzijds], "Ter vergelijking", "Integendeel", "In plaats daarvan", "In tegenstelling tot", "Anders", "Tegelijkertijd", "Tegenovergesteld", "Zelfs zo", "Overwegende dat"];
+        result = ["En, ", "Ook, ", "In het bijzonder, ", "In dat opzicht, ", "Maar, ", "Dus, ", "In ieder geval, ", "Op dezelfde manier, ", "Een andere reden, ", "Echter, ", "In tegenstelling, ", "Niettemin, ", "Niettemin, ", "Toch, ", "Anderzijds, ", "In vergelijking, ", "In tegendeel, ", "In plaats daarvan, ", "Anders, ", "Anders, ", "Tegelijkertijd, ", "Omgekeerd, ", "Zelfs zo, ", "Overwegende dat, "];
     }
 
     else if(language == "es"){
-        result = ["Y,", "También,", "Así,", "En cualquier caso,", "De la misma manera,", "Otra razón,", "Sin embargo,", "En contraste,", "No obstante,", "Sin embargo,", "Por otra parte,", "En comparación,", "Por el contrario,", "En cambio,", "A diferencia de,", "Por lo demás,", "Al mismo tiempo,", "A la inversa,", "Aun así,", "Considerando,"];
+        result = ["Y, ", "También, ", "En particular, ", "En ese sentido, ", "Pero, ", "Así, ", "En cualquier caso, ", "De la misma manera, ", "Otra razón, ", "Sin embargo, ", "En contraste, ", "No obstante, ", "No obstante, ", "Sin embargo, ", "Por otra parte, ", "En comparación, ", "Por el contrario, ", "En cambio, ", "A diferencia de, ", "Por lo demás, ", "Al mismo tiempo, ", "A la inversa, ", "Aun así, ", "Mientras que, "];
     }
 
     else if(language == "it"){
-        result = ["E,", "Anche,", "Così,", "In ogni caso,", "Allo stesso modo,", "Un'altra ragione,", "Tuttavia,", "In contrasto,", "Tuttavia,", "Ciononostante,", "Eppure,", "D'altra parte,", "A confronto,", "Al contrario,", "Invece,", "A differenza,", "Altrimenti,", "Allo stesso tempo,", "Al contrario,", "Anche così,", "Mentre,"];
+        result = ["E, ", "Anche, ", "In particolare, ", "A questo proposito, ", "Ma, ", "Così, ", "In ogni caso, ", "Allo stesso modo, ", "Un'altra ragione, ", "Tuttavia, ", "In contrasto, ", "Tuttavia, ", "Nondimeno", "Eppure", "D'altra parte, ", "In confronto, ", "Al contrario, ", "Invece, ", "A differenza, ", "Altrimenti, ", "Allo stesso tempo, ", "Al contrario, ", "Anche così, ", "Mentre, "];
     }
 
     else if(language == "pt"){
-        result = ["E,", "Também,", "Assim,", "Em qualquer caso,", "Da mesma forma,", "Outra razão,", "No entanto,", "Em contraste,", "No entanto,", "Ainda assim,", "Ainda assim,", "Ainda,", "Por outro lado,", "Por comparação,", "Pelo contrário,", "Ao contrário,", "Ao contrário,", "Ao contrário,", "Ao contrário,", "Ao mesmo tempo,", "Pelo contrário,", "Mesmo assim,", "Considerando,"];
+        result = ["E, ", "Também, ", "Em particular, ", "A esse respeito, ", "Mas, ", "Assim, ", "Em qualquer caso, ", "Do mesmo modo, ", "Outro motivo, ", "No entanto, ", "Em contraste, ", "Não obstante, ", "Não obstante, ", "Ainda assim, ", "Por outro lado, ", "Em comparação, ", "Pelo contrário, ", "Em vez disso, ", "Ao contrário, ", "Ao contrário, ", "Caso contrário, ", "Ao mesmo tempo, ", "Inversamente, ", "Mesmo assim, ", "Considerando que, "];
     }
 
     return result;
@@ -122,26 +122,40 @@ const getSentenceFilterList = (language) => {
 
 const filterSentence = (sentence, language) => {
     
-    // Takes out sentence openers
+    // Input: an array representing a sentence in tokenized form.
+    // Output: same sentence array without sentence openers.
 
-    if(sentence == null || sentence == "" || typeof(sentence) != "string"){
+    if(sentence == null || sentence == ""){
         throw {
             name : 'EmptyInputError', message : 'sentence is empty' ,fileName : 'filters.js', functionName : 'filterSentence()'
         }
     }
 
-    if(language == null || language == "" || typeof(language) != "string"){
+    else if (typeof(sentence) != "string"){
+        throw {
+            name : 'WrongInputType', message : `sentence is ${typeof(sentence)} instead of string` ,fileName : 'filters.js', functionName : 'filterSentence()'
+        }
+    }
+
+    if(language == null || language == ""){
         throw {
             name : 'EmptyInputError', message : 'language is not specified' ,fileName : 'filters.js', functionName : 'filterSentence()'
         }
     }
 
+    else if (typeof(language) != "string"){
+        throw {
+            name : 'WrongInputType', message : `language is ${typeof(language)} instead of string` ,fileName : 'filters.js', functionName : 'filterSentence()'
+        }
+    }
+
     let filterList = getSentenceFilterList(language);
-    let result = "";
+    let result = sentence;
 
     for(let filter of filterList){
         if(filter == sentence.substring(0, filter.length)){
             result = sentence.replace(filter, "");
+            result = result.charAt(0).toUpperCase() + result.slice(1);
         }
     }
 
