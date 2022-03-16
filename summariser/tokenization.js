@@ -1,18 +1,12 @@
+import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
+
 const tokenizeWords = (text) => {
 
     // Returns an array of all words in a given string
 
-    if(text == null || text.length == 0){
-        throw {
-            name : 'EmptyInputError', message : '"text" is empty', fileName : 'tokenization.js', functionName : 'tokenizeWords()'
-        }
-    }
-
-    if(typeof(text) != "string"){
-        throw {
-            name : 'TypeError', message : '"text" is ' + typeof(text) +' instead of string', fileName : 'tokenization.js', functionName : 'tokenizeWords()'
-        }
-    }
+    checkIfNull(text, "text", "tokenization.js", "tokenizeWords()");
+    checkIfString(text, "text", "tokenization.js", "tokenizeWords()");
+    checkLength(text, "text", "tokenization.js", "tokenizeWords()");
 
     return text.replaceAll("-", " ").split(" ");
 }
@@ -21,17 +15,9 @@ const tokenizeSentences = (text) =>{
 
     // Returns a list of all the sentences.
 
-    if(text == null || text.length == 0){
-        throw {
-            name : 'EmptyInputError', message : '"text" is empty', fileName : 'tokenization.js', functionName : 'tokenizeSentences()'
-        }
-    }
-
-    if(typeof(text) != "string"){
-        throw {
-            name : 'TypeError', message : '"text" is ' + typeof(text) +' instead of string', fileName : 'tokenization.js', functionName : 'tokenizeSentences()'
-        }
-    }
+    checkIfNull(text, "text", "tokenization.js", "tokenizeSentences()");
+    checkIfString(text, "text", "tokenization.js", "tokenizeSentences()");
+    checkLength(text, "text", "tokenization.js", "tokenizeSentences()");
 
     let result = text.split(". ").filter(sentence => sentence.length > 0);
 

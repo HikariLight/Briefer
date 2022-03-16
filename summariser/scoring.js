@@ -1,6 +1,7 @@
 import { tokenizeWords } from "./tokenization.js";
 import { punctuationFilter } from "./filters.js";
 import { getMostFrequent } from "./processing.js";
+import {checkIfNull, checkLength, checkIfString, checkIfObject} from "../exceptionHandling.js";
 
 const scoreWords = (wordsMap) =>{
 
