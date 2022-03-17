@@ -1,6 +1,6 @@
 import { getTab } from './reader.js';
 import { simplify } from './simplifier.js';
-import { extract } from "./summariser/summariser.js";
+import { summarise } from "./summariser/summariser.js";
 import { renderPage, renderProgressBar, renderErrorPage, renderDebugPage } from "./html-engine/renderEngine.js";
 
 function scrapeThePage() {
@@ -77,7 +77,7 @@ async function processing() {
     tab["pageId"] = pageId.toString();
 
     tab["simplifierRender"] = renderPage(tab, simply, 'simplify');
-    tab["summariserRender"] = renderPage(tab, extract(simply, tab['language']), 'summarise');
+    tab["summariserRender"] = renderPage(tab, summarise(simply, tab['language'], "weak"), 'summarise');
     delete tab['html'];
 
     storeData(tab["pageId"], tab);

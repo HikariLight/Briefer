@@ -1,68 +1,95 @@
-import { tokenizeSentences } from "./tokenization.js";
-import { scoreSentences } from "./scoring.js";
-import { filterSentence } from "./filters.js";
-import { getAverageWeight } from "./processing.js";
-import { getUniversalWordsMap, getSentenceMap } from "./mapping.js";
+import { tokenizeSentences, tokenizeWords } from "./tokenization.js";
+import { scoreSentences, scoreWords } from "./scoring.js";
+import { filterSentence, filterText } from "./filters.js";
+import { aggregatePageText, aggregateSectionText, getAverageWeight } from "./processing.js";
+import { getWordsMap, getUniversalWordsMap, getSentenceMap } from "./mapping.js";
 import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
-const summarise = (text, wordsMap, language) =>{
+const paragraphExists = (section) =>{
+    
+    let exists = false;
 
-    // Input: String of text 
-    // Output: An array of sentences that represents the summary of the input text.
+    for(let element of section){
+        if(element[0] == "p"){
+            exists = true;
+        }
+    }
 
-    checkStringInput(text, "text", "summariser.js", "summarise()")
-    checkObjectInput(wordsMap, "wordsMap", "summariser.js", "summarise()")
-    checkStringInput(language, "language", "summariser.js", "summarise()")
+    return exists;
+}
 
-    let result = [];
+const summarise = (contentList, language, mode) =>{
+
+    // Input: Array representing the page
+    // Output: Same array with the paragraph text summarised
+
+    checkObjectInput(contentList, "contentList", "summariser.js", "summarise()");
+    checkStringInput(language, "language", "summariser.js", "summarise()");
+    checkStringInput(mode, "mode", "summariser.js", "summarise()");
+
+    let result = contentList;
+    let text;
+    let wordTokens;
     let sentenceTokens;
+    let wordsMap;
+    let sentencesMap;
+    let threshold;
 
-    try{
-        sentenceTokens = tokenizeSentences(text);
-    } catch(error){
-        console.log(error);
-    }
+    if(mode == "weak"){
 
-    let sentencesMap = getSentenceMap(sentenceTokens);
-    scoreSentences(sentencesMap, wordsMap);
-    let threshhold = getAverageWeight(sentencesMap)
-    
-    let sentences = Object.keys(sentencesMap);
-    
-    // Adding the first sentence in each paragraph by default.
-    result.push(sentences[0]);
+        try{
+            for(let i = 0; i < result.length; i++){
+                if(paragraphExists(result[i])){
 
-    for(let i = 1; i < sentences.length; i++){
-        if(sentencesMap[sentences[i]] >= threshhold){
-            result.push(filterSentence(sentences[i], language));
-        }
-    }
+                    text = aggregateSectionText(result[i]);
+                    wordTokens = tokenizeWords(text);
+                    wordTokens = filterText(wordTokens, language);
+                    wordsMap = getWordsMap(wordTokens);
+                    scoreWords(wordsMap);
 
-    return result;
-}
+                    for(let j = 0; j < result[i].length; j++){
+                        if(result[i][j][0] == "p"){
 
-const extract = (contentList, language) =>{
+                            let paragraph = result[i][j][1].join(" ");
 
-    // Input: Array of HTML elements.
-    // Output: The same input array with the p tags' content replaced with summarised text.
-    
-    checkObjectInput(contentList, "contentList", "summariser.js", "extract()")
-    checkStringInput(language, "language", "summariser.js", "extract()")
+                            sentenceTokens = tokenizeSentences(paragraph);
+                            sentencesMap = getSentenceMap(sentenceTokens);
+                            scoreSentences(sentencesMap, wordsMap);
 
-    let result = [];
-    let wordsMap = getUniversalWordsMap(contentList, language);
+                            threshold = getAverageWeight(sentencesMap);
 
-    for(let i = 0; i < contentList.length; i++){
-        result.push(contentList[i]);
-    
-        for(let j = 0; j < result[i].length; j++){
-            if(result[i][j][0] === "p"){
-                result[i][j][1] = summarise(result[i][j][1].join(" "), wordsMap, language);
+                            let sentences = Object.keys(sentencesMap);
+                            let summarisedParagraph = [sentences[0]];
+
+                            for(let k = 1; k < sentences.length; k++){
+                                if(sentencesMap[sentences[k]] >= threshold){
+                                    summarisedParagraph.push(filterSentence(sentences[k], language));
+                                }
+                            }
+
+                            result[i][j][1] = summarisedParagraph;
+                        }
+                    }
+                }
             }
+        } catch(error){
+            console.log(error);
         }
+    }
+    
+    else if(mode == "medium"){
+        // Universal threshold. Keeping all sections.
+    } 
+    
+    else if(mode == "strong"){
+        // Universal threshold. Keeping major sections.
+    } 
+    
+    else if(mode == "extreme"){
+        // // Universal threshold. Keeping no sections.
     }
 
     return result;
 }
 
-export { extract };
+export { summarise };
