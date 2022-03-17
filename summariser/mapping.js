@@ -1,4 +1,4 @@
-import { aggregateText } from "./processing.js";
+import { aggregatePageText } from "./processing.js";
 import { tokenizeWords } from "./tokenization.js";
 import { filterText } from "./filters.js";
 import { scoreWords } from "./scoring.js"
@@ -33,7 +33,7 @@ const getUniversalWordsMap = (contentList, language) => {
 
     let result = {};
 
-    let text = aggregateText(contentList)
+    let text = aggregatePageText(contentList)
     let tokenizedWords;
 
     try{

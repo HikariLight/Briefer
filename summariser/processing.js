@@ -1,26 +1,37 @@
-import { checkStringInput, checkObjectInput} from "../exceptionHandling.js";
+import { checkObjectInput } from "../exceptionHandling.js";
 
-const aggregateText = (contentList) => {
+const aggregateSectionText = (section) =>{
+    
+    checkObjectInput(section);
+
+    let result = "";
+    
+    for(let element of section){
+        if(element[0] == "p"){
+            result += element[1].join(" ");
+        }
+    }
+
+    return result;
+}
+
+const aggregatePageText = (contentList) => {
 
     // Aggregates the entire text of the page into a string. Needed mostly for getUniversalWordsMap()
     // Input: Array representing page elements.
     // Output: A string containing all the paragraphs in a page.
 
-    checkObjectInput(contentList, "contentList", "processing.js", "aggregateText()")
+    checkObjectInput(contentList, "contentList", "processing.js", "aggregatePageText()")
 
     let result = "";
     
     for(let section of contentList){
-        for(let element of section){
-            if(element[0] == "p"){
-                result += element[1].join(" ") + " ";
-            }
-        }
+        result = aggregateSectionText(section);
     }
 
     if(result.length == 0){
         throw {
-            name : 'InputError', message : '"contentList doesn\'t have any paragraphs', fileName : 'processing.js', functionName : 'aggregateText()'
+            name : 'InputError', message : '"contentList doesn\'t have any paragraphs', fileName : 'processing.js', functionName : 'aggregatePageText()'
         }
     }
 
@@ -62,4 +73,4 @@ const getAverageWeight = (sentenceMap) =>{
     return result / length;
 }
 
-export { aggregateText, getMostFrequent, getAverageWeight }
+export { aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }
