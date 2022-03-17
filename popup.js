@@ -1,5 +1,5 @@
-import { getTab } from './reader.js';
-import { simplify } from './simplifier.js';
+import { getTab } from "./reader.js";
+import { simplify } from "./simplifier/simplifier.js";
 import { extract } from "./summariser/summariser.js";
 import { renderPage, renderProgressBar, renderErrorPage, renderDebugPage } from "./html-engine/renderEngine.js";
 
@@ -92,8 +92,8 @@ function display(htmlContent) {
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
+        console.log('test');
         try {
-
             document.write(renderProgressBar());
 
             await processing();
