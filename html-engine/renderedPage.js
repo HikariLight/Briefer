@@ -27,17 +27,13 @@ window.addEventListener("beforeunload", (e) => {
     window.localStorage.removeItem(pageId);
 })
 
-let imgOverlay = document.getElementsByClassName("imgOverlay");
-
-[...imgOverlay].forEach(element => {
+Array.from(document.getElementsByClassName("imgOverlay")).forEach(element => {
     element.addEventListener("click", (ev) => {
         ev.target.parentNode.previousElementSibling.style.display = "block";
     });
 });
 
-let overlay = document.getElementsByClassName("overlay");
-
-[...overlay].forEach(element => {
+Array.from(document.getElementsByClassName("overlay")).forEach(element => {
     element.addEventListener("click", (ev) => {
         if (ev.target.localName === "div") {
             ev.target.style.display = "none";
