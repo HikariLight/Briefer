@@ -2,7 +2,7 @@ import { checkObjectInput } from "../exceptionHandling.js";
 
 const aggregateSectionText = (section) =>{
     
-    checkObjectInput(section);
+    checkObjectInput(section, "section", "processing.js", "aggregateSectionText()");
 
     let result = "";
     
