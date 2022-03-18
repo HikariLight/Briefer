@@ -7,7 +7,6 @@
     --purple: #8911B2;
     --lightBlue: #EBF2FA;
     --background-buttons: #c2d8f2;
-    text-align: justify;
 }
 
 body{
@@ -17,6 +16,7 @@ body{
     height: 100vh;
     margin: 0 1em;
     font-size: 18px;
+    text-align: justify;
 }
 
 a{
@@ -42,6 +42,7 @@ img{
     width: 40%;
     height: auto;
     margin: 0.5em auto;
+    cursor: pointer;
 }
 
 figcaption{
@@ -74,15 +75,16 @@ footer{
     width: 100%;
     text-align: center;
     border-top: 2px solid var(--blue);
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: none;
-    align-items: center;
-    justify-content: center;
+}
+
+footer p{
+    display: inline;
 }
 
 footer img {
-    width: 50px;
+    margin: 0.5em 0.5em 0 0.5em;
+    width: 25px;
+    height: auto;
     display: inline;
 }
 
@@ -201,7 +203,7 @@ footer img {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 90%;
+    width: 75%;
     height: auto;
     max-height: 90%;
     transform: translate(-50%, -50%);
@@ -245,6 +247,7 @@ footer img {
         grid-gap: 2em;
         position: static;
         margin : auto;
+        padding: 0.5em 0;
         background-color: var(--background-buttons);
         align-items: center;
         justify-items: center;
