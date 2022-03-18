@@ -1,24 +1,39 @@
-import { tokenizeWords } from "./tokenization.js";
+import { tokenizeWords, tokenizeSentences } from "./tokenization.js";
+import { getWordsMap, getSentenceMap } from "./mapping.js";
+import { filterText } from "./filters.js";
 import { punctuationFilter } from "./filters.js";
 import { getMostFrequent } from "./processing.js";
 import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
-const scoreWords = (wordsMap) =>{
+const getWordScoresMap = (text, language) =>{
 
-    checkObjectInput(wordsMap, "wordsMap", "scoring.js", "scoreWords()");
+    // Input: text and mode as strings.
+    // Output: Dictionary that has words and their scores.
+    
+    checkStringInput(text, "text", "scoring.js", "getWordScoresMap()");
+    checkStringInput(language, "language", "scoring.js", "getWordScoresMap()");
 
-    // Replaces word occurences with their weights in wordsMap
+    let getWordScoresMap = {};
 
-    let mostFrequent = getMostFrequent(wordsMap);
+    try{
+        let wordTokens = tokenizeWords(text);
+        wordTokens = filterText(wordTokens, language);
+        getWordScoresMap = getWordsMap(wordTokens);
+        let mostFrequent = getMostFrequent(getWordScoresMap);
 
-    for(let word in wordsMap){
-        wordsMap[word] /= mostFrequent[1];
+        for(let word in getWordScoresMap){
+            getWordScoresMap[word] /= mostFrequent[1];
 
-        // Giving capitalized words 50% higher score.
-        if(word[0] === word[0].toUpperCase()){
-            wordsMap[word] += wordsMap[word] * 0.5;
+            // Giving capitalized words 50% higher score.
+            if(word[0] === word[0].toUpperCase()){
+                getWordScoresMap[word] += getWordScoresMap[word] * 0.5;
+            }
         }
+    } catch(error){
+        console.log(error);
     }
+
+    return getWordScoresMap;
 }
 
 const scoreSentence = (sentence, wordsMap) =>{
@@ -48,16 +63,21 @@ const scoreSentence = (sentence, wordsMap) =>{
     return score;
 }
 
-const scoreSentences = (sentenceMap, wordsMap) =>{
+const getSentenceScoresMap = (text, wordsMap) =>{
     
     // Returns a dictionary of sentences and their weights.
 
-    checkObjectInput(sentenceMap, "sentenceMap", "scoring.js", "scoreSentences()");
-    checkObjectInput(wordsMap, "wordsMap", "scoring.js", "scoreSentences()");
+    checkStringInput(text, "text", "scoring.js", "getSentenceScoresMap()");
+    checkObjectInput(wordsMap, "wordsMap", "scoring.js", "getSentenceScoresMap()");
 
-    for(let sentence in sentenceMap){
-        sentenceMap[sentence] = scoreSentence(sentence, wordsMap);
+    let sentenceTokens = tokenizeSentences(text);
+    let getSentenceScoresMap = getSentenceMap(sentenceTokens);
+
+    for(let sentence in getSentenceScoresMap){
+        getSentenceScoresMap[sentence] = scoreSentence(sentence, wordsMap);
     }
+
+    return getSentenceScoresMap;
 }
 
-export { scoreWords, scoreSentences }
+export { getWordScoresMap, getSentenceScoresMap }

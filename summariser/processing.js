@@ -2,7 +2,7 @@ import { checkObjectInput } from "../exceptionHandling.js";
 
 const aggregateSectionText = (section) =>{
     
-    checkObjectInput(section);
+    checkObjectInput(section, "section", "processing.js", "aggregateSectionText()");
 
     let result = "";
     
@@ -17,7 +17,7 @@ const aggregateSectionText = (section) =>{
 
 const aggregatePageText = (contentList) => {
 
-    // Aggregates the entire text of the page into a string. Needed mostly for getUniversalWordsMap()
+    // Aggregates the entire text of the page into a string.
     // Input: Array representing page elements.
     // Output: A string containing all the paragraphs in a page.
 
@@ -26,7 +26,10 @@ const aggregatePageText = (contentList) => {
     let result = "";
     
     for(let section of contentList){
-        result = aggregateSectionText(section);
+        // Temporary condition until simplifier bug is fixed.
+        if(section.length != 0){
+            result += aggregateSectionText(section);
+        }
     }
 
     if(result.length == 0){
