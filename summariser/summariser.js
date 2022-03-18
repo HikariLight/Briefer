@@ -66,16 +66,49 @@ const summarise = (contentList, language, mode="weak") =>{
         }
     }
     
-    else if(mode == "medium"){
-        // Universal threshold. Keeping all sections.
-    } 
+    // else if(mode == "medium"){
+    //     // Universal threshold. Keeping all sections.
+
+    //     text = aggregatePageText(result);
+    //     wordsScoresMap = getWordScoresMap(text, language);
+    //     threshold = getAverageWeight(sentenceScoresMap);
+
+    // } 
     
-    else if(mode == "strong"){
-        // Universal threshold. Keeping major sections.
-    } 
+    // else if(mode == "strong"){
+    //     // Universal threshold. Keeping major sections.
+
+    //     text = aggregatePageText(result);
+    //     wordsScoresMap = getWordScoresMap(text, language);
+    //     threshold = getAverageWeight(sentenceScoresMap);
+    // } 
     
     else if(mode == "extreme"){
-        // // Universal threshold. Keeping no sections.
+
+        // Universal threshold. Keeping no sections.
+
+        try{
+            text = aggregatePageText(result);
+            wordsScoresMap = getWordScoresMap(text, language);
+            sentenceScoresMap = getSentenceScoresMap(text, wordsScoresMap);
+            
+            threshold = getAverageWeight(sentenceScoresMap);
+    
+            let sentences = Object.keys(sentenceScoresMap);
+            let summarisedParagraph = [];
+    
+            for(let k = 0; k < sentences.length; k++){
+                if(sentenceScoresMap[sentences[k]] >= threshold){
+                    summarisedParagraph.push(filterSentence(sentences[k], language));
+                }
+            }
+    
+            result = [];
+            let section = [contentList[0][0], ["p", summarisedParagraph]]
+            result.push(section);
+        } catch(error){
+            console.log(error);
+        }
     }
 
     return result;
