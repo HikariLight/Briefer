@@ -31,7 +31,7 @@ const checkIfString = (input, variableName, fileName, functionName) =>{
     }
 }
 
-const checkIfObject = (input) =>{
+const checkIfObject = (input, variableName, fileName, functionName) =>{
     if(typeof(input) != "object"){
         throw {
             name : 'TypeError',

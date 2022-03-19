@@ -1,8 +1,4 @@
-import { aggregateText } from "./processing.js";
-import { tokenizeWords } from "./tokenization.js";
-import { filterText } from "./filters.js";
-import { scoreWords } from "./scoring.js"
-import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
+import { checkObjectInput } from "../exceptionHandling.js";
 
 const getWordsMap = (tokenizedWords) =>{
     
@@ -24,31 +20,6 @@ const getWordsMap = (tokenizedWords) =>{
     return wordsMap;
 }
 
-const getUniversalWordsMap = (contentList, language) => {
-
-    checkObjectInput(contentList, "contentList", "mapping.js", "getUniversalWordsMap()");
-    checkStringInput(language, "language", "mapping.js", "getUniversalWordsMap()");
-
-    // Creates a Words Map using the whole page as input
-
-    let result = {};
-
-    let text = aggregateText(contentList)
-    let tokenizedWords;
-
-    try{
-        tokenizedWords = tokenizeWords(text);
-    } catch(error){
-        console.log(error);
-    }
-    
-    tokenizedWords = filterText(tokenizedWords, language);
-    result = getWordsMap(tokenizedWords);
-    scoreWords(result);
-
-    return result;
-}
-
 const getSentenceMap = (sentenceTokens) =>{
 
     // Returns a dicitonary of sentences and a score initialized at 0.
@@ -66,4 +37,4 @@ const getSentenceMap = (sentenceTokens) =>{
     return sentenceMap;
 }
 
-export { getWordsMap, getUniversalWordsMap, getSentenceMap }
+export { getWordsMap, getSentenceMap }

@@ -1,18 +1,32 @@
-import { extract } from "../summariser.js";
+import { summarise } from "../summariser.js";
 import { testCases } from "./testCases.js";
 
 let results = {};
 
+// Old
+// arsTechnica: 19.12 ms.
+// anandTech: 16.50 ms.
+// theVerge: 27.01 ms.
+// ukraineEnglishWikipediaPage: 4146.09 ms.
+// ukraineFrenchWikipediaPage: 622.41 ms.
+
+// New
+// arsTechnica: 8.95 ms.
+// anandTech: 6.60 ms.
+// theVerge: 19.84 ms.
+// ukraineEnglishWikipediaPage: 105.67 ms.
+// ukraineFrenchWikipediaPage: 32.84 ms.
+
 for(let testCase of testCases){
     try{
         let startTime = performance.now();
-        let extraction = extract(testCase["content"], testCase["language"]);
+        let summary = summarise(testCase["content"], testCase["language"], "weak");
         let executionTime = performance.now() - startTime;
         results[testCase["name"]] = 
                     {
                         "executionTime": executionTime.toFixed(2),
                         "errors": [],
-                        "extraction": extraction 
+                        "summary": summary 
                     }
     } catch(error){
         results[testCase["name"]]["errors"].push(error);

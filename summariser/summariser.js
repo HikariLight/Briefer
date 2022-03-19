@@ -1,68 +1,117 @@
-import { tokenizeSentences } from "./tokenization.js";
-import { scoreSentences } from "./scoring.js";
+import { getWordScoresMap, getSentenceScoresMap } from "./scoring.js";
 import { filterSentence } from "./filters.js";
-import { getAverageWeight } from "./processing.js";
-import { getUniversalWordsMap, getSentenceMap } from "./mapping.js";
+import { aggregatePageText, aggregateSectionText, getAverageWeight } from "./processing.js";
 import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
-const summarise = (text, wordsMap, language) =>{
-
-    // Input: String of text 
-    // Output: An array of sentences that represents the summary of the input text.
-
-    checkStringInput(text, "text", "summariser.js", "summarise()")
-    checkObjectInput(wordsMap, "wordsMap", "summariser.js", "summarise()")
-    checkStringInput(language, "language", "summariser.js", "summarise()")
-
-    let result = [];
-    let sentenceTokens;
-
-    try{
-        sentenceTokens = tokenizeSentences(text);
-    } catch(error){
-        console.log(error);
-    }
-
-    let sentencesMap = getSentenceMap(sentenceTokens);
-    scoreSentences(sentencesMap, wordsMap);
-    let threshhold = getAverageWeight(sentencesMap)
+const paragraphExists = (section) =>{
     
-    let sentences = Object.keys(sentencesMap);
-    
-    // Adding the first sentence in each paragraph by default.
-    result.push(sentences[0]);
+    let exists = false;
 
-    for(let i = 1; i < sentences.length; i++){
-        if(sentencesMap[sentences[i]] >= threshhold){
-            result.push(filterSentence(sentences[i], language));
+    for(let element of section){
+        if(element[0] == "p"){
+            exists = true;
         }
     }
 
-    return result;
+    return exists;
 }
 
-const extract = (contentList, language) =>{
+const summarise = (contentList, language, mode="weak") =>{
 
-    // Input: Array of HTML elements.
-    // Output: The same input array with the p tags' content replaced with summarised text.
-    
-    checkObjectInput(contentList, "contentList", "summariser.js", "extract()")
-    checkStringInput(language, "language", "summariser.js", "extract()")
+    // Input: Array representing the page, as well as the language as a string.
+    // Output: Same array with the paragraph text summarised
 
-    let result = [];
-    let wordsMap = getUniversalWordsMap(contentList, language);
+    checkObjectInput(contentList, "contentList", "summariser.js", "summarise()");
+    checkStringInput(language, "language", "summariser.js", "summarise()");
+    checkStringInput(mode, "mode", "summariser.js", "summarise()");
 
-    for(let i = 0; i < contentList.length; i++){
-        result.push(contentList[i]);
-    
-        for(let j = 0; j < result[i].length; j++){
-            if(result[i][j][0] === "p"){
-                result[i][j][1] = summarise(result[i][j][1].join(" "), wordsMap, language);
+    let result = contentList;
+    let text;
+    let wordsScoresMap;
+    let sentenceScoresMap;
+    let threshold;
+
+    if(mode === "weak"){
+        try{
+            for(let i = 0; i < result.length; i++){
+                if(paragraphExists(result[i])){
+
+                    text = aggregateSectionText(result[i]);
+                    wordsScoresMap = getWordScoresMap(text, language);
+
+                    for(let j = 0; j < result[i].length; j++){
+                        if(result[i][j][0] == "p"){
+                            
+                            let paragraph = result[i][j][1].join(" ");
+                            sentenceScoresMap = getSentenceScoresMap(paragraph, wordsScoresMap);
+
+                            threshold = getAverageWeight(sentenceScoresMap);
+
+                            let sentences = Object.keys(sentenceScoresMap);
+                            let summarisedParagraph = [sentences[0]];
+
+                            for(let k = 1; k < sentences.length; k++){
+                                if(sentenceScoresMap[sentences[k]] >= threshold){
+                                    summarisedParagraph.push(filterSentence(sentences[k], language));
+                                }
+                            }
+
+                            result[i][j][1] = summarisedParagraph;
+                        }
+                    }
+                }
             }
+        } catch(error){
+            console.log(error);
+        }
+    }
+    
+    // else if(mode == "medium"){
+    //     // Universal threshold. Keeping all sections.
+
+    //     text = aggregatePageText(result);
+    //     wordsScoresMap = getWordScoresMap(text, language);
+    //     threshold = getAverageWeight(sentenceScoresMap);
+
+    // } 
+    
+    // else if(mode == "strong"){
+    //     // Universal threshold. Keeping major sections.
+
+    //     text = aggregatePageText(result);
+    //     wordsScoresMap = getWordScoresMap(text, language);
+    //     threshold = getAverageWeight(sentenceScoresMap);
+    // } 
+    
+    else if(mode == "extreme"){
+
+        // Universal threshold. Keeping no sections.
+
+        try{
+            text = aggregatePageText(result);
+            wordsScoresMap = getWordScoresMap(text, language);
+            sentenceScoresMap = getSentenceScoresMap(text, wordsScoresMap);
+            
+            threshold = getAverageWeight(sentenceScoresMap);
+    
+            let sentences = Object.keys(sentenceScoresMap);
+            let summarisedParagraph = [];
+    
+            for(let k = 0; k < sentences.length; k++){
+                if(sentenceScoresMap[sentences[k]] >= threshold){
+                    summarisedParagraph.push(filterSentence(sentences[k], language));
+                }
+            }
+    
+            result = [];
+            let section = [contentList[0][0], ["p", summarisedParagraph]]
+            result.push(section);
+        } catch(error){
+            console.log(error);
         }
     }
 
     return result;
 }
 
-export { extract };
+export { summarise };
