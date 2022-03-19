@@ -26,14 +26,17 @@ function dataFormatting (list) {
             var imgAttributes = list[i].attributes;
 
             let imgSrc = '';
+
             for ( let j = 0; j < imgAttributes.length; j++ ) {
+
                 if ( new RegExp('src').test(imgAttributes[j].name) ) {
-                    console.log('img src : ', imgAttributes[j].value);
+
                     if ( new RegExp('^//').test(imgAttributes[j].value) ) {
-                        console.log('in');
                         imgAttributes[j].value = imgAttributes[j].value.replace(/^\/\//g, "https://");
                     }
+
                     let isValid = imgAttributes[j].value.match(new RegExp('((https://|http://).[^\\s]*)'));
+                    
                     if ( isValid !== null && isValid.length !== 0 ) {
                         imgSrc = imgAttributes[j].value;
                     } 

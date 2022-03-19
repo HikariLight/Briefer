@@ -5,7 +5,6 @@ import { dataFormatting } from "./dataFormatting.js";
 
 function simplify(html) {
 
-    console.log('Im inside simplify');
     // Input : Html String
     // Output : Array of most important string divided by tag and section
 

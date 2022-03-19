@@ -5,8 +5,6 @@ function scoreCommas(str) {
     // Input : String
     // Output : Number of commas
 
-    checkStringInput(str, "str", "classification.js", "scoreCommas()");
-
     let pts = str.split(',').length - 1;
 
     return pts;
@@ -16,8 +14,6 @@ function scoreCharacters(str) {
 
     // Input : String
     // Output : Number of times there are 50 characters
-
-    checkStringInput(str, "str", "classification.js", "scoreCharacters()");
 
     let cp = str;
     cp = cp.replace(/\s|\n/g, '');
@@ -115,7 +111,7 @@ function classification(doc) {
     // Input : DOM Element
     // Output : Array of Element corresponding to the main content 
 
-    checkObjectInput(list, "list", "classification.js", "verification()");
+    checkObjectInput(doc, "doc", "classification.js", "classification()");
     
     let list = getTextNode(doc);
 
