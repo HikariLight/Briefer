@@ -1,5 +1,5 @@
 import { getTab } from './reader.js';
-import { simplify } from './simplifier.js';
+import { simplify } from './simplifier/simplifier.js';
 import { summarise } from "./summariser/summariser.js";
 import { renderPage, renderProgressBar, renderErrorPage, renderDebugPage } from "./html-engine/renderEngine.js";
 
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let pageId = getLatestPageId();
             let data = getData(pageId.toString())[0];
 
-            // display(data["simplifierRender"]);
+            display(data["simplifierRender"]);
 
         } catch (err) {
             document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
