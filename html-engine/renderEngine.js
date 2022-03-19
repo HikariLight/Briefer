@@ -45,14 +45,6 @@ const documentEndTags = `
     </html>
 `;
 
-const filterUrl = (url) =>{
-
-    // Takes out front slashes from the start of img URLs.
-    // Seen in Wikipedia images.
-
-    return url.replace(/^\/\//g, "https://");
-}
-
 const insertTags = (section, mode) =>{
 
     // Takes in a dictionary and returns a string containing HTML Code.
@@ -64,10 +56,10 @@ const insertTags = (section, mode) =>{
         if(element[0] == "img"){
             for(let i = 0; i < element[1].length; i += 2){
                 result += ` <div class="overlay">
-                                <${element[0]} class="contentOverlay" src = ${filterUrl(element[1][i])} >
+                                <${element[0]} class="contentOverlay" src = ${element[1][i]} >
                             </div>
                             <figure>
-                                <${element[0]} class="imgOverlay" src = ${filterUrl(element[1][i])} alt= ${element[1][i+1]}\>
+                                <${element[0]} class="imgOverlay" src = ${element[1][i]} alt= ${element[1][i+1]}\>
                                 <figcaption>${element[1][i+1]}</figcaption>
                             </figure>`;
             }

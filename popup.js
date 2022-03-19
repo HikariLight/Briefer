@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('simplify').addEventListener('click', async () => {
         try {
-
             document.write(renderProgressBar());
 
             await processing();
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let pageId = getLatestPageId();
             let data = getData(pageId.toString())[0];
 
-            display(data["simplifierRender"]);
+            // display(data["simplifierRender"]);
 
         } catch (err) {
             document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
