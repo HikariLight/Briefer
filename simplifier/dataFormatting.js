@@ -16,7 +16,7 @@ function dataFormatting (list) {
         let tag = list[i].localName;
         let content = list[i].textContent;
 
-        if ( i!= 0 && tag[0] === 'h' ) {
+        if ( i !== 0 && tag[0] === 'h' && section.length !== 0) {
             result.push(section);
             section = [];
         }
