@@ -1537,11 +1537,11 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ambox_currentevent.svg/68px-Ambox_currentevent.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ambox_currentevent.svg/90px-Ambox_currentevent.svg.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ambox_currentevent.svg/68px-Ambox_currentevent.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/19/Ambox_currentevent.svg/90px-Ambox_currentevent.svg.png 2x",
                     "",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/8/82/Ukraine_in_Europe_February_2015.svg/langfr-330px-Ukraine_in_Europe_February_2015.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/82/Ukraine_in_Europe_February_2015.svg/langfr-440px-Ukraine_in_Europe_February_2015.svg.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Ukraine_in_Europe_February_2015.svg/langfr-330px-Ukraine_in_Europe_February_2015.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/8/82/Ukraine_in_Europe_February_2015.svg/langfr-440px-Ukraine_in_Europe_February_2015.svg.png 2x",
                     "Description de cette image, également commentée ci-après",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ukraine_map_%28disputed_territory%29.png/330px-Ukraine_map_%28disputed_territory%29.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ukraine_map_%28disputed_territory%29.png/440px-Ukraine_map_%28disputed_territory%29.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ukraine_map_%28disputed_territory%29.png/330px-Ukraine_map_%28disputed_territory%29.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ukraine_map_%28disputed_territory%29.png/440px-Ukraine_map_%28disputed_territory%29.png 2x",
                     "Description de l'image Ukraine map (disputed territory).png."
                 ]
             ],
@@ -1549,7 +1549,9 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "L'Ukraine ( ; en ukrainien : Україна, Oukraïna ) est un État d'Europe orientale, le deuxième d'Europe par sa superficie et le premier entièrement européen",
+                    "Elle est bordée par la mer Noire et la mer d'Azov au sud, frontalière avec la Russie au nord est et à l'est, avec la Biélorussie au nord, avec la Pologne, la Slovaquie et la Hongrie à l'ouest et avec la Roumanie et la Moldavie au sud ouest",
                     "Après la chute de cette dernière à l'issue des invasions mongoles du XIIIe siècle, le territoire fait l’objet de partitions et se voit revendiqué par plusieurs puissances étrangères, dont la république des Deux Nations à l'ouest et l'Empire ottoman au sud",
+                    "L'Ukraine occidentale intégrera de son côté l'empire d'Autriche, son successeur l'Autriche Hongrie, puis la Deuxième République de Pologne.\n Pendant la révolution russe, la République populaire ukrainienne connaît brièvement l'indépendance avec reconnaissance internationale, intègrera une partie de l'ancienne République populaire d'Ukraine occidentale, mais finit par devenir la république socialiste soviétique d'Ukraine de l'Union soviétique, dans les années 1920 à la suite de la guerre civile russe",
                     "La crise prend une nouvelle dimension le , lorsque l'Ukraine est envahie par les forces armées russes sur ordre de Vladimir Poutine.\n La langue officielle est l'ukrainien, mais le russe est aussi beaucoup utilisé, notamment dans le sud et dans l'est du pays, en raison de la domination de l'ancien empire russe et de plusieurs siècles de russification qu'a connus cette partie du pays.\n"
                 ]
             ]
@@ -1594,7 +1596,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/5/58/Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png/375px-Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/58/Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png/500px-Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png/375px-Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/58/Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png/500px-Polish-Lithuanian_Commonwealth_%281619%29_compared_with_today%27s_borders_FR.png 2x",
                     "Les contours du royaume polono-lituanien avec ses vassaux en 1619 superposé aux frontières actuelles  1 - La Couronne (Royaume de Pologne) 2 - Borussie ou Duché de Prusse 3 - Grand-Duché de Lituanie 4 - Livonie 5 - Duché de Courlande "
                 ]
             ],
@@ -1621,15 +1623,14 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/c/c9/22._Kozak_z_golovoju_tatarina.jpg/330px-22._Kozak_z_golovoju_tatarina.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c9/22._Kozak_z_golovoju_tatarina.jpg/440px-22._Kozak_z_golovoju_tatarina.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/22._Kozak_z_golovoju_tatarina.jpg/330px-22._Kozak_z_golovoju_tatarina.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c9/22._Kozak_z_golovoju_tatarina.jpg/440px-22._Kozak_z_golovoju_tatarina.jpg 2x",
                     "Cosaque zaporogue."
                 ]
             ],
             [
                 "p",
                 [
-                    "À la suite de la révolution paysanne anti féodale (1648 1654), connue dans l'histoire comme Hmelnichina, la partie orientale de l'Ukraine s’émancipe du pouvoir lituanien et se constitue en État autonome de caste cosaque : le Hetmanat cosaque, administré par les chefs cosaques et dirigé par un Hetman élu, est établi et perdure pendant plus d'un siècle malgré la pression des envahisseurs moscovites attirés par les terres riches et fertiles",
-                    "À la suite du traité d'Androussovo, il est partagé en deux : une partie est placée sous le protectorat de la république des Deux Nations, l'autre sous un protectorat moscovite qui perdure pendant plus d'un siècle"
+                    "À la suite de la révolution paysanne anti féodale (1648 1654), connue dans l'histoire comme Hmelnichina, la partie orientale de l'Ukraine s’émancipe du pouvoir lituanien et se constitue en État autonome de caste cosaque : le Hetmanat cosaque, administré par les chefs cosaques et dirigé par un Hetman élu, est établi et perdure pendant plus d'un siècle malgré la pression des envahisseurs moscovites attirés par les terres riches et fertiles"
                 ]
             ]
         ],
@@ -1644,14 +1645,13 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "Catherine la Grande, impératrice de Russie, supprime le Hetmanat au milieu du XVIIIe siècle et détruit la Sitch dans le dernier quart du XVIIIe siècle",
-                    "Les grandes steppes incultes du sud — en Nouvelle Russie — sont colonisées par des paysans venus de tout l'Empire, mais aussi d'Allemagne — notamment les mennonites — ou de Hollande, appelés par l'impératrice en échange de privilèges fiscaux",
-                    "Le port d'Odessa (dont le nom a été choisi d’après celui d’Ulysse), gouverné au début par le duc de Richelieu, est fondé à cette époque teintée de retour aux sources grecques (Tauride, Chersonèse).\n"
+                    "Les grandes steppes incultes du sud — en Nouvelle Russie — sont colonisées par des paysans venus de tout l'Empire, mais aussi d'Allemagne — notamment les mennonites — ou de Hollande, appelés par l'impératrice en échange de privilèges fiscaux"
                 ]
             ],
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/2/26/Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg/330px-Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/2/26/Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg/440px-Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg/330px-Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/2/26/Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg/440px-Ivan_Constantinovich_Aivazovsky_-_The_Russian_Squadron_on_the_Sebastopol_Roads.jpg 2x",
                     "La flotte russe de la mer Noire dans la rade de Sébastopol en 1846."
                 ]
             ],
@@ -1662,7 +1662,8 @@ let ukraineFrenchWikipediaPage = {
                     "Les élites russes considèrent les Ukrainiens comme des « Petits Russes ».\n La culture ukrainienne connaît une renaissance au milieu du XIXe siècle, en parallèle avec le mouvement régionaliste à la même époque en Europe",
                     "C'est alors qu'apparaît de plus en plus le terme d'Ukraine — Oukraïna signifiant « à la marche », terme employé surtout dans la langue ecclésiastique depuis le XVIe siècle — relancé par les intellectuels à la fin du XIXe siècle",
                     "Il ne forme dans les territoires de l'actuelle Ukraine, comme partout ailleurs dans l'Empire — à l'exception du grand duché de Finlande traité différemment — que différents gouvernements ou provinces — gouvernement de Kiev, gouvernement de Tchernigov, gouvernement d'Ekaterinoslav, gouvernement de Kherson, etc. — au sein de plusieurs entités : Petite Russie, Nouvelle Russie (correspondant en partie aux territoires enlevés à l'Empire ottoman), parties de la Bessarabie, etc",
-                    "Le négoce se développe parallèlement avec l'extension du chemin de fer et cette « grande marche vers le sud » et l'ouest.\n"
+                    "Les différentes formes d'ukrainien ne sont plus parlées que par une frange de la paysannerie et certains cercles cultivés de régionalistes : instituteurs, universitaires, ecclésiastiques.\n De grandes villes sont fondées sous l'Empire russe, comme Odessa — port cosmopolite à forte minorité juive — mentionné plus haut et Ekaterinoslav, Sébastopol, etc",
+                    "En effet, après l'abolition du servage en 1861, l'industrialisation provoque un exode rural de paysans russes, ukrainiens, ruthènes, etc"
                 ]
             ]
         ],
@@ -1676,7 +1677,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/5/54/L%C3%BCbA_-_Sonderdepesche.jpg/330px-L%C3%BCbA_-_Sonderdepesche.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/54/L%C3%BCbA_-_Sonderdepesche.jpg/440px-L%C3%BCbA_-_Sonderdepesche.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/L%C3%BCbA_-_Sonderdepesche.jpg/330px-L%C3%BCbA_-_Sonderdepesche.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/54/L%C3%BCbA_-_Sonderdepesche.jpg/440px-L%C3%BCbA_-_Sonderdepesche.jpg 2x",
                     "Édition spéciale du journal Lübeckische Anzeigen (« Feuille spéciale des Annonces de Lübeck »), No 139 du , titrée Paix avec l'Ukraine."
                 ]
             ],
@@ -1700,9 +1701,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/0/07/Ukraine-growth.png/450px-Ukraine-growth.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/07/Ukraine-growth.png/600px-Ukraine-growth.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Ukraine-growth.png/450px-Ukraine-growth.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/07/Ukraine-growth.png/600px-Ukraine-growth.png 2x",
                     "La formation territoriale de l'Ukraine moderne.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg/330px-Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg/440px-Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg/330px-Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg/440px-Flag_of_the_Ukrainian_Soviet_Socialist_Republic.svg.png 2x",
                     "Le drapeau conational de la RSS d'Ukraine."
                 ]
             ],
@@ -1717,14 +1718,16 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/a/a3/GolodomorKharkiv.jpg/330px-GolodomorKharkiv.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a3/GolodomorKharkiv.jpg/440px-GolodomorKharkiv.jpg 2x",
-                    "Victimes de l'Holodomor à Kharkiv en 1933."
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/GolodomorKharkiv.jpg/330px-GolodomorKharkiv.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a3/GolodomorKharkiv.jpg/440px-GolodomorKharkiv.jpg 2x",
+                    "Victimes de l'Holodomor à Kharkiv en 1933.",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/L%27Ouragan_Rouge%2C_Nicolas_Belina-Podgaetsky.jpg/330px-L%27Ouragan_Rouge%2C_Nicolas_Belina-Podgaetsky.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c5/L%27Ouragan_Rouge%2C_Nicolas_Belina-Podgaetsky.jpg/440px-L%27Ouragan_Rouge%2C_Nicolas_Belina-Podgaetsky.jpg 2x",
+                    "Couverture du livre L'Ouragan rouge de Nicolas Belina-Podgaetsky"
                 ]
             ],
             [
                 "p",
                 [
-                    "Entre 1931 et 1933, une série de famines et l'intensification de la « dékoulakisation » frappent l'Union soviétique et ravagent particulièrement l'Ukraine, alors que cette région était la plus fertile de toute l'URSS",
+                    "\nEntre 1931 et 1933, une série de famines , et l'intensification de la « dékoulakisation » frappent l'Union soviétique et ravagent particulièrement l'Ukraine, alors que cette région était la plus fertile de toute l'URSS",
                     "Les Ukrainiens l'appellent « Holodomor » ou « l'extermination par la faim »,  Bien que le gouvernement soviétique ait pris soin de ne jamais écrire qu'il faut « exterminer par la faim » les paysans réticents, les documents déclassifiés montrent qu'il a pour le moins utilisé ces famines, s'il ne les a pas sciemment provoquées, pour briser la paysannerie et le nationalisme ukrainiens, même si le peuple russe a lui aussi été victime des mêmes famines.\n Des exécutions et des déportations d'Ukrainiens accusés de nationalisme sont organisées durant les purges staliniennes de 1937 1939 : plusieurs millions d'Ukrainiens sont exécutés ou envoyés vers des camps de travail soviétiques, comme le sont aussi tous les suspects de nationalisme dit « bourgeois », les Russes en premier",
                     "En outre, le marxisme léninisme appliqué par le Kremlin prône l'athéisme d'État et s'attaque aux symboles religieux, détruisant les églises et les cathédrales de toute l'URSS et des millions de croyants en majorité orthodoxes, mais aussi d'autres obédiences chrétiennes, sont envoyés au Goulag",
                     "Ce partage impérialiste avec l'Allemagne nazie transgresse en effet le code d'honneur anti impérialiste et antifasciste porté par le régime [soviétique]. » En juin 1940, c'est le tour de la Bucovine du Nord et du Boudjak, pris à la Roumanie d'être pris par l'URSS.\n"
@@ -1733,7 +1736,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ruined_Kiev_in_WWII.jpg/330px-Ruined_Kiev_in_WWII.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ruined_Kiev_in_WWII.jpg/440px-Ruined_Kiev_in_WWII.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ruined_Kiev_in_WWII.jpg/330px-Ruined_Kiev_in_WWII.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Ruined_Kiev_in_WWII.jpg/440px-Ruined_Kiev_in_WWII.jpg 2x",
                     "Kiev en ruine à la fin de la Seconde Guerre mondiale."
                 ]
             ],
@@ -1758,7 +1761,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/4/43/RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg/330px-RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/43/RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg/440px-RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg/330px-RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/43/RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg/440px-RIAN_archive_848095_Signing_the_Agreement_to_eliminate_the_USSR_and_establish_the_Commonwealth_of_Independent_States.jpg 2x",
                     "Accord de Minsk : dislocation de l'URSS, 8 décembre 1991."
                 ]
             ],
@@ -1780,21 +1783,21 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Morning_first_day_of_Orange_Revolution.jpg/330px-Morning_first_day_of_Orange_Revolution.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Morning_first_day_of_Orange_Revolution.jpg/440px-Morning_first_day_of_Orange_Revolution.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Morning_first_day_of_Orange_Revolution.jpg/330px-Morning_first_day_of_Orange_Revolution.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Morning_first_day_of_Orange_Revolution.jpg/440px-Morning_first_day_of_Orange_Revolution.jpg 2x",
                     "Révolution orange en décembre 2004."
                 ]
             ],
             [
                 "p",
                 [
-                    "La situation de l'Ukraine, coincée entre la Russie et l'Union européenne, devient difficile dès 2004 avec la Révolution orange, marquant l'opposition entre deux parties de la société, celle majoritairement pro européenne et occidentale (surtout à l'ouest du pays) et celle russophile (surtout à l'est du pays)",
+                    "La situation de l'Ukraine, entre la Russie et l'Union européenne, devient difficile dès 2004 avec la Révolution orange, marquant l'opposition entre deux parties de la société, celle majoritairement pro européenne et occidentale (surtout à l'ouest du pays) et celle russophile (surtout à l'est du pays)",
                     "La difficile élection du candidat pro européen Viktor Iouchtchenko marque le début de relations tendues avec la Russie qui n'admet pas la prise de distance de l'ancienne république soviétique, jusqu'alors restée alliée de Moscou"
                 ]
             ],
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg/330px-2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg/440px-2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg/330px-2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/e2/2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg/440px-2014-12-20._%D0%9F%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA_%D1%81%D0%BE%D0%BB%D0%B8%D0%B4%D0%B0%D1%80%D0%BD%D0%BE%D1%81%D1%82%D0%B8_054.jpg 2x",
                     "République populaire de Donetsk en décembre 2014."
                 ]
             ],
@@ -1827,9 +1830,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ukraine_topo_en.jpg/330px-Ukraine_topo_en.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ukraine_topo_en.jpg/440px-Ukraine_topo_en.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ukraine_topo_en.jpg/330px-Ukraine_topo_en.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ukraine_topo_en.jpg/440px-Ukraine_topo_en.jpg 2x",
                     "Carte du relief de l'Ukraine.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ukraine-Historical_regions.png/330px-Ukraine-Historical_regions.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ukraine-Historical_regions.png/440px-Ukraine-Historical_regions.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ukraine-Historical_regions.png/330px-Ukraine-Historical_regions.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/57/Ukraine-Historical_regions.png/440px-Ukraine-Historical_regions.png 2x",
                     "Régions historiques de l'actuelle Ukraine."
                 ]
             ],
@@ -1854,6 +1857,7 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "L'Ukraine comporte diverses régions historiques, dont certaines, comme l'oblast de Ruthénie subcarpathique ou la république autonome de Crimée, peuvent correspondre à une subdivision administrative actuelle",
+                    "Certaines de ces régions historiques, comme la Volhynie et la Galicie — jadis polono lituaniennes —, la Bukovine — autrefois moldave — ou la Méotide — auparavant tatare criméenne — se prolongent également dans les pays voisins",
                     "D'autres sont intégralement ukrainiennes : la Podolie — jadis polono lituanienne — le Boudjak et le Yedisan — autrefois turcs —, la Tauride et la Crimée, auparavant tatares sous suzeraineté turque",
                     "La plus vaste des régions historiques est la Zaporogue, pays des Cosaques du même nom, héritée des rapides du Dniepr.\n"
                 ]
@@ -1869,9 +1873,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/6/6d/UkraineNumbered.png 1.5x",
+                    "https://upload.wikimedia.org/wikipedia/commons/6/6d/UkraineNumbered.png 1.5x",
                     "L'Ukraine découpée en  (régions) (1-3, 5-25) et une république autonome (4).",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Dniepr_river_in_Kyiv.jpg/330px-Dniepr_river_in_Kyiv.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Dniepr_river_in_Kyiv.jpg/440px-Dniepr_river_in_Kyiv.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Dniepr_river_in_Kyiv.jpg/330px-Dniepr_river_in_Kyiv.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Dniepr_river_in_Kyiv.jpg/440px-Dniepr_river_in_Kyiv.jpg 2x",
                     "Kiev, capitale et plus grande ville d'Ukraine."
                 ]
             ],
@@ -1883,7 +1887,6 @@ let ukraineFrenchWikipediaPage = {
                 ]
             ]
         ],
-        [],
         [
             [
                 "h4",
@@ -1919,9 +1922,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/6/66/Ukraine_ethnic_2001_by_regions_and_rayons.PNG/330px-Ukraine_ethnic_2001_by_regions_and_rayons.PNG 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/6/66/Ukraine_ethnic_2001_by_regions_and_rayons.PNG/440px-Ukraine_ethnic_2001_by_regions_and_rayons.PNG 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Ukraine_ethnic_2001_by_regions_and_rayons.PNG/330px-Ukraine_ethnic_2001_by_regions_and_rayons.PNG 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/6/66/Ukraine_ethnic_2001_by_regions_and_rayons.PNG/440px-Ukraine_ethnic_2001_by_regions_and_rayons.PNG 2x",
                     "Carte ethnique (2001).",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ukraine_population.svg/330px-Ukraine_population.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ukraine_population.svg/440px-Ukraine_population.svg.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ukraine_population.svg/330px-Ukraine_population.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Ukraine_population.svg/440px-Ukraine_population.svg.png 2x",
                     "Évolution de la population entre 1950 et 2019."
                 ]
             ],
@@ -1929,7 +1932,8 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "D'après le recensement de 2001, la répartition ethnique des citoyens ukrainiens (sur une base déclarative qui ne correspond pas nécessairement à la langue maternelle) est la suivante :  ;  ; ",
-                    "La classification « autres » comprend des minorités linguistiques comme les Bulgares, les Roumanophones ou les Gagaouzes du Boudjak, ou bien religieuses comme les Juifs, ou bien les deux comme les Tatars de Crimée (, musulmans et turcophones)"
+                    "La classification « autres » comprend des minorités linguistiques comme les Bulgares, les Roumanophones ou les Gagaouzes du Boudjak, ou bien religieuses comme les Juifs, ou bien les deux comme les Tatars de Crimée (, musulmans et turcophones)",
+                    "Il y aurait donc 75,8 % d'Ukrainiens et environ 1 % de Ruthènes, selon les estimations.\n Plus d'un million d'Ukrainiens ont quitté leur pays depuis 1991 avec pour destinations privilégiées : l'Australie, les États Unis, le Canada, Israël, l’Union européenne.\n"
                 ]
             ]
         ],
@@ -1943,9 +1947,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ukraine_L_Ukrain_2001.png/330px-Ukraine_L_Ukrain_2001.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ukraine_L_Ukrain_2001.png/440px-Ukraine_L_Ukrain_2001.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ukraine_L_Ukrain_2001.png/330px-Ukraine_L_Ukrain_2001.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ukraine_L_Ukrain_2001.png/440px-Ukraine_L_Ukrain_2001.png 2x",
                     "Proportion d'habitants de langue maternelle ukrainienne lors du recensement de 2001",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/0/00/Ukraine_L_Russe_2001.png/330px-Ukraine_L_Russe_2001.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/00/Ukraine_L_Russe_2001.png/440px-Ukraine_L_Russe_2001.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Ukraine_L_Russe_2001.png/330px-Ukraine_L_Russe_2001.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/00/Ukraine_L_Russe_2001.png/440px-Ukraine_L_Russe_2001.png 2x",
                     "Proportion d'habitants de langue maternelle russe lors du recensement de 2001"
                 ]
             ],
@@ -1968,14 +1972,16 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ukraine_einfach_Wahlen_3WG_english.png/330px-Ukraine_einfach_Wahlen_3WG_english.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ukraine_einfach_Wahlen_3WG_english.png/440px-Ukraine_einfach_Wahlen_3WG_english.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ukraine_einfach_Wahlen_3WG_english.png/330px-Ukraine_einfach_Wahlen_3WG_english.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Ukraine_einfach_Wahlen_3WG_english.png/440px-Ukraine_einfach_Wahlen_3WG_english.png 2x",
                     "Résultats de l'élection présidentielle de 2004 lors du « troisième tour »."
                 ]
             ],
             [
                 "p",
                 [
-                    "La Constitution a été adoptée par le Parlement le , après qu'un accord fut conclu entre le Parlement et le président en 1995.\n L'Ukraine est une démocratie parlementaire où les pouvoirs présidentiels sont étendus (quoique réduits au profit du parlement)"
+                    "La Constitution a été adoptée par le Parlement le , après qu'un accord fut conclu entre le Parlement et le président en 1995.\n L'Ukraine est une démocratie parlementaire où les pouvoirs présidentiels sont étendus (quoique réduits au profit du parlement)",
+                    "Il nomme le Premier ministre avec l'accord de la Rada qui est le parlement.\n Le Parlement monocaméral (Verkhovna Rada ou plus simplement Rada) est composé de 450 députés élus au suffrage universel direct pour un mandat de cinq ans (quatre ans avant 2006)",
+                    "Le mode de scrutin est mixte (car il combine à la fois scrutin proportionnel et scrutin majoritaire) jusqu'en 2006 puis uniquement proportionnel.\n La Cour constitutionnelle contrôle la constitutionnalité des lois et peut être saisie entre autres par la Cour suprême d'Ukraine, le président ou le Parlement.\n"
                 ]
             ]
         ],
@@ -1989,9 +1995,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/4/40/Viktor_Yushchenko_by_Tasnimnews_01.jpg/330px-Viktor_Yushchenko_by_Tasnimnews_01.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/40/Viktor_Yushchenko_by_Tasnimnews_01.jpg/440px-Viktor_Yushchenko_by_Tasnimnews_01.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Viktor_Yushchenko_by_Tasnimnews_01.jpg/330px-Viktor_Yushchenko_by_Tasnimnews_01.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/40/Viktor_Yushchenko_by_Tasnimnews_01.jpg/440px-Viktor_Yushchenko_by_Tasnimnews_01.jpg 2x",
                     "Viktor Iouchtchenko.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Joesjtsjenko_Marion_Kiev_2004.jpg/330px-Joesjtsjenko_Marion_Kiev_2004.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Joesjtsjenko_Marion_Kiev_2004.jpg/440px-Joesjtsjenko_Marion_Kiev_2004.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Joesjtsjenko_Marion_Kiev_2004.jpg/330px-Joesjtsjenko_Marion_Kiev_2004.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Joesjtsjenko_Marion_Kiev_2004.jpg/440px-Joesjtsjenko_Marion_Kiev_2004.jpg 2x",
                     "Révolution orange, 2004."
                 ]
             ],
@@ -2015,8 +2021,7 @@ let ukraineFrenchWikipediaPage = {
                 [
                     "Les élections législatives qui suivirent ont eu lieu le ",
                     "Le Parti des Régions du pro russe Viktor Ianoukovytch a obtenu 32,12 % de voix (), le Bloc de Ioulia Tymochenko (BUT) 22,27 % de voix () et le Parti présidentiel Notre Ukraine 13,94 % de voix ().\n La coalition parlementaire « orange » (Notre Ukraine — Bloc de Ioulia Tymochenko (BIT) — Parti socialiste) difficilement constituée après plus de deux mois de débats, a éclaté le , à la suite de la défection surprise du socialiste Oleksandr Moroz élu président du Parlement avec le soutien de l'opposition pro russe",
-                    "Cette défection a entraîné le ralliement des socialistes à la formation Parti des Régions – Communistes et à la création d'une nouvelle alliance majoritaire ( sur 450), cette fois dirigée par l'ex Premier ministre Viktor Ianoukovytch.\n À la suite des pourparlers entre Iouchtchenko et Ianoukovytch entamés le , les deux anciens rivaux se sont mis d'accord sur la signature du pacte de l'unité nationale (Universal), qui marque les concessions politiques des deux côtés (entre autres, la soumission au référendum de la question de l'entrée du pays dans l'OTAN)",
-                    "Le groupe du Bloc Ioulia Tymochenko, jadis un allié de « Notre Ukraine », qui a quitté le siège de la Rada le 20 juillet en exigeant la tenue des législatives anticipées, n'a pas signé l'Universal"
+                    "Cette défection a entraîné le ralliement des socialistes à la formation Parti des Régions – Communistes et à la création d'une nouvelle alliance majoritaire ( sur 450), cette fois dirigée par l'ex Premier ministre Viktor Ianoukovytch.\n À la suite des pourparlers entre Iouchtchenko et Ianoukovytch entamés le , les deux anciens rivaux se sont mis d'accord sur la signature du pacte de l'unité nationale (Universal), qui marque les concessions politiques des deux côtés (entre autres, la soumission au référendum de la question de l'entrée du pays dans l'OTAN)"
                 ]
             ]
         ],
@@ -2046,7 +2051,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Ukr_elections_2012_multimandate_okruhs.png/330px-Ukr_elections_2012_multimandate_okruhs.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Ukr_elections_2012_multimandate_okruhs.png/440px-Ukr_elections_2012_multimandate_okruhs.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Ukr_elections_2012_multimandate_okruhs.png/330px-Ukr_elections_2012_multimandate_okruhs.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Ukr_elections_2012_multimandate_okruhs.png/440px-Ukr_elections_2012_multimandate_okruhs.png 2x",
                     "Élections législatives ukrainiennes de 2012."
                 ]
             ],
@@ -2076,7 +2081,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg/330px-Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg/440px-Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg/330px-Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg/440px-Euromaidan_Kyiv_1-12-13_by_Gnatoush_004.jpg 2x",
                     "Euromaïdan, Kiev, décembre 2013."
                 ]
             ],
@@ -2085,9 +2090,12 @@ let ukraineFrenchWikipediaPage = {
                 [
                     "Au fil des jours, la capitale ukrainienne (Kiev) se transforme en champ de bataille",
                     "La légitimité de Viktor Ianoukovytch est d'autant plus remise en cause après la mort de 75 manifestants tués par balle le jeudi .\n Le , Viktor Ianoukovytch quitte Kiev pour Kharkiv et le régime politique est renversé",
-                    "Alors que des rumeurs évoquent sa démission, le président dément, refuse de démissionner, parle d'un « coup d'État » qu'il compare à l'arrivée des Nazis en Allemagne",
+                    "Dans le même temps la libération de l'ancienne Première Ministre Ioulia Tymochenko est votée et Oleksandr Tourtchynov est choisi pour diriger pour quelques mois l'Ukraine par intérim.\n Les manifestants et la presse ont pu entrer facilement dans la Mejyhiria, la résidence de l'ancien président située dans la banlieue de Kiev",
                     "Ceux ci ont été choqués par le train de vie que menait Viktor Ianoukovytch dans celle ci.\n En fin de compte, les affrontements ont fait au moins 82 morts chez les manifestants et 16 morts chez les forces de l'ordre (Berkout).\n Après un bref passage par l'Est de l'Ukraine, le président déchu Viktor Ianoukovytch s'est réfugié en Russie",
-                    "Un mandat d'arrêt est lancé contre lui pour « meurtres de masse ».\n Le 11 mars, le Conseil suprême de Crimée proclame l'indépendance de la République autonome de Crimée, indépendance qui sera entérinée à la suite d'un référendum qui s'est tenu le 16 mars, et lors duquel la population a voté à une écrasante majorité pour un rattachement à la Russie"
+                    "Un mandat d'arrêt est lancé contre lui pour « meurtres de masse ».\n Parallèlement à ces événements, des manifestations anti Maïdan se propagent dans les régions du sud et de l'est où Viktor Ianoukovitch avec le Parti des régions était majoritaire et où la langue russe est dans certains territoires prédominante comme à l'est du Donbass",
+                    "Une guerre qui, en dépit des négociations de Minsk et des tentatives de cessez le feu, se poursuivra pendant des années et sera alimentée par un soutien militaire russe aux séparatistes",
+                    "Le projet de ces derniers est plus radical que la fédéralisation car ils souhaitent créer un état indépendant de Kiev mais pro russe, la Nouvelle Russie, dans le Donbass, voire même dans toute cette moitié sud est de l'Ukraine jusqu'à la Transnistrie en Moldavie en incluant aussi la Crimée avant qu'elle soit annexée par référendum à la Russie",
+                    "\n Le 11 mars, le Conseil suprême de Crimée proclame l'indépendance de la République autonome de Crimée, indépendance qui sera entérinée à la suite d'un référendum qui s'est tenu le 16 mars, et lors duquel la population a voté à une écrasante majorité pour un rattachement à la Russie"
                 ]
             ]
         ],
@@ -2101,7 +2109,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/0/02/Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg/330px-Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/02/Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg/440px-Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg/330px-Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/0/02/Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg/440px-Normandy_format_talks_in_Minsk_%28February_2015%29_03.jpeg 2x",
                     "Dirigeants de la Biélorussie, de la Russie, de l'Allemagne, de la France et de l'Ukraine le 11 et  2015 à Minsk."
                 ]
             ],
@@ -2136,7 +2144,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Volodymyr_Zelensky_Official_portrait.jpg/255px-Volodymyr_Zelensky_Official_portrait.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Volodymyr_Zelensky_Official_portrait.jpg/340px-Volodymyr_Zelensky_Official_portrait.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Volodymyr_Zelensky_Official_portrait.jpg/255px-Volodymyr_Zelensky_Official_portrait.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Volodymyr_Zelensky_Official_portrait.jpg/340px-Volodymyr_Zelensky_Official_portrait.jpg 2x",
                     "Portrait officiel de Volodymyr Zelensky (2019)."
                 ]
             ],
@@ -2144,7 +2152,6 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "L'élection présidentielle de mars  porte au pouvoir l'humoriste et comédien Volodymyr Zelensky, qui, après avoir éliminé dès le premier tour Ioulia Tymochenko, pourtant donnée favorite durant toute l'année 2018, récolte 73 % des voix au second tour face à un Porochenko affaibli par cinq années de guerre et de corruption",
-                    "Se présentant comme un candidat antisystème, Zelensky a mené une campagne atypique axée avant tout sur les réseaux sociaux, jouant de l'identification avec le personnage de professeur d'histoire élu président qu'il incarne depuis 2015 dans la série télévisée Serviteur du peuple",
                     "Lors de son investiture le , Zelensky dissout le Parlement, où son parti ne compte aucun député, et provoque des élections législatives anticipées : cette décision est jugée anticonstitutionnelle par une partie de la classe politique, dont le Premier ministre Volodymyr Hroïsman, qui donne sa démission",
                     "Le scrutin, qui a lieu le  avec un taux de participation de 49,8 %, donne la victoire au parti de Zelensky avec une majorité absolue de  sur 450.\n Volodymyr Zelensky fait de la lutte contre la corruption l'un des grands axes de sa présidence : à cet effet, il met en place de nombreuses mesures anticorruption, dont une loi engageant la responsabilité pénale des fonctionnaires reconnus coupables de déclarations de revenus mensongères",
                     "Zelensky réussit néanmoins à faire passer le  une loi visant à limiter le pouvoir des oligarques, riches hommes d'affaires qui influencent la vie publique ukrainienne, en les recensant dans un registre",
@@ -2154,7 +2161,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/5/52/Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg/330px-Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/52/Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg/440px-Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg/330px-Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/5/52/Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg/440px-Zelensky%2C_Merkel%2C_Macron%2C_Putin%2C_%282019-12-10%29_01.jpg 2x",
                     "Volodymyr Zelensky (à g.) avec Angela Merkel, Emmanuel Macron et Vladimir Poutine lors d'une conférence pour la paix le ."
                 ]
             ],
@@ -2168,7 +2175,6 @@ let ukraineFrenchWikipediaPage = {
                 ]
             ]
         ],
-        [],
         [
             [
                 "h2",
@@ -2180,12 +2186,12 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/a/a5/20_hryvnia_2018_front.jpg/330px-20_hryvnia_2018_front.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a5/20_hryvnia_2018_front.jpg/440px-20_hryvnia_2018_front.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/20_hryvnia_2018_front.jpg/330px-20_hryvnia_2018_front.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/a/a5/20_hryvnia_2018_front.jpg/440px-20_hryvnia_2018_front.jpg 2x",
                     "Billet de 20 hryvnia à l'effigie d'Ivan Franko.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/4/48/%D0%94%D0%9C%D0%97_024.jpg/330px-%D0%94%D0%9C%D0%97_024.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/48/%D0%94%D0%9C%D0%97_024.jpg/440px-%D0%94%D0%9C%D0%97_024.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/%D0%94%D0%9C%D0%97_024.jpg/330px-%D0%94%D0%9C%D0%97_024.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/48/%D0%94%D0%9C%D0%97_024.jpg/440px-%D0%94%D0%9C%D0%97_024.jpg 2x",
                     "Industrie de Donetsk.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antonov_An-225.jpg/330px-Antonov_An-225.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antonov_An-225.jpg/440px-Antonov_An-225.jpg 2x",
-                    "L'An-225, le plus gros avion cargo du monde."
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antonov_An-225.jpg/330px-Antonov_An-225.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Antonov_An-225.jpg/440px-Antonov_An-225.jpg 2x",
+                    "L'An-225, qui était le plus gros avion cargo du monde."
                 ]
             ],
             [
@@ -2196,7 +2202,8 @@ let ukraineFrenchWikipediaPage = {
                     "Le secteur agricole est cependant en repli dans d'autres domaines : sur les six premières années de la décennie 2010, le pays n'a jamais regagné sa place au palmarès des huit plus grands producteurs mondiaux de sucre.\n Les ressources minières (fer, charbon, uranium, potasse, etc.) jouent également un rôle important",
                     "En 2015, en dépit de la guerre du Donbass, l'Ukraine reste dépendante de la Russie pour 21 % de ses importations et 12 % de ses exportations\n La monnaie nationale, la hryvnia, a été introduite en 1996 et a contribué à réduire l'hyperinflation qui régnait alors.\n De 1989 à 1999, le PIB s'est effondré de 60 %, passant de 467 milliards de dollars internationaux à 172 milliards, puis est remonté à 312 milliards jusqu'à la crise de 2008, depuis laquelle le PIB a tendance à diminuer irrégulièrement (PIB en 2012 : 292 milliards de dollars internationaux).\n En 2001, le gouvernement prit la décision d'accélérer le processus d'adhésion à l'Organisation mondiale du commerce (OMC), cependant les résultats ne furent pas aussi bons que prévu",
                     "L'objectif était d'entrer dans l'OMC en  (le seul pays s'y opposant étant le Kirghizistan), entrée qui fut le .\n La crise politique de 2006 aurait pu affecter l'économie ukrainienne en raison de la longueur de la désignation du Premier ministre",
-                    "Grâce aux exportations, la croissance a repris en 2010, mais les conditions extérieures sont susceptibles d'entraver les efforts pour la reprise économique en 2011.\n Le conflit armé a eu un impact non négligeable sur l'activité économique du pays, le PIB baissant de 6,6 % en 2014, puis de 9,8 % en 2015 pour se redresser légèrement en 2016 (2,3 %)"
+                    "Grâce aux exportations, la croissance a repris en 2010, mais les conditions extérieures sont susceptibles d'entraver les efforts pour la reprise économique en 2011.\n Le conflit armé a eu un impact non négligeable sur l'activité économique du pays, le PIB baissant de 6,6 % en 2014, puis de 9,8 % en 2015 pour se redresser légèrement en 2016 (2,3 %)",
+                    "De 2013 à 2017, le PIB a ainsi connu une baisse de 49 % ne totalisant que 93 milliards de dollars en 2017 pour 183 en 2013"
                 ]
             ]
         ],
@@ -2210,7 +2217,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/f/fe/%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg/330px-%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fe/%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg/440px-%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg/330px-%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/f/fe/%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg/440px-%D0%90%D0%B2%D1%82%D0%BE%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%9A%D0%B8%D1%97%D0%B2_%E2%80%94_%D0%9E%D0%B4%D0%B5%D1%81%D0%B0%2C_%D1%81._%D0%92%D1%96%D1%82%D0%B0-%D0%9F%D0%BE%D1%88%D1%82%D0%BE%D0%B2%D0%B0_003.jpg 2x",
                     "Section de la route européenne 95 - autoroute M05 près de Kiev."
                 ]
             ],
@@ -2231,7 +2238,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Ukraine_Major_Roads.png/330px-Ukraine_Major_Roads.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Ukraine_Major_Roads.png/440px-Ukraine_Major_Roads.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Ukraine_Major_Roads.png/330px-Ukraine_Major_Roads.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Ukraine_Major_Roads.png/440px-Ukraine_Major_Roads.png 2x",
                     "Réseau routier ukrainien."
                 ]
             ],
@@ -2239,7 +2246,6 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "Le réseau routier comprend 169 652 kilomètres de routes dont 47 000 kilomètres de routes nationales et 122 000 kilomètres de routes locales",
-                    "La proportion de voies rapides est faible (0,28 kilomètre par km² soit 6,6 moins dense qu'en France) et le pays ne dispose que de 280 kilomètres d'autoroutes",
                     "Ce réseau routier, qui est en très mauvais état, fait l'objet de gros investissements en 2020 et 2021 pour commencer à le remettre à niveau.\n"
                 ]
             ]
@@ -2254,7 +2260,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ukrainian_Railways_%28subdivisions%29.png/330px-Ukrainian_Railways_%28subdivisions%29.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ukrainian_Railways_%28subdivisions%29.png/440px-Ukrainian_Railways_%28subdivisions%29.png 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ukrainian_Railways_%28subdivisions%29.png/330px-Ukrainian_Railways_%28subdivisions%29.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Ukrainian_Railways_%28subdivisions%29.png/440px-Ukrainian_Railways_%28subdivisions%29.png 2x",
                     "Plan du réseau ferré ukrainien."
                 ]
             ],
@@ -2262,14 +2268,13 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "L'Ukraine dispose d'un des plus grands réseaux ferroviaire d'Europe avec 20 952 kilomètres de voies ferrées dont 9 926 kilomètres sont électrifiés",
-                    "Le ministère des infrastructures ukrainien estimait en 2019 que 97 % du parc roulant devait être modernisé ou remplacé",
                     "La compagnie de chemins de fer nationale Ukrzaliznytsia prévoyait d'investir en 2 021 321 millions US$ dans la réparation de 400 kilomètres de voies et la modernisation 800 kilomètres ainsi que dans l'électrification de plusieurs itinéraires .\n Le transport ferroviaire international joue un rôle important car il est utilisé par 60 % des exportations en 2008 (le deuxième d'Europe) et s'élevait à 164,025 milliards de tonnes kilomètres"
                 ]
             ],
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Metro_Kharkiv_%28Sportyvna%29.jpg/330px-Metro_Kharkiv_%28Sportyvna%29.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Metro_Kharkiv_%28Sportyvna%29.jpg/440px-Metro_Kharkiv_%28Sportyvna%29.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Metro_Kharkiv_%28Sportyvna%29.jpg/330px-Metro_Kharkiv_%28Sportyvna%29.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Metro_Kharkiv_%28Sportyvna%29.jpg/440px-Metro_Kharkiv_%28Sportyvna%29.jpg 2x",
                     "Station du métro de Kharkiv."
                 ]
             ],
@@ -2291,7 +2296,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg/330px-Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg/440px-Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg/330px-Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg/440px-Od%C4%9Bsa%2C_p%C5%99%C3%ADstav.jpg 2x",
                     "Terminal containers du port d'Odessa."
                 ]
             ],
@@ -2299,6 +2304,7 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "18 ports de commerce étaient recensés en 2013 sur sa façade maritime le long de la mer Noire et de la mer d'Azov",
+                    "Le plus important est celui d'Odessa, sur la mer Noire.\n Le réseau fluvial comprend 1 672 kilomètres de voies fluviales répartis sur neuf fleuves",
                     "Le Danube, le Dniepr et le Pripiat forment l'essentiel du réseau"
                 ]
             ]
@@ -2341,7 +2347,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg/330px-Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg/440px-Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg/330px-Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg/440px-Crimea_South_Coast_04-14_img10_Gaspra_Swallows_Nest.jpg 2x",
                     "Le Nid d'Hirondelles (Crimée)."
                 ]
             ],
@@ -2357,9 +2363,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/9/92/46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg/330px-46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/92/46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg/440px-46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg/330px-46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/92/46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg/440px-46-101-0548_Lviv_Latin_Cathedral_RB_18.jpg 2x",
                     "Le centre historique de Lviv.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Kiev_stmichael_May_2010.JPG/330px-Kiev_stmichael_May_2010.JPG 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Kiev_stmichael_May_2010.JPG/440px-Kiev_stmichael_May_2010.JPG 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Kiev_stmichael_May_2010.JPG/330px-Kiev_stmichael_May_2010.JPG 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Kiev_stmichael_May_2010.JPG/440px-Kiev_stmichael_May_2010.JPG 2x",
                     "Monastère Saint-Michel-au-Dôme-d'Or, Kiev."
                 ]
             ],
@@ -2386,7 +2392,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/e/e8/%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg/330px-%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/e8/%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg/440px-%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg/330px-%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/e/e8/%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg/440px-%D0%97%D0%B8%D0%BC%D0%BE%D0%B2%D1%96_%D1%80%D0%BE%D0%B7%D0%B2%D0%B0%D0%B3%D0%B8_%D0%B2%D0%BE%D0%B6%D0%B0%D0%BA%D0%B0.jpg 2x",
                     "Cheval de Przewalski dans la zone d'exclusion de Tchernobyl."
                 ]
             ],
@@ -2399,7 +2405,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/1/14/WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg/330px-WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/14/WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg/440px-WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg/330px-WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/1/14/WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg/440px-WLE_-_2020_-_%D0%9F%D1%96%D0%BF_%D0%86%D0%B2%D0%B0%D0%BD_%D0%9C%D0%B0%D1%80%D0%BC%D0%B0%D1%80%D0%BE%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_-_01.jpg 2x",
                     "Parc national des Carpates."
                 ]
             ],
@@ -2411,7 +2417,6 @@ let ukraineFrenchWikipediaPage = {
                 ]
             ]
         ],
-        [],
         [
             [
                 "h2",
@@ -2462,9 +2467,9 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/5/53/%D0%94%D0%BE%D0%B2%D0%B6%D0%B5%D0%BD%D0%BA%D0%BE_%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80.jpg 1.5x",
+                    "https://upload.wikimedia.org/wikipedia/commons/5/53/%D0%94%D0%BE%D0%B2%D0%B6%D0%B5%D0%BD%D0%BA%D0%BE_%D0%9E%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80.jpg 1.5x",
                     "Alexandre Dovjenko.",
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sergei_Loznitsa.jpg/255px-Sergei_Loznitsa.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sergei_Loznitsa.jpg/340px-Sergei_Loznitsa.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sergei_Loznitsa.jpg/255px-Sergei_Loznitsa.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Sergei_Loznitsa.jpg/340px-Sergei_Loznitsa.jpg 2x",
                     "Sergei Loznitsa."
                 ]
             ],
@@ -2501,7 +2506,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg/330px-%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg/440px-%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg/330px-%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4a/%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg/440px-%D0%92%D0%B0%D1%80%D0%B5%D0%BD%D0%B8%D0%BA%D0%B8_%D1%81_%D0%B2%D0%B8%D1%88%D0%BD%D0%B5%D0%B9.jpg 2x",
                     "Varenykys."
                 ]
             ],
@@ -2509,9 +2514,9 @@ let ukraineFrenchWikipediaPage = {
                 "p",
                 [
                     "La cuisine ukrainienne est une part importante de la culture nationale",
-                    "Le borchtch est une soupe traditionnelle servie en entrée",
                     "Elle est à base de betteraves et de légumes (chou, carottes, pommes de terre, oignons ou tomates) et de viande (poulet, porc ou bœuf).\n Le varenyky (Вареники) est un plat ukrainien traditionnel populaire et très ancré dans la cuisine ukrainienne",
-                    "Ressemblant à des raviolis, ils sont cependant plus volumineux et très similaires aux pelmeni russes, aux pierogi polonais voire aux buuz mongols"
+                    "Ressemblant à des raviolis, ils sont cependant plus volumineux et très similaires aux pelmeni russes, aux pierogi polonais voire aux buuz mongols",
+                    "Leur farce est constituée généralement de pommes de terre, mais il y a de nombreuses déclinaisons : fromages, fraises, cerises, champignons, choux, voire plusieurs combinaisons entre elles.\n"
                 ]
             ]
         ],
@@ -2525,7 +2530,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "img",
                 [
-                    "//upload.wikimedia.org/wikipedia/commons/thumb/3/33/St._Volodymyr%27s_Cathedral_in_Kiev.jpg/330px-St._Volodymyr%27s_Cathedral_in_Kiev.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/33/St._Volodymyr%27s_Cathedral_in_Kiev.jpg/440px-St._Volodymyr%27s_Cathedral_in_Kiev.jpg 2x",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/St._Volodymyr%27s_Cathedral_in_Kiev.jpg/330px-St._Volodymyr%27s_Cathedral_in_Kiev.jpg 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/3/33/St._Volodymyr%27s_Cathedral_in_Kiev.jpg/440px-St._Volodymyr%27s_Cathedral_in_Kiev.jpg 2x",
                     "Cathédrale Saint-Vladimir à Kiev."
                 ]
             ],
@@ -2538,7 +2543,6 @@ let ukraineFrenchWikipediaPage = {
                 ]
             ]
         ],
-        [],
         [
             [
                 "h2",
@@ -2560,7 +2564,7 @@ let ukraineFrenchWikipediaPage = {
             [
                 "h2",
                 [
-                    "Annexes"
+                    "Voir aussi"
                 ]
             ]
         ],
