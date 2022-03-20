@@ -26,10 +26,7 @@ const aggregatePageText = (contentList) => {
     let result = "";
     
     for(let section of contentList){
-        // Temporary condition until simplifier bug is fixed.
-        if(section.length != 0){
-            result += aggregateSectionText(section);
-        }
+        result += aggregateSectionText(section);
     }
 
     if(result.length == 0){

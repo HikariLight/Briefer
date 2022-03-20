@@ -25,13 +25,18 @@ const summarise = (contentList, language, mode="weak") =>{
     checkStringInput(language, "language", "summariser.js", "summarise()");
     checkStringInput(mode, "mode", "summariser.js", "summarise()");
 
-    let result = contentList;
+    let result = [];
     let text;
     let wordsScoresMap;
     let sentenceScoresMap;
     let threshold;
 
     if(mode === "weak"){
+        
+        // Local thresholds. Keeping all the sections.
+        
+        result = contentList;
+        
         try{
             for(let i = 0; i < result.length; i++){
                 if(paragraphExists(result[i])){
@@ -66,46 +71,75 @@ const summarise = (contentList, language, mode="weak") =>{
         }
     }
     
-    // else if(mode == "medium"){
-    //     // Universal threshold. Keeping all sections.
+    else if(mode == "medium"){
+        
+        // Universal threshold. Keeping major sections.
 
-    //     text = aggregatePageText(result);
-    //     wordsScoresMap = getWordScoresMap(text, language);
-    //     threshold = getAverageWeight(sentenceScoresMap);
+        try{
+            text = aggregatePageText(contentList);
+            wordsScoresMap = getWordScoresMap(text, language);
+            sentenceScoresMap = getSentenceScoresMap(text, wordsScoresMap);
 
-    // } 
+            threshold = getAverageWeight(sentenceScoresMap)
+
+            for(let section of contentList){
+                for(let element of section){
+                    
+                    if(element[0] == "h1" || element[0] == "h2" ){
+                        result.push([element]);
+                    }
+
+                    else if(element[0] == "img"){
+                        result.push([element]);
+                    }
+
+                    else if(element[0] == "p"){
+                        sentenceScoresMap = getSentenceScoresMap(element[1].join(" "), wordsScoresMap);
+                        let sentences = Object.keys(sentenceScoresMap);
+
+                        let summarisedParagraph = [];
+
+                        for(let sentence of sentences){
+                            if(sentenceScoresMap[sentence] >= threshold){
+                                summarisedParagraph.push(filterSentence(sentence, language));
+                            }
+                        }
+
+                        if(summarisedParagraph.length > 0){
+                            result.push([["p", summarisedParagraph]]);
+                        }
+                    }
+                }
+            }
+
+        } catch(error){
+            console.log(error);
+        }
+    } 
     
-    // else if(mode == "strong"){
-    //     // Universal threshold. Keeping major sections.
-
-    //     text = aggregatePageText(result);
-    //     wordsScoresMap = getWordScoresMap(text, language);
-    //     threshold = getAverageWeight(sentenceScoresMap);
-    // } 
-    
-    else if(mode == "extreme"){
+    else if(mode == "strong"){
 
         // Universal threshold. Keeping no sections.
 
         try{
-            text = aggregatePageText(result);
+            text = aggregatePageText(contentList);
             wordsScoresMap = getWordScoresMap(text, language);
             sentenceScoresMap = getSentenceScoresMap(text, wordsScoresMap);
-            
+
             threshold = getAverageWeight(sentenceScoresMap);
-    
+
             let sentences = Object.keys(sentenceScoresMap);
             let summarisedParagraph = [];
-    
+
             for(let k = 0; k < sentences.length; k++){
                 if(sentenceScoresMap[sentences[k]] >= threshold){
                     summarisedParagraph.push(filterSentence(sentences[k], language));
                 }
             }
     
-            result = [];
             let section = [contentList[0][0], ["p", summarisedParagraph]]
             result.push(section);
+
         } catch(error){
             console.log(error);
         }
