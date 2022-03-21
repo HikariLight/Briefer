@@ -1,6 +1,8 @@
 const arsTechnica = {
     "name": "arsTechnica",
+    "link": "https://arstechnica.com/tech-policy/2022/03/biden-considers-digital-dollar-heres-how-it-could-differ-from-regular-money/",
     "language": "en",
+    "length": 7457,
     "content": 
         [
             [ 
@@ -34,7 +36,9 @@ const arsTechnica = {
 
 let anandTech = {
     "name": "anandTech",
+    "link": "https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance",
     "language": "en",
+    "length": 7054,
     "content": 
         [
             [
@@ -153,7 +157,9 @@ let anandTech = {
 
 let theVerge = {
     "name": "theVerge",
+    "link": "https://www.theverge.com/22972996/apple-silicon-arm-double-size-mac-m1-pro-max-ultra-a15",
     "language": "en",
+    "length": 9408,
     "content":
     [
         [
@@ -274,7 +280,9 @@ let theVerge = {
 
 let ukraineEnglishWikipediaPage = {
     "name": "ukraineEnglishWikipediaPage",
+    "link": "https://en.wikipedia.org/wiki/Ukraine",
     "language": "en",
+    "length": 94322,
     "content": [
         [
             [
@@ -1525,7 +1533,9 @@ let ukraineEnglishWikipediaPage = {
 
 let ukraineFrenchWikipediaPage = {
     "name": "ukraineFrenchWikipediaPage",
+    "link": "https://fr.wikipedia.org/wiki/Ukraine",
     "language": "fr",
+    "length": 41090,
     "content": [
         [
             [
@@ -2589,4 +2599,4 @@ let ukraineFrenchWikipediaPage = {
 
 const testCases = [arsTechnica, anandTech, theVerge, ukraineEnglishWikipediaPage, ukraineFrenchWikipediaPage];
 
-export { arsTechnica, anandTech, theVerge, ukraineEnglishWikipediaPage, testCases };
+export { arsTechnica, anandTech, theVerge, ukraineEnglishWikipediaPage, ukraineFrenchWikipediaPage, testCases };
