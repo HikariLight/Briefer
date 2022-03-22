@@ -51,7 +51,7 @@ const getExecutionTimes = (results) => {
 }
 
 const getReductionResults = (results) => {
-    console.log("\n===== Effectiveness Times ===== ");
+    console.log("\n===== Effectiveness rates ===== ");
     for(let result in results){
         console.log(`\n--- ${result} ---`)
         for(let mode of modes){
@@ -61,5 +61,5 @@ const getReductionResults = (results) => {
 }
 
 getExecutionTimes(results);
-// getReductionResults(results);
+getReductionResults(results);
 checkErrors(errorLog);
