@@ -68,7 +68,6 @@ const getLatestPageId = () =>{
 
 async function processing() {
     // Generate render of simplify and summary content
-    localStorage.clear();
 
     let tab = await getTab(scrapeThePage);
 
