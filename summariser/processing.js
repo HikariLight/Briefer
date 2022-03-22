@@ -8,7 +8,7 @@ const aggregateSectionText = (section) =>{
     
     for(let element of section){
         if(element[0] == "p"){
-            result += element[1].join(" ");
+            result += element[1].join(" ") + " ";
         }
     }
 
