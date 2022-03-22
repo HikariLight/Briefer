@@ -68,7 +68,6 @@ const getLatestPageId = () =>{
 
 async function processing() {
     // Generate render of simplify and summary content
-    localStorage.clear();
 
     let tab = await getTab(scrapeThePage);
 
@@ -78,7 +77,7 @@ async function processing() {
     tab["pageId"] = pageId.toString();
 
     tab["simplifierRender"] = renderPage(tab, simply, 'simplify');
-    tab["summariserRender"] = renderPage(tab, summarise(simply, tab['language'], "weak"), 'summarise');
+    tab["summariserRender"] = renderPage(tab, summarise(simply, tab['language']), 'summarise');
     delete tab['html'];
 
     storeData(tab["pageId"], tab);
