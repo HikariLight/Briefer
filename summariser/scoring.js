@@ -1,6 +1,5 @@
-import { tokenizeWords, tokenizeSentences } from "./tokenization.js";
+import { tokenizeWords } from "./tokenization.js";
 import { getWordsMap, getSentenceMap } from "./mapping.js";
-import { filterText } from "./filters.js";
 import { punctuationFilter } from "./filters.js";
 import { getMostFrequent } from "./processing.js";
 import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
@@ -16,9 +15,7 @@ const getWordScoresMap = (text, language) =>{
     let getWordScoresMap = {};
 
     try{
-        let wordTokens = tokenizeWords(text);
-        wordTokens = filterText(wordTokens, language);
-        getWordScoresMap = getWordsMap(wordTokens);
+        getWordScoresMap = getWordsMap(text, language);
         let mostFrequent = getMostFrequent(getWordScoresMap);
 
         for(let word in getWordScoresMap){
@@ -70,8 +67,7 @@ const getSentenceScoresMap = (text, wordsMap) =>{
     checkStringInput(text, "text", "scoring.js", "getSentenceScoresMap()");
     checkObjectInput(wordsMap, "wordsMap", "scoring.js", "getSentenceScoresMap()");
 
-    let sentenceTokens = tokenizeSentences(text);
-    let getSentenceScoresMap = getSentenceMap(sentenceTokens);
+    let getSentenceScoresMap = getSentenceMap(text);
 
     for(let sentence in getSentenceScoresMap){
         getSentenceScoresMap[sentence] = scoreSentence(sentence, wordsMap);

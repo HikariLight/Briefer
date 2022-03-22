@@ -1,30 +1,38 @@
-import { checkObjectInput } from "../exceptionHandling.js";
+import { checkStringInput } from "../exceptionHandling.js";
+import { filterText } from "./filters.js";
+import { tokenizeWords, tokenizeSentences } from "./tokenization.js";
 
-const getWordsMap = (tokenizedWords) =>{
+const getWordsMap = (text, language) =>{
     
     // Returns a map of words and their occurences.
 
-    checkObjectInput(tokenizedWords, "tokenizedWords", "mapping.js", "getWordsMap()");
+    checkStringInput(text, "text", "mapping.js", "getWordsMap()");
+    checkStringInput(language, "language", "mapping.js", "getWordsMap()");
+
+    let wordTokens = tokenizeWords(text);
+    wordTokens = filterText(wordTokens, language);
 
     let wordsMap = {}
 
-    for(let i = 0; i < tokenizedWords.length; i++){
-        if(Object.keys(wordsMap).includes(tokenizedWords[i])){
-            wordsMap[tokenizedWords[i]] += 1;
+    for(let i = 0; i < wordTokens.length; i++){
+        if(Object.keys(wordsMap).includes(wordTokens[i])){
+            wordsMap[wordTokens[i]] += 1;
         }
         else{
-            wordsMap[tokenizedWords[i]] = 1;
+            wordsMap[wordTokens[i]] = 1;
         }
     }
 
     return wordsMap;
 }
 
-const getSentenceMap = (sentenceTokens) =>{
+const getSentenceMap = (text) =>{
 
     // Returns a dicitonary of sentences and a score initialized at 0.
 
-    checkObjectInput(sentenceTokens, "sentenceTokens", "mapping.js", "getSentenceMap()");
+    checkStringInput(text, "text", "mapping.js", "getSentenceMap()");
+
+    let sentenceTokens = tokenizeSentences(text);
 
     let sentenceMap = {};
 
