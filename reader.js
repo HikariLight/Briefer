@@ -1,14 +1,13 @@
+import { checkStringInput, checkObjectInput } from "../exceptionHandling.js";
 
 const unexpectedWebsite = ['https://www.facebook.com', 'https://web.whatsapp.com', 'https://www.instagram.com', 'https://www.tiktok.com', 'https://www.snapchat.com', 'https://www.reddit.com', 'https://www.pinterest.com', 'https://twitter.com', 'https://www.linkedin.com', 'https://www.youtube.com', 'https://www.dailymotion.com', 'chrome://', 'file://', 'chrome-extension://'];
 
 async function getHtml (tab, fct) {
-    // Execute script and return html source code
+    
+    // Input : Tab object, scraping function (cf popup.js)
+    // Output : String (html)
 
-    if ( typeof(tab) !== 'object' ) {
-        throw {
-            name : 'TypeError', message : '"tab" is ' + typeof(tab) +' instead of object', fileName : 'reader.js'
-        }
-    } 
+    checkObjectInput(tab, "tab", "reader.js", "getHtml()");
     
     if ( new RegExp(unexpectedWebsite.join('|')).test(tab.url) || tab.url === '') {
         throw {
@@ -44,31 +43,21 @@ async function getHtml (tab, fct) {
 }
 
 async function getActiveTab () {
+
+    // Output : Active Tab object
+
     const tabs = await chrome.tabs.query({ active : true, currentWindow : true });
     const tab = tabs[0];
     return tab;
 }
 
 async function getTabContent(tab, html) {
-    // Return a dictionnary of the essential information of the tab 
 
-    if ( typeof(tab) !== 'object' ) {
-        throw {
-            name : 'TypeError', message : '"tab" is ' + typeof(tab) +' instead of object', fileName : 'reader.js', functionName : 'getTabContent()', lineNumber : 35
-        }
-    }
+    // Input : Tab Object, Html String
+    // Output : Dictionnary [title, icon, url, language, datePublished, dateModified, html]
 
-    if ( html == null || html.length == 0 ) {
-        throw {
-            name : 'RangeError', message : '"html" is empty', fileName : 'reader.js', functionName : 'getTabContent()', lineNumber : 35
-        }
-    }
-
-    if ( typeof(html) != 'string' ) {
-        throw {
-            name : 'TypeError', message : '"html" is '+ typeof(html) +' instead of string', fileName : 'reader.js', functionName : 'getTabContent()', lineNumber : 35
-        }
-    } 
+    checkObjectInput(tab, "tab", "reader.js", "getTabContent()");
+    checkStringInput(html, "html", "reader.js", "getTabContent()");
 
     let content = {};
 
@@ -94,7 +83,10 @@ async function getTabContent(tab, html) {
 }
 
 export async function getTab(fct) {
-    
+
+    // Input : Scraping function
+    // Output : Dictionnary
+
     let content = {};
 
     let tab = await getActiveTab();
