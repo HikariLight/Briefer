@@ -10,7 +10,7 @@ const checkIfNull = (input, variableName, fileName, functionName) =>{
 }
 
 const checkLength = (input, variableName, fileName, functionName) =>{
-    if(input == null || input.length == 0){
+    if(input.length == 0){
         throw {
             name : 'EmptyInputError',
             message : `${variableName} is empty`,
