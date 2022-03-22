@@ -9,7 +9,7 @@ const paragraphExists = (section) =>{
 
     for(let element of section){
         if(element[0] == "p"){
-            exists = true;
+            return true;
         }
     }
 
@@ -35,10 +35,11 @@ const summarise = (contentList, language, mode="weak") =>{
         
         // Local thresholds. Keeping all the sections.
         
-        result = contentList;
-        
         try{
-            for(let i = 0; i < result.length; i++){
+            for(let i = 0; i < contentList.length; i++){
+
+                result.push(contentList[i])
+
                 if(paragraphExists(result[i])){
 
                     text = aggregateSectionText(result[i]);
