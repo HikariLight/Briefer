@@ -127,11 +127,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // document.getElementById('remember').addEventListener('click', async () => {
-    //     storeData('tabs', await getActiveTab());
-    // });
-
-    // document.getElementById('dashboard').addEventListener('click', async () => {
-    //     alert('not implemented yet');
-    // });
 });

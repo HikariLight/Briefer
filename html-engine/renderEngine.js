@@ -141,30 +141,18 @@ const renderProgressBar = () =>{
     
     <html>
     <head>
-        <title>ClearView</title>
+        <title>Briefer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style/popup.css">
     </head>
 
     <body>`;
 
-    result += `
-    <header>
-        <img id="nameLogo" src="./assets/name.svg" alt="Briefer">
-    </header>
-    `;
-
     result += "<main class='centered'>";
 
     result += `<div class="loading"></div>`;
 
     result += mainEndTag;
-
-    result += `
-    <footer>
-        <p>Briefer browser extension</p>
-    </footer>
-    `;
 
     result += documentEndTags;
 
@@ -173,37 +161,20 @@ const renderProgressBar = () =>{
 
 const renderErrorPage = (errorObj) =>{
 
-    let result = `
-    <body>
-    <header>
-        <img id="nameLogo" src="./assets/name.svg" alt="Briefer">
-    </header>
-    `;
+    let result = `<body>`;
 
     result += "<main class='centered'>";
 
-    result += "<div>";
-
     result += "<img id='alertImage' src='./assets/alert.svg'>";
-    result += "<h1 class='greyText'>Internal Error</h1>";
+    result += "<h1 class='errorTitle'>Internal Error</h1>";
 
-    result += `<p>Message: ${errorObj["message"]}</p>`;
+    result += `<p>Message : ${errorObj["message"]}</p>`;
     
     if(errorObj["name"] != "Warning"){
         result += `<p>Function: ${errorObj["functionName"]}</p>`;
     }
-    
-    result += "</div>";
 
     result += mainEndTag;
-
-    result += `
-    <footer>
-        <p>Briefer browser extension</p>
-    </footer>
-    `;
-
-    result += "</div>";
 
     return result;
 }
