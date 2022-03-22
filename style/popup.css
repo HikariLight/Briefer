@@ -1,46 +1,39 @@
 :root{
     --blue: #118AB2;
+    --darkGrey: #202B32;
     --grey: #364954;
+    --lightGrey: #486170;
     --green: #00856F;
     --purple: #8911B2;
     --lightBlue: #EBF2FA;
 }
 
 body{
-    width: 200px;
-    height: 350px;
-    text-align: center;
+    margin: 5px;
+    padding: 0;
+    justify-items: center;
     background-color: var(--lightBlue);
+    min-width: 200px;
 }
 
 button{
     border: none;
-    margin: 0.5em auto;
+    margin: auto;
     padding: 0;
 }
 
-header{
-    min-height: 10vh;
-}
-
-main{
-    min-height: 62vh;
+main {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .buttonsContainer{
     display: grid;
-    grid-template-rows: 1fr 1fr;
-}
-
-footer{
-    min-height: 10vh;
-    color: var(--grey);
-}
-
-#nameLogo{
-    margin-top: 0.5em;
-    width: 90%;
-    height: auto;
+    gap: 15px;
+    padding: 5px;
+    grid-template-rows: none;
+    grid-template-columns: repeat(2, 1fr);
+    
 }
 
 #simplify{
@@ -48,36 +41,56 @@ footer{
     background: url("../assets/simplify.svg") no-repeat;
     background-size: contain;
     height: 100px;
-    width: 100px;
+    width: 80px;
+    place-items: center;
 }
 
 #summarise{
     background: url("../assets/summarize.svg") no-repeat;
     background-size: contain;
     height: 100px;
-    width: 100px;
-}
-
-.greyText{
-    color: var(--grey);
-}
-
-.centered{
-    display: grid;
+    width: 80px;
     place-items: center;
 }
 
+/* ERROR PAGE */
+
+.centered {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    max-height: 160px;
+}
+
+#alertImage{
+    width: 40px;
+    height: auto;
+    place-items: center;
+}
+
+.errorTitle{
+    margin: 0;
+}
+
+.centered p {
+    margin: 0;
+    text-align: center;
+}
+
+/* LOADING PAGE */
+
 .loading {
-    display: inline-block;
+   display: inline-block;
     width: 80px;
     height: 80px;
+    margin: 40px;
 }
 .loading:after {
     content: " ";
     display: block;
     width: 64px;
     height: 64px;
-    margin: 8px;
     border-radius: 50%;
     border: 6px solid var(--blue);
     border-color: var(--blue) transparent var(--blue) transparent;
@@ -93,7 +106,3 @@ footer{
     }
 }
 
-#alertImage{
-    width: 40%;
-    height: auto;
-}
