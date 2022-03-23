@@ -5,19 +5,19 @@ A Chrome extension that summarizes and simplifies articles for easier research.
 
 ## Features
 ### Simplifier
-Takes all the useful content out of the original page and presents it in a well-designed page, taking out all the pop-ups and ads in the process.
+Takes all the useful content out of the original page and presents it in a well-designed page, taking out all the pop-ups and ads in the process.  
 Also can bypass some paywalls. (Tested on Reuters, New York Times).
 
 ### Summariser
-Skims through the article and extracts the most imporant sentences.
+Skims through the article and extracts the most imporant sentences.  
 Currently can shrink articlls by approximately 30%.
 
 ### Fuser
-***To be implemented***
+***To be implemented***  
 Combines multiple articles and summarises them, presenting you with one article that has the most important information about a subject.
 
 ### Exporter
-***A rudimentary version of this is already implemented. To be improved in the future.***
+***A rudimentary version of this is already implemented. To be improved in the future.***  
 Exports the rendered page in PDF format.
 
 
