@@ -10,7 +10,7 @@ Also can bypass some paywalls. (Tested on: Reuters, New York Times).
 
 ### Summariser
 Skims through the article and extracts the most imporant sentences.  
-Currently can shrink articlls by approximately 30%.
+Currently can shrink articles by approximately 30%.
 
 ### Fuser
 ***To be implemented***  
