@@ -6,7 +6,7 @@ A Chrome extension that summarizes and simplifies articles for easier research.
 ## Features
 ### Simplifier
 Takes all the useful content out of the original page and presents it in a well-designed page, taking out all the pop-ups and ads in the process.  
-Also can bypass some paywalls. (Tested on Reuters, New York Times).
+Also can bypass some paywalls. (Tested on: Reuters, New York Times).
 
 ### Summariser
 Skims through the article and extracts the most imporant sentences.  
