@@ -67,6 +67,13 @@ function dataFormatting (list) {
             
 
         } else {
+            // formatting paragraph
+            if ( tag === 'p' ) {
+                content = content.trim();
+                if ( content.substr(-1) !== '.' ) {
+                    content = content + '.';
+                }
+            }
 
             if ( tmp.includes(tag) ) {
 
