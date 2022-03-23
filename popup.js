@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } catch (err) {
             document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
-            console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
+            console.warn(err);
         }
     });
 
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } catch (err) {
             document.getElementsByTagName("body")[0].innerHTML = renderErrorPage(err);
-            console.warn('['+err.name+'] '+ err.message + '\n' + err.fileName + ', '+err.functionName);
+            console.warn(err);
         }
     });
 
