@@ -14,20 +14,17 @@ function simplify(html) {
     const parser = new DOMParser();
     let doc = parser.parseFromString(html, 'text/html');
 
-    // add deep cloning 
-    // var doc_copy = Object.assign( {}, doc);
-
     // Pre-processing
     preProcess(doc);
-    console.log('[pre-processing] : ',doc);
+    console.log('[pre-processing] : ', JSON.parse(JSON.stringify(doc)));
 
     // Classification
     let list = classification(doc);
-    console.log('[classification] : ', list);
+    console.log('[classification] : ', JSON.parse(JSON.stringify(list)));
 
     // Data formatting
     let output = dataFormatting(list);
-    console.log('[data formatting] : ', output);
+    console.log('[data formatting] : ', JSON.parse(JSON.stringify(output)));
 
     return output;
 }
