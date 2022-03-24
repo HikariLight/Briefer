@@ -57,7 +57,7 @@ const scoreSentence = (sentence, wordsMap) =>{
         }
     }
 
-    return score;
+    return score * (1 / sentenceTokens.length); // normalizing score by sentence length
 }
 
 const getSentenceScoresMap = (text, wordsMap) =>{
