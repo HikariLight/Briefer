@@ -165,14 +165,20 @@ const renderErrorPage = (errorObj) =>{
 
     result += "<main class='centered'>";
 
+    result += "<div>";
+
     result += "<img id='alertImage' src='./assets/alert.svg'>";
     result += "<h1 class='errorTitle'>Internal Error</h1>";
 
-    result += `<p>Message : ${errorObj["message"]}</p>`;
-    
-    if(errorObj["name"] != "Warning"){
-        result += `<p>Function: ${errorObj["functionName"]}</p>`;
+    if(Object.keys(errorObj).length == 4){
+        result += "<p>It's not your fault.</p>";
+    } else if(Object.keys(errorObj).length == 2){
+        result += `<p>${errorObj["message"]}</p>`;
+    } else{
+        result += "<p>It's not your fault.</p>";
     }
+
+    result += "</div>";
 
     result += mainEndTag;
 
