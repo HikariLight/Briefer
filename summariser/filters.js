@@ -84,31 +84,31 @@ const getSentenceFilterList = (language) => {
     let result = [];
 
     if(language == "en"){
-        result = ["And, ", "Also, ", "In particular, ", "In that respect, ", "But, ", "Thus, ", "In any case, ", "In the same way, ", "Another reason, ", "However, ", "In contrast, ", "Nevertheless, ", "Nonetheless, ", "Yet, ", "On the other hand, ", "By comparaison, ", "On the contrary, ", "Instead, ", "Unlike, ", "Otherwise, ", "At the same time, ", "Conversely, ", "Even so, ", "Whereas, "];
+        result = ["And, ", "Also, ", "In particular, ", "In that respect, ", "But, ", "Thus, ", "In any case, ", "In the same way, ", "Another reason, ", "However, ", "In contrast, ", "Nevertheless, ", "Nonetheless, ", "Yet, ", "On the other hand, ", "By comparison, ", "On the contrary, ", "Instead, ", "Unlike, ", "Otherwise, ", "At the same time, ", "Conversely, ", "Even so, ", "Whereas, ", "And ", "Whereas ", "Specifically, ", "In practice, ", "Meanwhile, ", "That said, ", "From there, ", "In all cases, ", "For example, ", "And furthermore, ", "And of course, "];
     }
     
     else if(language == "fr"){
-        result = ["Et, ", "Aussi, ", "En particulier, ", "A cet égard, ", "Mais, ", "Ainsi, ", "En tout cas, ", "De la même manière, ", "Pour une autre raison, ", "Cependant, ", "En revanche, ", "Néanmoins, ", "Néanmoins, ", "Pourtant, ", "D'autre part, ", "Par comparaison, ", "Au contraire, ", "Au lieu de, ", "Contrairement à, ", "Sinon, ", "En même temps, ", "Inversement, ", "Même si, ", "Considérant, "];
+        result = ["Et, ", "Aussi, ", "En particulier, ", "A cet égard, ", "Mais, ", "Ainsi, ", "En tout cas, ", "De la même manière, ", "Pour une autre raison, ", "Cependant, ", "En revanche, ", "Néanmoins, ", "Néanmoins, ", "Pourtant, ", "D'autre part, ", "Par comparaison, ", "Au contraire, ", "Au lieu de, ", "Contrairement à, ", "Sinon, ", "En même temps, ", "Inversement, ", "Même si, ", "Considérant, ", "Et ", "Attendu que ", "Spécifiquement, ", "En pratique, ", "En attendant, ", "Cela dit, ", "De là, ", "Dans tous les cas, ", "Par exemple, ", "Et en outre, ", "Et bien sûr, "];
     }
     
     else if(language == "de"){
-        result = ["Und, ", "Auch, ", "Insbesondere, ", "In dieser Hinsicht, ", "Aber, ", "So, ", "Auf jeden Fall, ", "In gleicher Weise, ", "Ein anderer Grund, ", "Jedoch, ", "Im Gegensatz, ", "Dennoch, ", "Trotzdem, ", "Doch, ", "Andererseits, ", "Im Vergleich, ", "Im Gegenteil, ", "Stattdessen, ", "Im Gegensatz, ", "Sonst, ", "Gleichzeitig, ", "Umgekehrt, ", "Trotzdem, ", "Wohingegen, "];
+        result = ["Und, ", "Auch, ", "Insbesondere, ", "In dieser Hinsicht, ", "Aber, ", "So, ", "Auf jeden Fall, ", "In gleicher Weise, ", "Ein anderer Grund, ", "Jedoch, ", "Im Gegensatz, ", "Dennoch, ", "Trotzdem, ", "Doch, ", "Andererseits, ", "Im Vergleich, ", "Im Gegenteil, ", "Stattdessen, ", "Im Gegensatz, ", "Sonst, ", "Gleichzeitig, ", "Umgekehrt, ", "Trotzdem, ", "Wohingegen, ", "Und ", "Wohingegen ", "Insbesondere, ", "In der Praxis, ", "Inzwischen, ", "Das heißt, ", "Von daher, ", "In allen Fällen, ", "Zum Beispiel, ", "Und außerdem, ", "Und natürlich, "];
     }
 
     else if(language == "nl"){
-        result = ["En, ", "Ook, ", "In het bijzonder, ", "In dat opzicht, ", "Maar, ", "Dus, ", "In ieder geval, ", "Op dezelfde manier, ", "Een andere reden, ", "Echter, ", "In tegenstelling, ", "Niettemin, ", "Niettemin, ", "Toch, ", "Anderzijds, ", "In vergelijking, ", "In tegendeel, ", "In plaats daarvan, ", "Anders, ", "Anders, ", "Tegelijkertijd, ", "Omgekeerd, ", "Zelfs zo, ", "Overwegende dat, "];
+        result = ["En, ", "Ook, ", "In het bijzonder, ", "In dat opzicht, ", "Maar, ", "Dus, ", "In ieder geval, ", "Op dezelfde manier, ", "Een andere reden, ", "Echter, ", "In tegenstelling, ", "Niettemin, ", "Niettemin, ", "Toch, ", "Anderzijds, ", "In vergelijking, ", "In tegendeel, ", "In plaats daarvan, ", "Anders, ", "Anders, ", "Tegelijkertijd, ", "Omgekeerd, ", "Zelfs zo, ", "Overwegende dat, ", "En ", "Overwegende dat ", "Specifiek, ", "In de praktijk, ", "Ondertussen, ", "Dat gezegd hebbende, ", "Van daar, ", "In alle gevallen, ", "Bijvoorbeeld, ", "En verder, ", "En natuurlijk, "];
     }
 
     else if(language == "es"){
-        result = ["Y, ", "También, ", "En particular, ", "En ese sentido, ", "Pero, ", "Así, ", "En cualquier caso, ", "De la misma manera, ", "Otra razón, ", "Sin embargo, ", "En contraste, ", "No obstante, ", "No obstante, ", "Sin embargo, ", "Por otra parte, ", "En comparación, ", "Por el contrario, ", "En cambio, ", "A diferencia de, ", "Por lo demás, ", "Al mismo tiempo, ", "A la inversa, ", "Aun así, ", "Mientras que, "];
+        result = ["Y, ", "También, ", "En particular, ", "En ese sentido, ", "Pero, ", "Así, ", "En cualquier caso, ", "De la misma manera, ", "Otra razón, ", "Sin embargo, ", "En contraste, ", "No obstante, ", "No obstante, ", "Sin embargo, ", "Por otra parte, ", "En comparación, ", "Por el contrario, ", "En cambio, ", "A diferencia de, ", "Por lo demás, ", "Al mismo tiempo, ", "A la inversa, ", "Aun así, ", "Mientras que, ", "Y ", "Mientras que ", "Específicamente, ", "En la práctica, ", "Mientras tanto, ", "Dicho esto, ", "De ahí, ", "En todos los casos, ", "Por ejemplo, ", "Y además, ", "Y por supuesto, "];
     }
 
     else if(language == "it"){
-        result = ["E, ", "Anche, ", "In particolare, ", "A questo proposito, ", "Ma, ", "Così, ", "In ogni caso, ", "Allo stesso modo, ", "Un'altra ragione, ", "Tuttavia, ", "In contrasto, ", "Tuttavia, ", "Nondimeno", "Eppure", "D'altra parte, ", "In confronto, ", "Al contrario, ", "Invece, ", "A differenza, ", "Altrimenti, ", "Allo stesso tempo, ", "Al contrario, ", "Anche così, ", "Mentre, "];
+        result = ["E, ", "Anche, ", "In particolare, ", "A questo proposito, ", "Ma, ", "Così, ", "In ogni caso, ", "Allo stesso modo, ", "Un'altra ragione, ", "Tuttavia, ", "In contrasto, ", "Tuttavia, ", "Nondimeno", "Eppure", "D'altra parte, ", "In confronto, ", "Al contrario, ", "Invece, ", "A differenza, ", "Altrimenti, ", "Allo stesso tempo, ", "Al contrario, ", "Anche così, ", "Mentre, ", "E ", "Considerando ", "Nello specifico, ", "In pratica, ", "Nel frattempo, ", "Detto questo, ", "Da lì, ", "In tutti i casi, ", "Per esempio, ", "E inoltre, ", "E naturalmente "];
     }
 
     else if(language == "pt"){
-        result = ["E, ", "Também, ", "Em particular, ", "A esse respeito, ", "Mas, ", "Assim, ", "Em qualquer caso, ", "Do mesmo modo, ", "Outro motivo, ", "No entanto, ", "Em contraste, ", "Não obstante, ", "Não obstante, ", "Ainda assim, ", "Por outro lado, ", "Em comparação, ", "Pelo contrário, ", "Em vez disso, ", "Ao contrário, ", "Ao contrário, ", "Caso contrário, ", "Ao mesmo tempo, ", "Inversamente, ", "Mesmo assim, ", "Considerando que, "];
+        result = ["E, ", "Também, ", "Em particular, ", "A esse respeito, ", "Mas, ", "Assim, ", "Em qualquer caso, ", "Do mesmo modo, ", "Outro motivo, ", "No entanto, ", "Em contraste, ", "Não obstante, ", "Não obstante, ", "Ainda assim, ", "Por outro lado, ", "Em comparação, ", "Pelo contrário, ", "Em vez disso, ", "Ao contrário, ", "Ao contrário, ", "Caso contrário, ", "Ao mesmo tempo, ", "Inversamente, ", "Mesmo assim, ", "Considerando que, ", "E ", "Considerando ", "Especificamente, ", "Na prática, ", "Entretanto, ", "Dito isto, ", "A partir daí, ", "Em todos os casos, ", "Por exemplo, ", "E, além disso, ", "E claro, ",];
     }
 
     return result;
