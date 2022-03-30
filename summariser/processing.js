@@ -38,6 +38,14 @@ const aggregatePageText = (contentList) => {
     return result;
 }
 
+const preTokenization = (text) =>{
+    return text
+        .replaceAll(/( |^)([A-Z]|[a-z])[a-z]{1,2}\./g, "")
+        .replaceAll(/[0-9]\.[0-9]/g, "")
+        .replaceAll(".\"", "\".") // In American English, the period comes before the end quotation mark.
+        .replaceAll(".)", ").");
+}
+
 const getMostFrequent = (tokenizedWords) =>{
 
     // Returns the most frequent word and its number of occurences.
@@ -73,4 +81,4 @@ const getAverageWeight = (sentenceMap) =>{
     return result / length;
 }
 
-export { aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }
+export { preTokenization, aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }

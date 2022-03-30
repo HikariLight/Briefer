@@ -1,4 +1,5 @@
 import {checkStringInput} from "../exceptionHandling.js";
+import { preTokenization } from "./processing.js";
 
 const tokenizeWords = (text) => {
 
@@ -15,8 +16,8 @@ const tokenizeSentences = (text) =>{
     
     checkStringInput(text, "text", "tokenization.js", "tokenizeSentences()")
 
-    // In American English, the period comes before the end quotation mark.
-    let result = text.replaceAll(".\"", "\".").split(". ").filter(sentence => sentence.length > 0);
+    let result = preTokenization(text);
+    result = result.split(". ").filter(sentence => sentence.length > 0);
 
     try{
         for(let i = 0; i < result.length; i++){
