@@ -43,7 +43,7 @@ const punctuationFilter = (wordTokens) => {
     checkObjectInput(wordTokens, "wordTokens", "filters.js", "punctuationFilter()")
 
     for(let i = wordTokens.length - 1; i >= 0 ; i--){
-        wordTokens[i] = wordTokens[i].replaceAll(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+        wordTokens[i] = wordTokens[i].replaceAll(/[.,\[\]\/"'#!$%\^&\*;:{}=\-_`~()]/g, "");
     }
 }
 
