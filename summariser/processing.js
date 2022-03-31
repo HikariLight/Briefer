@@ -40,7 +40,7 @@ const aggregatePageText = (contentList) => {
 
 const preTokenization = (text) =>{
     return text
-        .replaceAll(/( |^)([A-Z]|[a-z])[a-z]{1,2}\./g, "")
+        // .replaceAll(/( |^)([A-Z]|[a-z])[a-z]{1,2}\./g, "")
         .replaceAll(/[0-9]\.[0-9]/g, "")
         .replaceAll(".\"", "\".") // In American English, the period comes before the end quotation mark.
         .replaceAll(".)", ").");
