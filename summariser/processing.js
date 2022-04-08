@@ -38,10 +38,14 @@ const aggregatePageText = (contentList) => {
     return result;
 }
 
+const handleEdgeCases = (text) => {
+
+}
+
 const preTokenization = (text) =>{
     return text
         // .replaceAll(/( |^)([A-Z]|[a-z])[a-z]{1,2}\./g, "")
-        .replaceAll(/[0-9]\.[0-9]/g, "")
+        .replaceAll(/([0-9])\.([0-9])/g, "$1$2")
         .replaceAll(".\"", "\".") // In American English, the period comes before the end quotation mark.
         .replaceAll(".)", ").");
 }
