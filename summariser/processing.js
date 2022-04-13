@@ -1,4 +1,5 @@
 import { checkObjectInput } from "../exceptionHandling.js";
+import { tokeninzationEdgeCases } from "./filterLists.js";
 
 const aggregateSectionText = (section) =>{
     
@@ -38,13 +39,12 @@ const aggregatePageText = (contentList) => {
     return result;
 }
 
-const handleEdgeCases = (text) => {
+const preSentenceTokenization = (text) =>{
 
-}
+    tokeninzationEdgeCases.forEach(edgeCase => text = text.replaceAll(edgeCase, "$1"));
 
-const preTokenization = (text) =>{
     return text
-        // .replaceAll(/( |^)([A-Z]|[a-z])[a-z]{1,2}\./g, "")
+        .replaceAll(/( ([A-Z]|[a-z]){1,2})\./g, "$1")
         .replaceAll(/([0-9])\.([0-9])/g, "$1$2")
         .replaceAll(".\"", "\".") // In American English, the period comes before the end quotation mark.
         .replaceAll(".)", ").");
@@ -85,4 +85,4 @@ const getAverageWeight = (sentenceMap) =>{
     return result / length;
 }
 
-export { preTokenization, aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }
+export { preSentenceTokenization, aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }
