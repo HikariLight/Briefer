@@ -21,7 +21,7 @@ const tokenizeSentences = (text) =>{
 
     try{
         for(let i = 0; i < result.length; i++){
-            result[i] = tokenizeWords(result[i]);
+            result[i] = tokenizeWords(result[i]).filter(word => word.length > 0);;
         }
     } catch(error){
         console.log(error);
