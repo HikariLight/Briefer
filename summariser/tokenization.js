@@ -1,5 +1,5 @@
 import {checkStringInput} from "../exceptionHandling.js";
-import { preTokenization } from "./processing.js";
+import { preSentenceTokenization } from "./processing.js";
 
 const tokenizeWords = (text) => {
 
@@ -16,8 +16,8 @@ const tokenizeSentences = (text) =>{
     
     checkStringInput(text, "text", "tokenization.js", "tokenizeSentences()")
 
-    let result = preTokenization(text);
-    result = result.split(". ").filter(sentence => sentence.length > 0);
+    let result = preSentenceTokenization(text);
+    result = result.split(".").filter(sentence => sentence.length > 0);
 
     try{
         for(let i = 0; i < result.length; i++){
