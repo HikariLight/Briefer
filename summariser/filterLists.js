@@ -30,6 +30,6 @@ const sentenceStarters = {
     "pt": ["E, ", "Também, ", "Em particular, ", "A esse respeito, ", "Mas, ", "Assim, ", "Em qualquer caso, ", "Do mesmo modo, ", "Outro motivo, ", "No entanto, ", "Em contraste, ", "Não obstante, ", "Não obstante, ", "Ainda assim, ", "Por outro lado, ", "Em comparação, ", "Pelo contrário, ", "Em vez disso, ", "Ao contrário, ", "Ao contrário, ", "Caso contrário, ", "Ao mesmo tempo, ", "Inversamente, ", "Mesmo assim, ", "Considerando que, ", "E ", "Considerando ", "Especificamente, ", "Na prática, ", "Entretanto, ", "Dito isto, ", "A partir daí, ", "Em todos os casos, ", "Por exemplo, ", "E, além disso, ", "E claro, ",]
 }
 
-const tokeninzationEdgeCases = [/(Mr)./g, /(Ms)./g, /(Mrs)./g, /(Dr)./g, /(tr)./g];
+const tokeninzationEdgeCases = [/(Mr)\./g, /(Ms)\./g, /(Mrs)\./g, /(Dr)\./g, /(tr)\./g];
 
 export { notMeaningeful, sentenceStarters, tokeninzationEdgeCases }
