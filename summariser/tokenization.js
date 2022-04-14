@@ -7,7 +7,7 @@ const tokenizeWords = (text) => {
 
     checkStringInput(text, "text", "tokenization.js", "tokenizeWords()");
 
-    return text.replaceAll("-", " ").split(" ");
+    return text.replaceAll("-", " ").split(" ").filter(word => word.length > 0);
 }
 
 const tokenizeSentences = (text) =>{
@@ -21,7 +21,7 @@ const tokenizeSentences = (text) =>{
 
     try{
         for(let i = 0; i < result.length; i++){
-            result[i] = tokenizeWords(result[i]).filter(word => word.length > 0);;
+            result[i] = tokenizeWords(result[i]);
         }
     } catch(error){
         console.log(error);
