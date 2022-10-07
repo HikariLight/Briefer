@@ -6,7 +6,8 @@
         "jest": "^27.5.1"
     },
     "scripts": {
-        "test": "jest --verbose"
+        "test": "jest --verbose",
+        "performance-test": "node Tests/summariser/performance-tests/runTests.js" 
     },
     "jest": {
         "transform": {
