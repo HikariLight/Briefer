@@ -50,6 +50,13 @@ const preSentenceTokenization = (text) =>{
         .replaceAll(".)", ").");
 }
 
+const sentenceFiltering = (sentences) => {
+
+    return sentences
+                .filter(sentence => sentence.length > 0)
+                .filter(sentence => sentence != "\n");
+}
+
 const getMostFrequent = (tokenizedWords) =>{
 
     // Returns the most frequent word and its number of occurences.
@@ -85,4 +92,4 @@ const getAverageWeight = (sentenceMap) =>{
     return result / length;
 }
 
-export { preSentenceTokenization, aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }
+export { preSentenceTokenization, sentenceFiltering ,aggregateSectionText, aggregatePageText, getMostFrequent, getAverageWeight }
