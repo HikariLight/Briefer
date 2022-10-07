@@ -1,4 +1,4 @@
-import * as tokenizer from "../../tokenization.js";
+import * as tokenizer from "../../../summariser/tokenization";
 
 describe("Word Tokenization", () => {
 
@@ -15,11 +15,11 @@ describe("Word Tokenization", () => {
 describe("Sentence Tokenization", () => {
 
     test("Case: Normal", () => {
-        expect(tokenizer.tokenizeSentences("Hello, my name is HikariLight. I'm implementing Unit Testing.")).toEqual([["Hello,", "my", "name", "is", "HikariLight"], ["I'm", "implementing", "Unit", "Testing"]]);
+        expect(tokenizer.tokenizeSentences("Hello, my name is HikariLight. I'm implementing Unit Testing.")).toEqual([["Hello,", "my", "name", "is", "HikariLight"], ["I'm", "implementing", "Unit", "Testing."]]);
     })
 
-    test("Case: Edge case (Mr.)", () => {
-        expect(tokenizer.tokenizeSentences("Hello, my name is Mr. HikariLight. I'm implementing Unit Testing.")).toEqual([["Hello,", "my", "name", "is", "Mr", "HikariLight"], ["I'm", "implementing", "Unit", "Testing"]]);
+    test("Case: Edge case: Mr.", () => {
+        expect(tokenizer.tokenizeSentences("Hello, my name is Mr. HikariLight. I'm implementing Unit Testing.")).toEqual([["Hello,", "my", "name", "is", "Mr", "HikariLight"], ["I'm", "implementing", "Unit", "Testing."]]);
     })
 
     test("Case: Edge case large number with period separator", () => {

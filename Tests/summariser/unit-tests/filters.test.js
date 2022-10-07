@@ -1,5 +1,6 @@
-import * as filters from "../../filters.js";
-import { tokenizeWords } from "../../tokenization.js";
+
+import * as filters from "../../../summariser/filters";
+import { tokenizeWords }  from "../../../summariser/tokenization";
 
 describe("Filters Tests", () =>{
 

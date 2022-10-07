@@ -1,4 +1,4 @@
-import { summarise } from "../summariser.js";
+import { summarise } from "../../../summariser/summariser.js";
 import { testCases } from "./testCases.js";
 import {getArticleLength, getReductionRate } from "./tools.js";
 
